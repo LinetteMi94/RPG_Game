@@ -7,24 +7,24 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет монстра в игре.
 /// Наследует общие свойства и поведение от класса Character.
 /// </summary>
-public class Monster(string name, int health, int armor, int damage) 
+public abstract class Monster(string name, int health, int armor, int damage, int expReward, int goldReward) 
     : Character(name, 
         health, 
         mana:0, 
-        armor,
-        level:1)
+        armor)
 {
     public int Damage { get; } = damage;
+    public int Level { get; private set; } = 1; 
+    public int ExpReward { get; } = expReward;
+    public int GoldReward { get; } = goldReward;
 
     public override void DisplayCharacterStats()
     {
-        Console.Write($"Монстр: {name}, ");
+        Console.WriteLine($"Монстр: {name}, {Level} уровень");
         base.DisplayCharacterStats();
         Console.WriteLine();
     }
-    
-    public void Attack(Hero target)
-    {
-        if (IsAlive) target.TakeDamage(Damage);
-    }
+
+    public abstract void Attack(Hero target);
+    public virtual void TakeDamage(int damage) => base.TakeDamage(damage);
 }

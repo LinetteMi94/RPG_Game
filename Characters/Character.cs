@@ -4,27 +4,30 @@
 /// Базовый абстрактный класс для всех персонажей игры.
 /// Содержит общие свойства и методы героя и монстра.
 /// </summary>
-public abstract class Character(string name, int health, int mana, int armor, int level)
+public abstract class Character(string name, int health, int mana, int armor)
 {
     public string Name { get; } = name;
     public int Health { get; set; } = health;
     private int Mana { get; set; } = mana;
     public int Armor { get; } = armor;
-    public int Level { get; } = level;
     public bool IsAlive => Health > 0;
-    private readonly int _maxHealth = health;
+    protected readonly int _maxHealth = health;
     
     /// <summary>
     /// Уменьшает здоровье персонажа на указанное количество.
     /// </summary>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool ignoreArmor = false)
     {
         if (damage < 0)
         {
             throw new ArgumentException("Damage cannot be negative");
         }
-        int realDamage = damage - armor;
-        if (realDamage > 0) Health -= realDamage;
+        if(ignoreArmor) Health -= damage;
+        else
+        {
+            int realDamage = damage - armor;
+            if (realDamage > 0) Health -= realDamage;
+        }
         if (Health <= 0) Health = 0;
     }
     
@@ -35,7 +38,7 @@ public abstract class Character(string name, int health, int mana, int armor, in
     {
         if (IsAlive) Console.WriteLine("Состояние: Жив");
              else Console.WriteLine("Состояние: Мёртв");
-        Console.WriteLine($"Здоровье: {Health}, Мана: {Mana}, Броня: {Armor}");
+        Console.WriteLine($"Здоровье: {Health}, Броня: {Armor}");
     }
     
     /// <summary>

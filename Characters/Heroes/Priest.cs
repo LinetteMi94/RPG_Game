@@ -1,17 +1,17 @@
 ﻿using RPG_Game.Interfaces;
+using RPG_Game.Characters.Monsters;
 
 namespace RPG_Game.Characters.Heroes;
 
 /// <summary>
-/// Представляет жреца.
-/// Наследует характеристики героя и реализует способность лечить персонажей.
+/// Представляет жреца — целителя, владеющего силами света.
+/// Может восстанавливать здоровье союзников и использовать магические атаки.
 /// </summary>
 public class Priest(string name) 
     : Hero(name, 
         health:54, 
         mana: 180, 
         armor:20, 
-        level:1, 
         strength:12, 
         agility:18, 
         stamina:20, 
@@ -28,4 +28,13 @@ public class Priest(string name)
     public void Heal() => RestoreHealth(HealPower);
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
+    
+    public override void Attack(Monster target)
+    {
+        if (IsAlive)
+        {
+            Console.WriteLine($"{Name} направляет силу света и наносит {Damage - target.Armor} урона!");
+            target.TakeDamage(Damage);
+        }
+    }
 }

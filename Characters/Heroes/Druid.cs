@@ -1,17 +1,17 @@
 ﻿using RPG_Game.Interfaces;
+using RPG_Game.Characters.Monsters;
 
 namespace RPG_Game.Characters.Heroes;
 
 /// <summary>
-/// Представляет друида.
-/// Наследует характеристики героя и реализует способность лечить персонажей.
+/// Представляет друида — защитника природы, владеющего силами жизни и зверей.
+/// Может использовать природную магию для атаки и восстановления здоровья.
 /// </summary>
 public class Druid(string name) 
     : Hero(name, 
             health:55, 
             mana: 130, 
             armor:20, 
-            level:1, 
             strength:15, 
             agility:22, 
             stamina:21, 
@@ -26,4 +26,13 @@ public class Druid(string name)
     public void Heal() => RestoreHealth(HealPower);
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
+    
+    public override void Attack(Monster target)
+    {
+        if (IsAlive)
+        {
+            Console.WriteLine($"{Name} призывает силу природы и наносит {Damage - target.Armor} урона!");
+            target.TakeDamage(Damage);
+        }
+    }
 }
