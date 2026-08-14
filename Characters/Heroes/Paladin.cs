@@ -24,7 +24,7 @@ public class Paladin(string name)
     public override int Damage => (int)Math.Round(Strength*1.5 + Intellect);
     public int HealPower => (Intellect + Strength)/2;
     
-    public void Heal() => RestoreHealth(HealPower, this);
+    public void Heal() => RestoreHealth(HealPower);
     
-    public void Heal(Hero hero) => RestoreHealth(HealPower, hero);
+    public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
 }

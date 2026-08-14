@@ -41,9 +41,9 @@ public abstract class Character(string name, int health, int mana, int armor, in
     /// <summary>
     /// Увеличивает здоровье указанного персонажа на указанное количество.
     /// </summary>
-    protected void RestoreHealth(int amount, Character character)
+    public void RestoreHealth(int amount)
     {
-        character.Health += amount;
-        if (character.Health > character._maxHealth) character.Health = character._maxHealth;
+        Health += amount;
+        if (Health > _maxHealth) Health = _maxHealth;
     }
 }

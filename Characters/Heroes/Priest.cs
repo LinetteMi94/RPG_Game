@@ -25,7 +25,7 @@ public class Priest(string name)
     
     public int HealPower => (Intellect + Spirit)/2;
     
-    public void Heal() => RestoreHealth(HealPower, this);
+    public void Heal() => RestoreHealth(HealPower);
     
-    public void Heal(Hero hero) => RestoreHealth(HealPower, hero);
+    public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
 }
