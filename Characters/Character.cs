@@ -7,12 +7,13 @@
 public abstract class Character(string name, int health, int mana, int armor)
 {
     public string Name { get; } = name;
-    protected int Health { get; set; } = health;
+    public int Health { get; protected set; } = health;
     public int Mana { get; private set; } = mana;
     public int Armor { get; protected set; } = armor;
     public bool IsAlive => Health > 0;
-    protected int MaxHealth { get; private set; } = health;
+    public int MaxHealth { get; private set; } = health;
     protected int MaxMana { get; private set; } = mana;
+    
     
     /// <summary>
     /// Уменьшает здоровье персонажа на указанное количество.

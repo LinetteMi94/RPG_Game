@@ -24,6 +24,28 @@ public class Druid(string name)
     public override int Damage => Intellect+Agility;
     public int HealPower => (Intellect + Spirit)/2;
     
+    public BattleMessages Messages = new BattleMessages
+    {
+        DamageMessages =
+        {
+            "🌿 Друид призывает силу природы и обрушивает поток энергии на врага!",
+            "🍃 Древние корни пробиваются из земли и оплетают противника!",
+            "🌱 Друид направляет ярость леса против врага!",
+            "🐺 Дух зверя вселяется в друида, усиливая его удар!",
+            "🌳 Сила древнего леса отвечает на зов друида!",
+            "🍂 Друид выпускает вихрь острых листьев!",
+            "🌿 Природная энергия вспыхивает вокруг рук друида!",
+            "🦌 Духи леса атакуют врага по приказу друида!",
+            "🌲 Друид заставляет землю содрогнуться под ногами противника!",
+            "✨ Друид направляет поток жизненной силы, превращая её в оружие!"
+        },
+        MissMessages =
+        {
+            "🛡️ Атака друида была остановлена бронёй!",
+        }
+    };
+    
+    
     public void Heal() => RestoreHealth(HealPower);
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
@@ -32,8 +54,10 @@ public class Druid(string name)
     {
         if (IsAlive)
         {
-            Console.WriteLine($"{Name} призывает силу природы и наносит {Damage - target.Armor} урона!");
             target.TakeDamage(Damage);
+            Messages.ShowDamageMessage(Messages.DamageMessages);
+            Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
+            Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
         }
     }
 }

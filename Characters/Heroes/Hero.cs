@@ -55,11 +55,11 @@ public abstract class Hero : Character
     public int Intellect { get; protected set; }
     public int Spirit { get; protected set; }
 
-    protected StatGrowth StatGrowth { get; }
+    private StatGrowth StatGrowth { get; }
 
     public int Money { get; private set; }
 
-    public LevelProgress Level { get; private set; } = new();
+    public LevelProgress Level { get; } = new();
 
     protected Hero(
         string name,
@@ -83,10 +83,14 @@ public abstract class Hero : Character
         Level.LevelUp += OnLevelUp;
     }
 
+    public BattleMessages Messages { get; protected set; } = new();
+    
     protected abstract string ClassName { get; }
     public abstract int Damage { get; }
 
-    public abstract void Attack(Monster target);
+    public virtual void Attack(Monster target)
+    {
+    }
 
     private void OnLevelUp()
     {

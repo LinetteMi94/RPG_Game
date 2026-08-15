@@ -25,7 +25,6 @@ public class Battle
                 OnMonsterDefeated?.Invoke(monster);
                 break;
             }
-            monster.DisplayCharacterStats();
             monster.Attack(hero);
             if (!hero.IsAlive)
             {
