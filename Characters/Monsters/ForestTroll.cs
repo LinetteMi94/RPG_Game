@@ -17,18 +17,19 @@ public class ForestTroll()
     private readonly double _berserkHealthPercent = 0.3;
     
     private readonly double _berserkDamageMultiplier = 1.5;
+    
     public override void Attack(Hero target)
     {
         var realDamage = Damage;
-        if (Health < _maxHealth * _berserkHealthPercent)
+        if (Health < MaxHealth * _berserkHealthPercent)
         {
             realDamage = (int)Math.Round(Damage*_berserkDamageMultiplier);
-            Console.WriteLine(
-                "Лесной тролль впадает в ярость! Его глаза наливаются кровью, а удары становятся сильнее!");
+            Console.WriteLine("🌲🧌 Лесной тролль впадает в ярость! Его глаза наливаются кровью, а удары становятся сильнее!");
         }
         if (IsAlive)
         {
-            Console.WriteLine($"Лесной тролль с рыком обрушивает кулак на героя! Нанесено {realDamage-target.Armor} урона!");
+            if (realDamage > target.Armor) Console.WriteLine($"🌲🧌 Лесной тролль с рыком обрушивает кулак на героя! Нанесено {realDamage-target.Armor} урона!");
+            else Console.WriteLine($"🌲🧌 Лесной тролль с рыком обрушивает кулак на героя и промахивается!");
             target.TakeDamage(realDamage);
         }
     }

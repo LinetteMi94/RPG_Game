@@ -12,10 +12,12 @@ public class Battle
     public event Action<Monster> OnMonsterDefeated;
     public void Start(Hero hero, Monster monster)
     {
-        Console.WriteLine($"Начинается бой!");
+        Console.WriteLine("Начинается бой!");
         Console.WriteLine($"{hero.Name} против {monster.Name}");
         while (true)
         {
+            Console.WriteLine("Нажмите любую клавишу для атаки");
+            Console.ReadLine();
             hero.Attack(monster);
             if (!monster.IsAlive)
             {
@@ -23,12 +25,14 @@ public class Battle
                 OnMonsterDefeated?.Invoke(monster);
                 break;
             }
+            monster.DisplayCharacterStats();
             monster.Attack(hero);
             if (!hero.IsAlive)
             {
                 Console.WriteLine($"{hero.Name} повержен!\t {monster.Name} победил!");
                 break;
             }
+            hero.DisplayCharacterStats();
         }
     }
 }

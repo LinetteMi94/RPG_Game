@@ -16,10 +16,11 @@ public class Priest(string name)
         agility:18, 
         stamina:20, 
         intellect:24, 
-        spirit:22), 
+        spirit:22,
+        new StatGrowth(1,1,1,2,2,0)), 
         IHealer<Hero>
 {
-    public override string ClassName => "Жрец";
+    protected override string ClassName => "Жрец";
     
     public override int Damage => Intellect*2 + Spirit;
     

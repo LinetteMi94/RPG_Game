@@ -21,7 +21,7 @@ public class BurningElemental()
     {
         if (IsAlive)
         {
-            Console.Write($"Горящий элементаль делает огненный удар! Нанесено {Damage-target.Armor} урона!");
+            Console.WriteLine($"🔥🔥🔥 Горящий элементаль делает огненный удар! Нанесено {Damage-target.Armor} урона!");
             target.TakeDamage(Damage);
             
             Random newRandom = new Random();
@@ -29,7 +29,7 @@ public class BurningElemental()
             if (fireAttack)
             {
                 target.TakeDamage(_fireDamage, true);
-                Console.WriteLine($"Горящий элементаль поджигает героя! Нанесено {_fireDamage} урона от огня!");
+                Console.WriteLine($"🔥🔥🔥 Горящий элементаль поджигает героя! Нанесено {_fireDamage} урона от огня🔥!");
             }
         }
     }

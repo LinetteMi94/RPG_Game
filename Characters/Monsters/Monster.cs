@@ -1,5 +1,4 @@
-﻿using RPG_Game.Interfaces;
-using RPG_Game.Characters.Heroes;
+﻿using RPG_Game.Characters.Heroes;
     
 namespace RPG_Game.Characters.Monsters;
 
@@ -20,8 +19,10 @@ public abstract class Monster(string name, int health, int armor, int damage, in
 
     public override void DisplayCharacterStats()
     {
-        Console.WriteLine($"Монстр: {name}, {Level} уровень");
+        
+        Console.Write($"Монстр: {name}, {Level} уровень - ");
         base.DisplayCharacterStats();
+        Console.WriteLine($"Броня: {Armor}");
         Console.WriteLine();
     }
 

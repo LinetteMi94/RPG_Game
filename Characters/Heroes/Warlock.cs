@@ -15,9 +15,10 @@ public class Warlock(string name)
         agility:18, 
         stamina:21, 
         intellect:24, 
-        spirit:22)
+        spirit:22,
+        new StatGrowth(1,1,1,2,2,0))
 {
-    public override string ClassName =>  "Чернокнижник";
+    protected override string ClassName =>  "Чернокнижник";
     
     public override int Damage => (int)Math.Round(Intellect*2.5 + Spirit*0.5);
     
@@ -28,5 +29,10 @@ public class Warlock(string name)
             Console.WriteLine($"{Name} призывает силы Бездны! Нанесено {Damage} урона!");
             target.TakeDamage(Damage, true);
         }
+    }
+
+    protected virtual void OnLevelUp()
+    {
+        
     }
 }

@@ -16,10 +16,11 @@ public class Paladin(string name)
             agility:13, 
             stamina:22, 
             intellect:20, 
-            spirit:18), 
+            spirit:18,
+            new StatGrowth(2,1,2,1,2,2)), 
         IHealer<Hero>
 {
-    public override string ClassName =>  "Паладин";
+    protected override string ClassName =>  "Паладин";
     
     public override int Damage => (int)Math.Round(Strength*1.5 + Intellect);
     public int HealPower => (Intellect + Strength)/2;

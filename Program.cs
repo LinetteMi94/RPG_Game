@@ -8,17 +8,17 @@ internal static class Program
 {
     static void Main(string[] args)
     {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
         Console.Write("Введите имя героя: ");
         var name = Console.ReadLine();
         Hero hero = ChooseHero(name);
-        hero.OnLevelUp += ShowLevelUpMessage;
         hero.DisplayCharacterStats();
 
         Monster[] monsters = [new ForestTroll(), new BurningElemental(),new Zombie()];
         var battle = new Battle();
         battle.OnMonsterDefeated += monster =>
         {
-            hero.GetScore(monster.ExpReward);
+            hero.Level.AddExperience(monster.ExpReward);
         };
         battle.OnMonsterDefeated += monster =>
         {
@@ -29,20 +29,12 @@ internal static class Program
             if (!hero.IsAlive) break;
             battle.Start(hero, monster);
         }
-
-        if (hero.IsAlive) Console.WriteLine($"{hero.Name} выжил в этой страшной битве! Заработаны очки опыта: {hero.Score} и золотые монеты: {hero.Money}");
-        else Console.WriteLine($"Увы... {hero.Name} не выжил в этой битве");
-    }
-
-    private static void ShowLevelUpMessage(Hero obj)
-    {
-        Console.WriteLine($"{obj.Name} получил {obj.Level} уровень!");
     }
 
     private static Hero ChooseHero(string heroName)
     {
         Console.WriteLine("Выберите класс героя:");
-        Console.WriteLine("1. Друид\t2. Охотник\t3. Маг\t4. Паладин\t5. Жрец\t6. Разбойник\t7. Шаман\t8. Чернокнижник\t9. Воин");
+        Console.WriteLine("1. Друид  2. Охотник  3. Маг  4. Паладин  5. Жрец  6. Разбойник  7. Шаман  8. Чернокнижник  9. Воин");
         var choice = int.Parse(Console.ReadLine());
         
         if (choice == 1) return new Druid(heroName);

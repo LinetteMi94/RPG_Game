@@ -16,10 +16,11 @@ public class Shaman(string name)
             agility:21, 
             stamina:21, 
             intellect:21, 
-            spirit:20), 
+            spirit:20,
+            new StatGrowth(2,1,2,2,1,1)), 
         IHealer<Hero>
 {
-    public override string ClassName =>  "Шаман";
+    protected override string ClassName =>  "Шаман";
     
     public override int Damage => (int)Math.Round(Intellect*1.5 + Agility);
     

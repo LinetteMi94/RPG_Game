@@ -16,10 +16,11 @@ public class Druid(string name)
             agility:22, 
             stamina:21, 
             intellect:20, 
-            spirit:21), 
+            spirit:21,
+            new StatGrowth(1,2,2,2,1,1)), 
         IHealer<Hero>
 {
-    public override string ClassName => "Друид";
+    protected override string ClassName => "Друид";
     public override int Damage => Intellect+Agility;
     public int HealPower => (Intellect + Spirit)/2;
     

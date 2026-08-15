@@ -15,9 +15,10 @@ public class Rogue(string name)
         agility: 23,
         stamina: 21,
         intellect: 15,
-        spirit: 15)
+        spirit: 1,
+        new StatGrowth(2,2,1,1,1,1))
 {
-    public override string ClassName =>  "Разбойник";
+    protected override string ClassName =>  "Разбойник";
     public override int Damage => Agility*2;
     public override void Attack(Monster target)
     {

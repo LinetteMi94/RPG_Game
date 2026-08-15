@@ -15,9 +15,10 @@ public class Hunter(string name)
         agility: 24,
         stamina: 21,
         intellect: 18,
-        spirit: 19)
+        spirit: 19,
+        new StatGrowth(1,2,2,1,1,1))
 {
-    public override string ClassName =>  "Охотник";
+    protected override string ClassName =>  "Охотник";
     public override int Damage => (int)Math.Round(Agility*1.5 + Intellect*0.5);
     
     public override void Attack(Monster target)

@@ -15,9 +15,10 @@ public class Mage(string name)
         agility:20, 
         stamina:20, 
         intellect:24, 
-        spirit:22)
+        spirit:22,
+        new StatGrowth(1,1,1,2,2,0))
 {
-    public override string ClassName =>  "Маг";
+    protected override string ClassName =>  "Маг";
     public override int Damage => Intellect*3;
     
     public override void Attack(Monster target)

@@ -3,7 +3,7 @@
 namespace RPG_Game.Characters.Heroes;
 
 /// <summary>
-/// Представляет воина — мастера ближнего боя с высокой силой и выносливостью.
+/// Представляет воина — мастера ближнего боя с высокой силой, бронёй и выносливостью.
 /// Наносит мощные физические атаки и способен выдерживать большой урон.
 /// </summary>
 public class Warrior(string name)
@@ -15,9 +15,10 @@ public class Warrior(string name)
         agility:20, 
         stamina:25, 
         intellect:16, 
-        spirit:16)
+        spirit:16,
+        new StatGrowth(2,1,2,1,1, 3))
 {
-    public override string ClassName =>  "Воин";
+    protected override string ClassName =>  "Воин";
     
     public override int Damage => Strength*2;
     
