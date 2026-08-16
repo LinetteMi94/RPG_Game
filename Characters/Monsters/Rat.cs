@@ -6,13 +6,14 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет обычную крысу — слабого противника начального уровня.
 /// Обладает низким запасом здоровья и наносит небольшой физический урон.
 /// </summary>
-public class Rat() 
-        : Monster(name:"Крыса", 
-        health:40, 
-        armor:5, 
-        damage:58, 
-        expReward: 10,
-        goldReward: 2)
+public class Rat(int monsterLevel = 1)
+        : Monster(name: "Крыса",
+                health: ScaleStat(40, monsterLevel, 10),
+                armor: ScaleStat(5, monsterLevel),
+                damage: ScaleStat(8, monsterLevel, 2),
+                expReward: ScaleStat(10, monsterLevel, 2),
+                goldReward: ScaleStat(2, monsterLevel),
+                level: monsterLevel)
 {
         protected override BattleMessages Messages => new()
         {
@@ -38,7 +39,7 @@ public class Rat()
         [
                 new ("Крысиный хвост",
                         "Обычный крысиный хвост. Алхимики иногда используют такие вещи.",
-                        5),
+                        1),
 
                 new ("Грязный кусок ткани",
                         "Обрывок старой одежды, найденный в крысиных тоннелях."),
@@ -48,7 +49,7 @@ public class Rat()
 
                 new ("Обглоданная монета",
                         "Крыса явно не разбирается в ценностях.",
-                        3),
+                        1),
 
                 new ("Рваная пуговица",
                         "Старая пуговица, которую крыса зачем-то утащила в нору."),
@@ -68,13 +69,9 @@ public class Rat()
 
                 new ("Старая пуговица",
                         "Непонятно, почему крыса решила, что это сокровище."),
-                
-                new ("Потерянное кольцо",
-                        "Крыса случайно утащила настоящее украшение.",
-                        75),
 
                 new ("Ключ от неизвестной двери",
                         "Старый ключ, найденный в пыльном углу.",
-                        20)
+                        5)
         ];
 }

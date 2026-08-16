@@ -44,11 +44,15 @@ public abstract class Hero : Character
     }
 
     protected override BattleMessages Messages { get; } = new();
-    private List<Item> Inventory { get; } = new ();
+    public List<Item> Inventory { get; } = new ();
 
     protected abstract string ClassName { get; }
     protected abstract int Damage { get; }
 
+    /// <summary>
+    /// Выполняет атаку выбранного противника.
+    /// Рассчитывает нанесённый урон и выводит соответствующее сообщение.
+    /// </summary>
     public virtual void Attack(Monster target)
     {
         if (IsAlive)
@@ -64,6 +68,10 @@ public abstract class Hero : Character
         }
     }
 
+    /// <summary>
+    /// Выполняет действия при повышении уровня:
+    /// увеличивает характеристики, здоровье и другие параметры героя.
+    /// </summary>
     private void OnLevelUp()
     {
         var level = Level.Level;
@@ -80,19 +88,25 @@ public abstract class Hero : Character
             IncreaseMaxMana(10*level*StatGrowth.IntellectMultiplier);
             RestoreMana(MaxMana);
         }
-        DisplayCharacterStats();
     }
     
     protected internal void GetMoney(int money) => Money += money;
 
+    /// <summary>
+    /// Получает случайный предмет из списка добычи побеждённого монстра
+    /// и добавляет его в инвентарь героя.
+    /// </summary>
     protected internal void TakeLoot(Monster monster)
     {
         Item item = monster.Loot[new Random().Next(monster.Loot.Count)];
         Console.WriteLine($"🎁 С {monster.Name} выпал предмет: {item.Name}");
-        GetItem(item);
+        AddItem(item);
     }
 
-    private void GetItem(Item item)
+    /// <summary>
+    /// Добавляет предмет в инвентарь героя.
+    /// </summary>
+    private void AddItem(Item item)
     {
         Inventory.Add(item);
         item.ShowDescription();
@@ -100,11 +114,25 @@ public abstract class Hero : Character
         Console.WriteLine();
     }
     
+    /// <summary>
+    /// Удаляет предмет из инвентаря героя.
+    /// </summary>
+    public void RemoveItem(Item item)
+    {
+        Inventory.Remove(item);
+        item.ShowDescription();
+        Console.WriteLine($"{item.Name} выброшен из рюкзака");
+        Console.WriteLine();
+    }
+    
+    /// <summary>
+    /// Отображает список предметов, находящихся в инвентаре героя.
+    /// </summary>
     public void ShowInventory()
     {
         if (Inventory.Count != 0)
         {
-           Console.WriteLine("🎒 Инвентарь:");
+           Console.WriteLine($"🎒 Инвентарь {Name}:");
            int number = 1;
            foreach (Item item in Inventory)
            {
@@ -113,9 +141,13 @@ public abstract class Hero : Character
                Console.WriteLine();
            }
         }
-        else Console.WriteLine("🎒 Инвентарь пуст.");
+        else Console.WriteLine($"🎒 Инвентарь {Name} пуст.");
     }
 
+    /// <summary>
+    /// Выводит информацию о персонаже:
+    /// характеристики, уровень, здоровье, ману и другие параметры.
+    /// </summary>
     public override void DisplayCharacterStats()
     { 
         Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень - ");

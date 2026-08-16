@@ -1,5 +1,9 @@
 namespace RPG_Game;
 
+/// <summary>
+/// Хранит настройки роста характеристик героя при повышении уровня.
+/// Определяет, насколько увеличиваются основные характеристики персонажа.
+/// </summary>
 public class StatGrowth(
     int strengthMultiplier,
     int agilityMultiplier,
@@ -13,6 +17,5 @@ public class StatGrowth(
     public int StaminaMultiplier { get; } = staminaMultiplier;
     public int IntellectMultiplier { get; } = intellectMultiplier;
     public int SpiritMultiplier { get; } = spiritMultiplier;
-    
     public int ArmorMultiplier { get; } = armorMultiplier;
 }

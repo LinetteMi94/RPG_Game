@@ -18,7 +18,7 @@ public class Battle
         while (true)
         {
             Console.WriteLine("Нажмите любую клавишу для атаки");
-            Console.ReadLine();
+            Console.ReadKey();
             hero.Attack(monster);
             if (!monster.IsAlive)
             {

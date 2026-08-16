@@ -7,13 +7,14 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет лесного тролля — свирепого обитателя лесов.
 /// При низком уровне здоровья впадает в ярость и наносит увеличенный урон.
 /// </summary>
-public class ForestTroll()
+public class ForestTroll(int monsterLevel = 1)
     : Monster(name:"Лесной тролль", 
-        health:140, 
-        armor:20, 
-        damage:28, 
-        expReward: 50,
-        goldReward: 25)
+        health: ScaleStat(140, monsterLevel, 30),
+        armor: ScaleStat(20, monsterLevel, 5),
+        damage: ScaleStat(28, monsterLevel, 4),
+        expReward: ScaleStat(50, monsterLevel, 2),
+        goldReward: ScaleStat(25, monsterLevel),
+        level: monsterLevel)
 {
     private readonly double _berserkHealthPercent = 0.3;
     

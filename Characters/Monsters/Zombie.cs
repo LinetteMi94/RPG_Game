@@ -6,13 +6,14 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет зомби — ожившего мертвеца.
 /// Может восстанавливать здоровье во время боя.
 /// </summary>
-public class Zombie()
+public class Zombie(int monsterLevel = 1)
     : Monster(name:"Зомби", 
-        health:120, 
-        armor:15, 
-        damage:25, 
-        expReward: 35,
-        goldReward: 10)
+        health: ScaleStat(120, monsterLevel, 25),
+        armor: ScaleStat(15, monsterLevel, 2),
+        damage: ScaleStat(25, monsterLevel, 3),
+        expReward: ScaleStat(35, monsterLevel, 2),
+        goldReward: ScaleStat(10, monsterLevel),
+        level: monsterLevel)
 {
     private readonly int _regenerationAmount = 10;
 
