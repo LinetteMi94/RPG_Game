@@ -24,6 +24,7 @@ public class EncounterSystem
             < 55 => new Zombie(monsterLevel),
             < 70 => new ForestTroll(monsterLevel),
             < 90 => new Goblin(monsterLevel),
+            < 95 => new Leprechaun(monsterLevel),
             _ => new BurningElemental(monsterLevel),
         };
     }

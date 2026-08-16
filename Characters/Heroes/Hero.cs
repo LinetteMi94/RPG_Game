@@ -83,11 +83,11 @@ public abstract class Hero : Character
         Intellect += level * StatGrowth.IntellectMultiplier;
         Spirit += level * StatGrowth.SpiritMultiplier;
         Armor += level * StatGrowth.ArmorMultiplier;
-        IncreaseMaxHealth(10*level*StatGrowth.StaminaMultiplier);
+        IncreaseMaxHealth(level*StatGrowth.StaminaMultiplier);
         RestoreHealth(MaxHealth);
         if (Mana != 0)
         {
-            IncreaseMaxMana(10*level*StatGrowth.IntellectMultiplier);
+            IncreaseMaxMana(level*StatGrowth.IntellectMultiplier);
             RestoreMana(MaxMana);
         }
     }
