@@ -16,6 +16,8 @@ public abstract class Monster(string name, int health, int armor, int damage, in
     public int Level { get; private set; } = 1; 
     public int ExpReward { get; } = expReward;
     public int GoldReward { get; } = goldReward;
+    
+    protected override BattleMessages Messages { get; } = new();
 
     public override void DisplayCharacterStats()
     {
@@ -26,6 +28,22 @@ public abstract class Monster(string name, int health, int armor, int damage, in
         Console.WriteLine();
     }
 
-    public abstract void Attack(Hero target);
+    public virtual void Attack(Hero target, int? damage = null)
+    {
+        int realDamage = damage ?? Damage;
+        if (IsAlive)
+        {
+            target.TakeDamage(realDamage);
+            if (realDamage > target.Armor)
+            {
+                Messages.ShowDamageMessage();
+                Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
+                Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
+            }
+            else Messages.ShowMissMessage();
+            Console.WriteLine();
+        }
+    }
+    
     public virtual void TakeDamage(int damage) => base.TakeDamage(damage);
 }

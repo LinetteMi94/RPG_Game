@@ -21,10 +21,10 @@ public class Druid(string name)
         IHealer<Hero>
 {
     protected override string ClassName => "Друид";
-    public override int Damage => Intellect+Agility;
+    protected override int Damage => Intellect+Agility;
     public int HealPower => (Intellect + Spirit)/2;
     
-    public BattleMessages Messages = new BattleMessages
+    protected override BattleMessages Messages => new()
     {
         DamageMessages =
         {
@@ -41,23 +41,36 @@ public class Druid(string name)
         },
         MissMessages =
         {
-            "🛡️ Атака друида была остановлена бронёй!",
+            "🌿 Друид взмахивает посохом, но противник успевает увернуться!",
+            "🍃 Друид направляет поток природной энергии, но тот проходит мимо!",
+            "🌱 Друид призывает корни, но они не достигают цели!",
+            "🌿 Сила природы обрушивается рядом с противником!",
+            "🍂 Вихрь листьев проносится мимо цели!",
+            "🌳 Друид наносит удар, но противник ловко отскакивает в сторону!",
+            "🍃 Заклинание друида рассеивается, не задев противника!",
+            "🌿 Друид пытается обрушить силу леса, но промахивается!",
+            "🌱 Корни вырываются из земли, но хватают лишь воздух!",
+            "🍂 Поток природной энергии проходит мимо цели!"
+        },
+        HealMessages =
+        {
+            "🌿 Друид призывает силу природы и восстанавливает здоровье!",
+            "🍃 Живительная энергия леса исцеляет раны!",
+            "🌱 Друид направляет поток природной силы, возвращая здоровье!",
+            "🌿 Целебная энергия природы окутывает героя!",
+            "🍀 Сила земли и растений помогает восстановить силы!",
+            "🌳 Друид обращается к духам природы за помощью!",
+            "🌱 Природная магия закрывает раны и возвращает энергию!",
+            "🍃 Лесной поток жизненной силы исцеляет героя!",
+            "🌿 Древняя сила природы восстанавливает здоровье!"
         }
     };
     
-    
-    public void Heal() => RestoreHealth(HealPower);
+    public void Heal()
+    {
+        Messages.ShowHealMessage();
+        RestoreHealth(HealPower);
+    }
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
-    
-    public override void Attack(Monster target)
-    {
-        if (IsAlive)
-        {
-            target.TakeDamage(Damage);
-            Messages.ShowDamageMessage(Messages.DamageMessages);
-            Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
-            Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
-        }
-    }
 }

@@ -6,58 +6,17 @@ namespace RPG_Game.Characters.Heroes;
 /// Представляет героя игры.
 /// Наследует общие свойства и поведение от класса Character.
 /// </summary>
-
-/*
-public abstract class Hero(string name, int health, int mana, int armor, 
-    int strength, int agility, int stamina, int intellect, int spirit) 
-    : Character(name, health, mana, armor)
-{
-    public int Strength { get; } = strength;
-    public int Agility { get; } = agility;
-    public int Stamina { get; } = stamina;
-    public int Intellect { get; } = intellect;
-    public int Spirit { get; } = spirit;
-    public int Money { get; private set;} 
-    public LevelProgress Level { get; private set; } = CreateLevelProgress();
-
-    private LevelProgress CreateLevelProgress()
-    {
-        var progress = new LevelProgress();
-        progress.LevelUp += OnLevelUp;
-        return progress;
-    }
-
-    public abstract string ClassName { get; }
-    public abstract int Damage { get; }
-
-    public abstract void Attack(Monster target);
-    
-    public override void DisplayCharacterStats()
-    { 
-        Console.WriteLine($"Персонаж: {name}, {ClassName}, {Level.Level} уровень");
-        Console.WriteLine($"Очки опыта: {Level.Experience}, Золотых монет: {Money}");
-        base.DisplayCharacterStats();
-        Console.WriteLine($"Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
-        Console.WriteLine();
-        Level.LevelUp += OnLevelUp;
-    }
-
-    protected internal void GetMoney(int money) => Money += money;
-
-    protected virtual void OnLevelUp() {}
-}*/
-
 public abstract class Hero : Character
 {
-    public int Strength { get; protected set; }
-    public int Agility { get; protected set; }
-    public int Stamina { get; protected set; }
-    public int Intellect { get; protected set; }
-    public int Spirit { get; protected set; }
+    protected int Strength { get; private set; }
+    protected int Agility { get; private set; }
+    protected int Stamina { get; private set; }
+    protected int Intellect { get; private set; }
+    protected int Spirit { get; private set; }
 
     private StatGrowth StatGrowth { get; }
 
-    public int Money { get; private set; }
+    private int Money { get; set; }
 
     public LevelProgress Level { get; } = new();
 
@@ -83,13 +42,24 @@ public abstract class Hero : Character
         Level.LevelUp += OnLevelUp;
     }
 
-    public BattleMessages Messages { get; protected set; } = new();
-    
+    protected override BattleMessages Messages { get; } = new();
+
     protected abstract string ClassName { get; }
-    public abstract int Damage { get; }
+    protected abstract int Damage { get; }
 
     public virtual void Attack(Monster target)
     {
+        if (IsAlive)
+        {
+            if (Damage > target.Armor)
+            {
+                Messages.ShowDamageMessage();
+                Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
+                target.TakeDamage(Damage);
+                Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
+            }
+            else Messages.ShowMissMessage();
+        }
     }
 
     private void OnLevelUp()
@@ -108,6 +78,7 @@ public abstract class Hero : Character
             IncreaseMaxMana(10*level*StatGrowth.IntellectMultiplier);
             RestoreMana(MaxMana);
         }
+        DisplayCharacterStats();
     }
     
     protected internal void GetMoney(int money) => Money += money;

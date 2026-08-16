@@ -1,5 +1,6 @@
 using RPG_Game.Characters.Heroes;
 using RPG_Game.Characters.Monsters;
+using RPG_Game.Interfaces;
 
 namespace RPG_Game;
 
@@ -9,7 +10,7 @@ namespace RPG_Game;
 /// </summary>
 public class Battle
 {
-    public event Action<Monster> OnMonsterDefeated;
+    public event Action<Monster>? OnMonsterDefeated;
     public void Start(Hero hero, Monster monster)
     {
         Console.WriteLine("Начинается бой!");
@@ -25,13 +26,21 @@ public class Battle
                 OnMonsterDefeated?.Invoke(monster);
                 break;
             }
+            Console.WriteLine();
             monster.Attack(hero);
             if (!hero.IsAlive)
             {
                 Console.WriteLine($"{hero.Name} повержен!\t {monster.Name} победил!");
                 break;
             }
-            hero.DisplayCharacterStats();
+
+            var random = new Random().Next(100);
+            Console.WriteLine(random);
+            if (hero is IHealer<Hero> healer && random < 40)
+            {
+                healer.Heal();
+                Console.WriteLine($"{hero.Name}, здоровье {hero.Health}/{hero.MaxHealth}!");
+            }
         }
     }
 }

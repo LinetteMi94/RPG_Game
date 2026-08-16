@@ -16,22 +16,41 @@ public class Zombie()
 {
     private readonly int _regenerationAmount = 10;
 
-    public override void Attack(Hero target)
+    protected override BattleMessages Messages => new()
     {
-        if (IsAlive)
+        DamageMessages =
         {
-            Console.WriteLine($"Зомби вгрызается в противника! Нанесено {Damage - target.Armor} урона!");
-            target.TakeDamage(Damage);
+            "🧟 Зомби медленно тянется к герою и наносит удар!",
+            "🧟 Зомби с хрипом обрушивает гнилые руки на героя!",
+            "☠️ Зомби вцепляется в героя мёртвой хваткой!",
+            "🧟 Зомби рычит и наносит тяжёлый удар!",
+            "☠️ Гнилая рука зомби обрушивается на противника!"
+        },
+        MissMessages =
+        {
+            "🧟 Зомби замахивается, но герой успевает отойти!",
+            "💨 Медленный удар зомби проходит мимо героя!",
+            "🧟 Зомби тянется к герою, но не может его достать!",
+            "☠️ Зомби хватает воздух вместо героя!",
+            "🧟 Зомби с рыком наносит удар, но промахивается!"
+        },
+        SpecialMessages =
+        {
+            "🧟 Зомби восстанавливает часть потерянного здоровья!",
+            "☠️ Тело зомби начинает срастаться, и его раны затягиваются!",
+            "🧟 Гнилые ткани зомби восстанавливаются прямо на глазах!",
+            "☠️ Зомби регенерирует и возвращает часть здоровья!",
+            "🧟 Зомби поднимается после удара, восстанавливая свои силы!"
         }
-    }
+    };
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        Console.WriteLine($"Зомби получает {damage-Armor} урона!");
-        if (damage > Armor && Health > 0 && new Random().Next(100) < 30)
+        if (damage > Armor && new Random().Next(100) < 30)
         {
-            Console.WriteLine($"Зомби восстанавливает свою гнилую плоть... Восстанавлено {_regenerationAmount} здоровья!");
+            Messages.ShowSpecialMessage();
+            Console.WriteLine($"Восстанавлено {_regenerationAmount} здоровья!");
             Health += _regenerationAmount;
         }
     }

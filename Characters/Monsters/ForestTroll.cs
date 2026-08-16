@@ -17,20 +17,42 @@ public class ForestTroll()
     private readonly double _berserkHealthPercent = 0.3;
     
     private readonly double _berserkDamageMultiplier = 1.5;
-    
-    public override void Attack(Hero target)
+    protected override BattleMessages Messages => new()
     {
-        var realDamage = Damage;
+        DamageMessages =
+        {
+            "🌲🧌 Лесной тролль с рыком обрушивает кулак на героя!",
+            "🌲🧌 Тролль заносит огромную лапу и наносит сокрушительный удар!",
+            "💥 Тролль сотрясает землю мощным ударом!",
+            "🌲🧌 Тролль ревёт и со всей силы бьёт героя!",
+            "🪨 Огромный кулак тролля обрушивается на противника!"
+        },
+        MissMessages =
+        {
+            "🌲🧌 Тролль замахивается, но герой успевает отскочить!",
+            "💨 Огромный кулак тролля проходит мимо героя!",
+            "🌲🧌 Тролль яростно бьёт, но промахивается!",
+            "🪨 Тролль обрушивает кулак на землю вместо героя!",
+            "🌲🧌 Герой успевает увернуться от сокрушительного удара тролля!"
+        },
+        SpecialMessages =
+        {
+            "🌲🧌 Лесной тролль впадает в ярость! Его удары становятся сильнее!",
+            "🩸 Ярость охватывает тролля! Он с новой силой бросается в атаку!",
+            "🌲🧌 Глаза тролля наливаются кровью, а его ярость растёт!",
+            "💢 Тролль приходит в бешенство и обрушивает на врага всю свою силу!",
+            "🧌 Рёв тролля сотрясает лес! Его ярость делает его ещё опаснее!"
+        }
+    };
+    
+    public override void Attack(Hero target, int? damage = null)
+    {
+        int realDamage = damage ?? Damage;
         if (Health < MaxHealth * _berserkHealthPercent)
         {
             realDamage = (int)Math.Round(Damage*_berserkDamageMultiplier);
-            Console.WriteLine("🌲🧌 Лесной тролль впадает в ярость! Его глаза наливаются кровью, а удары становятся сильнее!");
+            Messages.ShowSpecialMessage();
         }
-        if (IsAlive)
-        {
-            if (realDamage > target.Armor) Console.WriteLine($"🌲🧌 Лесной тролль с рыком обрушивает кулак на героя! Нанесено {realDamage-target.Armor} урона!");
-            else Console.WriteLine($"🌲🧌 Лесной тролль с рыком обрушивает кулак на героя и промахивается!");
-            target.TakeDamage(realDamage);
-        }
+        base.Attack(target, realDamage);
     }
 }
