@@ -1,4 +1,5 @@
 ﻿using RPG_Game.Characters.Heroes;
+using RPG_Game.Items;
     
 namespace RPG_Game.Characters.Monsters;
 
@@ -18,6 +19,8 @@ public abstract class Monster(string name, int health, int armor, int damage, in
     public int GoldReward { get; } = goldReward;
     
     protected override BattleMessages Messages { get; } = new();
+
+    public virtual List<Item> Loot { get; } = new();
 
     public override void DisplayCharacterStats()
     {

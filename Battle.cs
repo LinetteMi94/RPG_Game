@@ -33,10 +33,8 @@ public class Battle
                 Console.WriteLine($"{hero.Name} повержен!\t {monster.Name} победил!");
                 break;
             }
-
-            var random = new Random().Next(100);
-            Console.WriteLine(random);
-            if (hero is IHealer<Hero> healer && random < 40)
+            
+            if (hero is IHealer<Hero> healer && new Random().Next(100) < 40)
             {
                 healer.Heal();
                 Console.WriteLine($"{hero.Name}, здоровье {hero.Health}/{hero.MaxHealth}!");

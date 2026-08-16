@@ -1,4 +1,5 @@
 ﻿using RPG_Game.Characters.Monsters;
+using RPG_Game.Items;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -43,6 +44,7 @@ public abstract class Hero : Character
     }
 
     protected override BattleMessages Messages { get; } = new();
+    private List<Item> Inventory { get; } = new ();
 
     protected abstract string ClassName { get; }
     protected abstract int Damage { get; }
@@ -82,7 +84,38 @@ public abstract class Hero : Character
     }
     
     protected internal void GetMoney(int money) => Money += money;
+
+    protected internal void TakeLoot(Monster monster)
+    {
+        Item item = monster.Loot[new Random().Next(monster.Loot.Count)];
+        Console.WriteLine($"🎁 С {monster.Name} выпал предмет: {item.Name}");
+        GetItem(item);
+    }
+
+    private void GetItem(Item item)
+    {
+        Inventory.Add(item);
+        item.ShowDescription();
+        Console.WriteLine($"{item.Name} добавлен в инвентарь");
+        Console.WriteLine();
+    }
     
+    public void ShowInventory()
+    {
+        if (Inventory.Count != 0)
+        {
+           Console.WriteLine("🎒 Инвентарь:");
+           int number = 1;
+           foreach (Item item in Inventory)
+           {
+               Console.Write($"{number++}. ");
+               item.ShowDescription();
+               Console.WriteLine();
+           }
+        }
+        else Console.WriteLine("🎒 Инвентарь пуст.");
+    }
+
     public override void DisplayCharacterStats()
     { 
         Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень - ");

@@ -1,7 +1,5 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using RPG_Game.Characters.Heroes;
+﻿using RPG_Game.Characters.Heroes;
 using RPG_Game.Characters.Monsters;
-using RPG_Game.Characters;
 
 namespace RPG_Game;
 
@@ -15,20 +13,19 @@ internal static class Program
         Hero hero = ChooseHero(name);
         hero.DisplayCharacterStats();
 
-        Monster[] monsters = [new BurningElemental(), new ForestTroll(), new Zombie(), new Zombie(), new Zombie(), new Zombie(), new Zombie(), new Zombie()];
+        Monster[] monsters = [new BurningElemental(), new ForestTroll(), new Zombie(), new Zombie(), new Rat(), new Goblin(), new Zombie(), new Zombie(), new Zombie()];
         var battle = new Battle();
         battle.OnMonsterDefeated += monster =>
         {
             hero.Level.AddExperience(monster.ExpReward);
-        };
-        battle.OnMonsterDefeated += monster =>
-        {
             hero.GetMoney(monster.GoldReward);
+            hero.TakeLoot(monster);
         };
         foreach (var monster in monsters)
         {
             if (!hero.IsAlive) break;
             battle.Start(hero, monster);
+            hero.ShowInventory();
         }
     }
 

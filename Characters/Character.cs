@@ -16,7 +16,6 @@ public abstract class Character(string name, int health, int mana, int armor)
     
     protected abstract BattleMessages Messages { get; } 
     
-    
     /// <summary>
     /// Уменьшает здоровье персонажа на указанное количество.
     /// </summary>
