@@ -1,4 +1,4 @@
-namespace RPG_Game;
+namespace RPG_Game.Progression;
 
 /// <summary>
 /// Хранит настройки роста характеристик героя при повышении уровня.

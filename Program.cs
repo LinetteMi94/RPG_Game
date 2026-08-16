@@ -1,6 +1,4 @@
-﻿using RPG_Game.Characters.Heroes;
-using RPG_Game.Characters.Monsters;
-using RPG_Game.Game;
+﻿using RPG_Game.Game;
 
 namespace RPG_Game;
 

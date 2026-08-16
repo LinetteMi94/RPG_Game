@@ -1,4 +1,6 @@
-﻿namespace RPG_Game.Characters;
+﻿using RPG_Game.Messages;
+
+namespace RPG_Game.Characters;
 
 /// <summary>
 /// Базовый абстрактный класс для всех персонажей игры.

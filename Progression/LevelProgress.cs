@@ -1,4 +1,4 @@
-namespace RPG_Game;
+namespace RPG_Game.Progression;
 
 /// <summary>
 /// Отвечает за систему прогрессии героя:
