@@ -85,7 +85,7 @@ public abstract class Hero : Character
         Armor += level * StatGrowth.ArmorMultiplier;
         IncreaseMaxHealth(level*StatGrowth.StaminaMultiplier);
         RestoreHealth(MaxHealth);
-        if (Mana != 0)
+        if (MaxMana != 0)
         {
             IncreaseMaxMana(level*StatGrowth.IntellectMultiplier);
             RestoreMana(MaxMana);
