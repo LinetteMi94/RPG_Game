@@ -9,7 +9,7 @@ namespace RPG_Game.Characters.Monsters;
 /// </summary>
 public class Goblin(int monsterLevel = 1) 
     : Monster(name: "Гоблин",
-        health: ScaleStat(170, monsterLevel, 15),
+        health: ScaleStat(70, monsterLevel, 15),
         armor: ScaleStat(10, monsterLevel, 2),
         damage: ScaleStat(15, monsterLevel, 3),
         expReward: ScaleStat(20, monsterLevel, 2),

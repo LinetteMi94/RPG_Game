@@ -158,6 +158,5 @@ public abstract class Hero : Character
         Console.WriteLine($"Очки опыта: {Level.Experience}, Золотых монет: {Money}");
         Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
         Console.WriteLine();
-        Level.LevelUp += OnLevelUp;
     }
 }

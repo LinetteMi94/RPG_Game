@@ -1,5 +1,6 @@
 ﻿using RPG_Game.Messages;
 using RPG_Game.Progression;
+using RPG_Game.Characters.Monsters;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -51,4 +52,19 @@ public class Warlock(string name)
     };
 
     protected override int Damage => (int)Math.Round(Intellect*2.5 + Spirit*0.5);
+    
+    public virtual void Attack(Monster target)
+    {
+        if (IsAlive)
+        {
+            if (Damage > target.Armor)
+            {
+                Messages.ShowDamageMessage();
+                Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
+                target.TakeDamage(Damage, true);
+                Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
+            }
+            else Messages.ShowMissMessage();
+        }
+    }
 }
