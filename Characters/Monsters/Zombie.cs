@@ -1,4 +1,5 @@
-using RPG_Game.Characters.Heroes;
+using RPG_Game.Items;
+using RPG_Game.Messages;
 
 namespace RPG_Game.Characters.Monsters;
 
@@ -6,32 +7,100 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет зомби — ожившего мертвеца.
 /// Может восстанавливать здоровье во время боя.
 /// </summary>
-public class Zombie()
+public class Zombie(int monsterLevel = 1)
     : Monster(name:"Зомби", 
-        health:120, 
-        armor:15, 
-        damage:25, 
-        expReward: 35,
-        goldReward: 10)
+        health: ScaleStat(120, monsterLevel, 25),
+        armor: ScaleStat(15, monsterLevel, 2),
+        damage: ScaleStat(25, monsterLevel, 3),
+        expReward: ScaleStat(35, monsterLevel, 2),
+        goldReward: ScaleStat(10, monsterLevel),
+        level: monsterLevel)
 {
     private readonly int _regenerationAmount = 10;
 
-    public override void Attack(Hero target)
+    protected override BattleMessages Messages => new()
     {
-        if (IsAlive)
+        DamageMessages =
         {
-            Console.WriteLine($"Зомби вгрызается в противника! Нанесено {Damage - target.Armor} урона!");
-            target.TakeDamage(Damage);
+            "🧟 Зомби медленно тянется к герою и наносит удар!",
+            "🧟 Зомби с хрипом обрушивает гнилые руки на героя!",
+            "☠️ Зомби вцепляется в героя мёртвой хваткой!",
+            "🧟 Зомби рычит и наносит тяжёлый удар!",
+            "☠️ Гнилая рука зомби обрушивается на противника!"
+        },
+        MissMessages =
+        {
+            "🧟 Зомби замахивается, но герой успевает отойти!",
+            "💨 Медленный удар зомби проходит мимо героя!",
+            "🧟 Зомби тянется к герою, но не может его достать!",
+            "☠️ Зомби хватает воздух вместо героя!",
+            "🧟 Зомби с рыком наносит удар, но промахивается!"
+        },
+        SpecialMessages =
+        {
+            "🧟 Зомби восстанавливает часть потерянного здоровья!",
+            "☠️ Тело зомби начинает срастаться, и его раны затягиваются!",
+            "🧟 Гнилые ткани зомби восстанавливаются прямо на глазах!",
+            "☠️ Зомби регенерирует и возвращает часть здоровья!",
+            "🧟 Зомби поднимается после удара, восстанавливая свои силы!"
         }
-    }
+    };
+    
+    public override List<Item> Loot { get; } =
+    [
+        new ("Гнилая рука",
+            "Часть тела зомби. Лучше не спрашивать, зачем это кому-то нужно."),
+
+        new ("Сломанная костяная пуговица",
+            "Старая пуговица от одежды, которую носил зомби при жизни."),
+
+        new ("Рваный кусок одежды",
+            "Обрывок старой одежды, покрытый следами времени."),
+
+        new ("Старая монета",
+            "Потемневшая монета, найденная среди останков.",
+            5),
+
+        new ("Гнилой зуб",
+            "Отвратительный трофей. Алхимики могут найти ему применение.",
+            3),
+
+        new Item(
+            "Костяной осколок",
+            "Обломок кости неизвестного происхождения.",
+            5),
+
+        new ("Ржавый медальон",
+            "Старая вещь с изображением, которое уже невозможно разобрать.",
+            25),
+
+        new ("Заплесневелый кошелёк",
+            "Пустой кошелёк, который когда-то принадлежал живому человеку."),
+
+        new ("Старая записка",
+            "Пожелтевший лист бумаги с неразборчивым текстом.",
+            10),
+
+        new ("Горсть могильной земли",
+            "Земля с места, где когда-то покоился зомби.",
+            15),
+        
+        new ("Тёмный осколок души",
+            "Странный кристалл, сохранивший часть энергии нежити.",
+            100),
+
+        new ("Проклятое кольцо",
+            "Украшение, которое лучше не надевать без подготовки.",
+            150)
+    ];
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        Console.WriteLine($"Зомби получает {damage-Armor} урона!");
-        if (damage > Armor && Health > 0 && new Random().Next(100) < 30)
+        if (damage > Armor && new Random().Next(100) < 30)
         {
-            Console.WriteLine($"Зомби восстанавливает свою гнилую плоть... Восстанавлено {_regenerationAmount} здоровья!");
+            Messages.ShowSpecialMessage();
+            Console.WriteLine($"Восстанавлено {_regenerationAmount} здоровья!");
             Health += _regenerationAmount;
         }
     }

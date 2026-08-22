@@ -1,4 +1,5 @@
-﻿using RPG_Game.Characters.Monsters;
+﻿using RPG_Game.Messages;
+using RPG_Game.Progression;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -15,17 +16,39 @@ public class Hunter(string name)
         agility: 24,
         stamina: 21,
         intellect: 18,
-        spirit: 19)
+        spirit: 19,
+        new StatGrowth(1,2,2,1,1,1))
 {
-    public override string ClassName =>  "Охотник";
-    public override int Damage => (int)Math.Round(Agility*1.5 + Intellect*0.5);
-    
-    public override void Attack(Monster target)
+    protected override string ClassName =>  "Охотник";
+    protected override BattleMessages Messages => new()
     {
-        if (IsAlive)
+        DamageMessages =
         {
-            Console.WriteLine($"{Name} выпускает меткую стрелу! Нанесено {Damage - target.Armor} урона!");
-            target.TakeDamage(Damage);
+            "🏹 Охотник выпускает стрелу точно в цель!",
+            "🎯 Охотник делает меткий выстрел!",
+            "🏹 Стрела со свистом вонзается в противника!",
+            "🎯 Охотник находит слабое место и поражает врага!",
+            "🏹 Стремительная стрела поражает противника!",
+            "🔥 Охотник активирует огненную ловушку под ногами врага!",
+            "❄️ Ледяная ловушка срабатывает, сковывая противника!",
+            "🌑 Охотник скрывается в тени и выпускает неожиданную стрелу!",
+            "🔥 Огненная ловушка вспыхивает, опаляя противника!",
+            "❄️ Ледяная ловушка сковывает ноги противника!"
+        },
+        MissMessages =
+        {
+            "🏹 Охотник выпускает стрелу, но противник успевает увернуться!",
+            "🎯 Стрела проходит мимо цели!",
+            "🏹 Выстрел охотника уходит в сторону!",
+            "🌲 Стрела вонзается в землю рядом с противником!",
+            "💨 Противник резко отступает, и стрела пролетает мимо!",
+            "🔥 Огненная ловушка срабатывает, но противник успевает отскочить!",
+            "❄️ Ледяная ловушка захлопывается, но противник успевает вырваться!",
+            "🌑 Охотник стреляет из тени, но противник замечает движение!",
+            "🎯 Стрела едва не задевает противника!",
+            "💨 Охотник теряет момент, и выстрел проходит мимо!"
         }
-    }
+    };
+
+    protected override int Damage => (int)Math.Round(Agility*1.5 + Intellect*0.5);
 }

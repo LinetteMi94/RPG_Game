@@ -1,4 +1,5 @@
-﻿using RPG_Game.Characters.Monsters;
+﻿using RPG_Game.Messages;
+using RPG_Game.Progression;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -15,17 +16,38 @@ public class Mage(string name)
         agility:20, 
         stamina:20, 
         intellect:24, 
-        spirit:22)
+        spirit:22,
+        new StatGrowth(1,1,1,2,2,0))
 {
-    public override string ClassName =>  "Маг";
-    public override int Damage => Intellect*3;
-    
-    public override void Attack(Monster target)
+    protected override string ClassName =>  "Маг";
+    protected override int Damage => Intellect*3;
+    protected override BattleMessages Messages => new()
     {
-        if (IsAlive)
+        DamageMessages =
         {
-            Console.WriteLine($"{Name} призывает пламя и поражает врага огненным шаром! Нанесено {Damage - target.Armor} урона!");
-            target.TakeDamage(Damage);
+            "🔥 Маг обрушивает на врага поток огненной энергии!",
+            "❄️ Ледяная вспышка поражает противника!",
+            "💧 Маг направляет мощный поток воды на врага!",
+            "✨ Магическая энергия пронзает противника!",
+            "🔥 Огненный заряд врезается в противника!",
+            "❄️ Ледяные осколки срываются с рук мага и поражают врага!",
+            "💦 Водный поток обрушивается на противника!",
+            "🔮 Маг выпускает разрушительный заряд энергии!",
+            "❄️ Волна холода окутывает врага!",
+            "🔥 Вспышка пламени охватывает противника!"
+        },
+        MissMessages =
+        {
+            "🔥 Огненный заряд проносится мимо цели!",
+            "❄️ Ледяные осколки разбиваются рядом с противником!",
+            "💧 Поток воды проходит мимо цели!",
+            "✨ Магическая энергия рассеивается, не задев противника!",
+            "🔥 Огненная вспышка ударяет рядом с врагом!",
+            "❄️ Ледяное заклинание не достигает цели!",
+            "💦 Водный поток проходит в стороне от противника!",
+            "🔮 Магический заряд рассеивается в воздухе!",
+            "❄️ Волна холода проходит мимо врага!",
+            "🔥 Пламя вспыхивает рядом с противником, но не задевает его!"
         }
-    }
+    };
 }

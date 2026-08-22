@@ -1,5 +1,6 @@
-﻿using RPG_Game.Characters.Monsters;
-using RPG_Game.Interfaces;
+﻿using RPG_Game.Interfaces;
+using RPG_Game.Messages;
+using RPG_Game.Progression;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -16,25 +17,63 @@ public class Shaman(string name)
             agility:21, 
             stamina:21, 
             intellect:21, 
-            spirit:20), 
+            spirit:20,
+            new StatGrowth(2,1,2,2,1,1)), 
         IHealer<Hero>
 {
-    public override string ClassName =>  "Шаман";
-    
-    public override int Damage => (int)Math.Round(Intellect*1.5 + Agility);
+    protected override string ClassName =>  "Шаман";
+    protected override BattleMessages Messages => new()
+    {
+        DamageMessages =
+        {
+            "⚡ Шаман призывает молнию и обрушивает её на врага!",
+            "🌩️ Разряд духовной энергии поражает противника!",
+            "👻 Духи предков отвечают на зов шамана и атакуют врага!",
+            "🌪️ Шаман направляет ярость стихий против противника!",
+            "⚡ Молния с грохотом поражает врага!",
+            "👻 Дух воина возникает рядом с шаманом и наносит удар!",
+            "🔥 Шаман призывает силу стихий и обрушивает её на противника!",
+            "🌊 Дух воды обрушивает поток на врага!",
+            "⚡ Шаман направляет силу духов в разрушительный разряд!",
+            "👻 Духи окружают противника и обрушивают на него свою силу!"
+        },
+        MissMessages =
+        {
+            "⚡ Молния ударяет рядом, но не задевает противника!",
+            "🌩️ Разряд шамана проходит мимо цели!",
+            "👻 Дух пытается атаковать врага, но тот успевает увернуться!",
+            "🌪️ Стихия выходит из-под контроля, и атака не достигает цели!",
+            "⚡ Шаман призывает молнию, но противник уклоняется!",
+            "👻 Дух появляется рядом с врагом, но не успевает нанести удар!",
+            "🔥 Стихийная энергия проносится мимо цели!",
+            "🌊 Водный поток проходит рядом с противником!",
+            "👻 Духи бросаются в атаку, но враг успевает отступить!",
+            "⚡ Разряд вспыхивает в воздухе, не задев противника!"
+        },
+        HealMessages =
+        {
+            "⚡ Шаман призывает духов, чтобы восстановить силы!",
+            "👻 Духи предков исцеляют раны шамана!",
+            "🌿 Шаман направляет поток природной энергии!",
+            "💧 Дух воды восстанавливает здоровье!",
+            "⚡ Энергия стихий возвращает силы!",
+            "👻 Духи окружают шамана и помогают ему восстановиться!",
+            "🌊 Жизненная энергия воды исцеляет раны!",
+            "⚡ Шаман получает поддержку от духов природы!",
+            "🌪️ Сила стихий наполняет тело энергией!",
+            "👻 Предки отвечают на зов шамана и даруют исцеление!"
+        }
+    };
+
+    protected override int Damage => (int)Math.Round(Intellect*1.5 + Agility);
     
     public int HealPower => (Intellect + Spirit)/2;
 
-    public void Heal() => RestoreHealth(HealPower);
+    public void Heal()
+    {
+        Messages.ShowHealMessage();
+        RestoreHealth(HealPower);
+    }
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
-    
-    public override void Attack(Monster target)
-    {
-        if (IsAlive)
-        {
-            Console.WriteLine($"{Name} призывает силу стихий и поражает врага молнией! Нанесено {Damage - target.Armor} урона!");
-            target.TakeDamage(Damage);
-        }
-    }
 }

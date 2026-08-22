@@ -1,4 +1,6 @@
-﻿using RPG_Game.Characters.Monsters;
+﻿using RPG_Game.Messages;
+using RPG_Game.Progression;
+using RPG_Game.Characters.Monsters;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -15,18 +17,54 @@ public class Warlock(string name)
         agility:18, 
         stamina:21, 
         intellect:24, 
-        spirit:22)
+        spirit:22,
+        new StatGrowth(1,1,1,2,2,0))
 {
-    public override string ClassName =>  "Чернокнижник";
+    protected override string ClassName =>  "Чернокнижник";
+    protected override BattleMessages Messages => new()
+    {
+        DamageMessages =
+        {
+            "😈 Варлок обрушивает на врага поток демонической энергии!",
+            "🔥 Тёмное пламя вспыхивает вокруг противника!",
+            "🌑 Варлок выпускает из рук разрушительную энергию Тьмы!",
+            "☠️ Проклятие варлока начинает вытягивать жизненные силы врага!",
+            "😈 Демоническая сила прорывается сквозь защиту противника!",
+            "🔥 Адское пламя охватывает врага!",
+            "🌑 Тени сгущаются вокруг противника по воле варлока!",
+            "☠️ Варлок накладывает разрушительное проклятие!",
+            "🔥 Поток тёмного пламени обрушивается на противника!",
+            "😈 Варлок призывает силу Бездны и поражает врага!"
+        },
+        MissMessages =
+        {
+            "😈 Демоническая энергия проходит мимо цели!",
+            "🔥 Тёмное пламя вспыхивает рядом с противником!",
+            "🌑 Теневой заряд рассеивается, не задев врага!",
+            "☠️ Проклятие не достигает цели!",
+            "😈 Варлок выпускает поток энергии, но противник успевает увернуться!",
+            "🔥 Адское пламя проносится мимо противника!",
+            "🌑 Тени бросаются на врага, но не успевают его настичь!",
+            "☠️ Проклятие рассеивается в воздухе!",
+            "🔥 Поток тёмного огня ударяет рядом с целью!",
+            "😈 Варлок призывает силу Бездны, но атака проходит мимо!"
+        }
+    };
+
+    protected override int Damage => (int)Math.Round(Intellect*2.5 + Spirit*0.5);
     
-    public override int Damage => (int)Math.Round(Intellect*2.5 + Spirit*0.5);
-    
-    public override void Attack(Monster target)
+    public virtual void Attack(Monster target)
     {
         if (IsAlive)
         {
-            Console.WriteLine($"{Name} призывает силы Бездны! Нанесено {Damage} урона!");
-            target.TakeDamage(Damage, true);
+            if (Damage > target.Armor)
+            {
+                Messages.ShowDamageMessage();
+                Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
+                target.TakeDamage(Damage, true);
+                Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
+            }
+            else Messages.ShowMissMessage();
         }
     }
 }

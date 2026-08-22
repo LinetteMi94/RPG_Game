@@ -1,4 +1,6 @@
-﻿namespace RPG_Game.Characters;
+﻿using RPG_Game.Messages;
+
+namespace RPG_Game.Characters;
 
 /// <summary>
 /// Базовый абстрактный класс для всех персонажей игры.
@@ -7,11 +9,14 @@
 public abstract class Character(string name, int health, int mana, int armor)
 {
     public string Name { get; } = name;
-    public int Health { get; set; } = health;
-    private int Mana { get; set; } = mana;
-    public int Armor { get; } = armor;
+    public int Health { get; protected set; } = health;
+    public int Mana { get; private set; } = mana;
+    public int Armor { get; protected set; } = armor;
     public bool IsAlive => Health > 0;
-    protected readonly int _maxHealth = health;
+    public int MaxHealth { get; private set; } = health;
+    protected int MaxMana { get; private set; } = mana;
+    
+    protected abstract BattleMessages Messages { get; } 
     
     /// <summary>
     /// Уменьшает здоровье персонажа на указанное количество.
@@ -22,7 +27,7 @@ public abstract class Character(string name, int health, int mana, int armor)
         {
             throw new ArgumentException("Damage cannot be negative");
         }
-        if(ignoreArmor) Health -= damage;
+        if (ignoreArmor) Health -= damage;
         else
         {
             int realDamage = damage - armor;
@@ -30,15 +35,15 @@ public abstract class Character(string name, int health, int mana, int armor)
         }
         if (Health <= 0) Health = 0;
     }
-    
+
     /// <summary>
     /// Выводит на консоль характеристики персонажа
     /// </summary>
     public virtual void DisplayCharacterStats()
     {
-        if (IsAlive) Console.WriteLine("Состояние: Жив");
-             else Console.WriteLine("Состояние: Мёртв");
-        Console.WriteLine($"Здоровье: {Health}, Броня: {Armor}");
+        if (IsAlive) Console.WriteLine("Жив");
+        else Console.WriteLine("Мёртв");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
     }
     
     /// <summary>
@@ -47,6 +52,18 @@ public abstract class Character(string name, int health, int mana, int armor)
     public void RestoreHealth(int amount)
     {
         Health += amount;
-        if (Health > _maxHealth) Health = _maxHealth;
+        if (Health > MaxHealth) Health = MaxHealth;
     }
+    
+    /// <summary>
+    /// Увеличивает ману указанного персонажа на указанное количество.
+    /// </summary>
+    public void RestoreMana(int amount)
+    {
+        Mana += amount;
+        if (Mana > MaxMana) Mana = MaxMana;
+    }
+
+    protected void IncreaseMaxHealth(int amount) => MaxHealth += amount;
+    protected void IncreaseMaxMana(int amount) => MaxMana += amount;
 }

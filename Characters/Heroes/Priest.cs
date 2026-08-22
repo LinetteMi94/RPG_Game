@@ -1,5 +1,6 @@
 ﻿using RPG_Game.Interfaces;
-using RPG_Game.Characters.Monsters;
+using RPG_Game.Messages;
+using RPG_Game.Progression;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -16,25 +17,63 @@ public class Priest(string name)
         agility:18, 
         stamina:20, 
         intellect:24, 
-        spirit:22), 
+        spirit:22,
+        new StatGrowth(1,1,1,2,2,0)), 
         IHealer<Hero>
 {
-    public override string ClassName => "Жрец";
-    
-    public override int Damage => Intellect*2 + Spirit;
+    protected override string ClassName => "Жрец";
+    protected override BattleMessages Messages => new()
+    {
+        DamageMessages =
+        {
+            "✨ Прист обрушивает на врага силу Света!",
+            "🌟 Священная энергия поражает противника!",
+            "✨ Луч Света пронзает врага!",
+            "🙏 Прист призывает силу веры и наносит священный удар!",
+            "🌑 Тёмная энергия вырывается из рук приста и поражает врага!",
+            "🖤 Прист обрушивает на противника силу Тьмы!",
+            "☠️ Тёмная магия истощает жизненные силы врага!",
+            "🌑 Тёмная вспышка поражает противника!",
+            "✨ Сила Света пронзает защиту врага!",
+            "🖤 Теневые силы подчиняются воле приста и атакуют противника!"
+        },
+        MissMessages =
+        {
+            "✨ Луч Света проходит мимо цели!",
+            "🌟 Священная энергия рассеивается, не задев противника!",
+            "✨ Прист направляет силу Света, но промахивается!",
+            "🙏 Священный удар не достигает цели!",
+            "🌑 Поток тёмной энергии проходит мимо противника!",
+            "🖤 Тёмная магия рассеивается, не задев врага!",
+            "☠️ Проклятие не достигает цели!",
+            "🌑 Теневой заряд проходит рядом с противником!",
+            "✨ Вспышка Света поражает землю рядом с врагом!",
+            "🖤 Тьма окружает противника, но не причиняет ему вреда!"
+        },
+        HealMessages =
+        {
+            "✨ Прист призывает силу Света и исцеляет раны!",
+            "🌟 Священная энергия восстанавливает жизненные силы!",
+            "🙏 Благословение Света возвращает здоровье!",
+            "✨ Свет окутывает тело и ускоряет восстановление!",
+            "🌑 Прист поглощает тёмную энергию и восстанавливает силы!",
+            "🖤 Тёмная магия возвращает часть утраченного здоровья!",
+            "🌑 Прист направляет силу Тьмы, обращая её в жизненную энергию!",
+            "☠️ Тёмная энергия переплетается с душой и укрепляет тело!",
+            "✨🌑 Свет и Тьма подчиняются воле приста, возвращая ему силы!",
+            "🖤 Прист использует запретное заклинание для восстановления здоровья!"
+        }
+    };
+
+    protected override int Damage => Intellect*2 + Spirit;
     
     public int HealPower => (Intellect + Spirit)/2;
-    
-    public void Heal() => RestoreHealth(HealPower);
+
+    public void Heal()
+    {
+        Messages.ShowHealMessage();
+        RestoreHealth(HealPower);
+    }
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
-    
-    public override void Attack(Monster target)
-    {
-        if (IsAlive)
-        {
-            Console.WriteLine($"{Name} направляет силу света и наносит {Damage - target.Armor} урона!");
-            target.TakeDamage(Damage);
-        }
-    }
 }
