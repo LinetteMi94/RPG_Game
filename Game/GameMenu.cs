@@ -18,7 +18,7 @@ public class GameMenu
         Console.WriteLine("1. Посмотреть карточку героя");
         Console.WriteLine("2. Посмотреть инвентарь");
         Console.WriteLine("3. Отдохнуть");
-        Console.WriteLine("4. Сразиться с монстром");
+        Console.WriteLine("4. Отправиться навстречу приключениям");
         Console.WriteLine("5. Выйти из игры");
         
         var choice = Console.ReadLine();

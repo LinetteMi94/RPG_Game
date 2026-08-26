@@ -90,16 +90,8 @@ public class GameLoop
                 _restSystem.Rest(_hero);
                 break;
             case "4":
-                var monster = _encounterSystem.GetRandomMonster(_hero.Level.Level);
-                Console.WriteLine($"Вам повстречался на пути {monster.Name}, {monster.Level} уровень");
-                var battle = new Battle();
-                battle.OnMonsterDefeated += monster =>
-                {
-                    _hero.Level.AddExperience(monster.ExpReward);
-                    _hero.GetMoney(monster.GoldReward);
-                    _hero.TakeLoot(monster);
-                };
-                battle.Start(_hero, monster);
+                var random =  new Random();
+                _encounterSystem.StartRandomEncounter(_hero, random.Next(1, 4));
                 break;
             case "5":
                 _isRunning = false;

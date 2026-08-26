@@ -19,7 +19,7 @@ public abstract class Hero : Character
 
     private StatGrowth StatGrowth { get; }
 
-    private int Money { get; set; }
+    protected internal int Money { get; private set; }
 
     public LevelProgress Level { get; } = new();
 
@@ -92,7 +92,15 @@ public abstract class Hero : Character
         }
     }
     
-    protected internal void GetMoney(int money) => Money += money;
+    /// <summary>
+    /// Добавляет деньги в кошелёк героя
+    /// </summary>
+    protected internal void AddMoney(int money) => Money += money;
+    
+    /// <summary>
+    /// Отнимает деньги из кошелька героя
+    /// </summary>
+    protected internal void RemoveMoney(int money) => Money -= money;
 
     /// <summary>
     /// Получает случайный предмет из списка добычи побеждённого монстра
@@ -108,7 +116,7 @@ public abstract class Hero : Character
     /// <summary>
     /// Добавляет предмет в инвентарь героя.
     /// </summary>
-    private void AddItem(Item item)
+    internal void AddItem(Item item)
     {
         Inventory.Add(item);
         item.ShowDescription();
