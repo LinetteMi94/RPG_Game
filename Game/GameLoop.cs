@@ -8,21 +8,18 @@ namespace RPG_Game.Game;
 /// Отвечает за запуск игры, взаимодействие игрока с меню
 /// и последовательность выполнения игровых действий.
 /// </summary>
-public class GameLoop
+public static class GameLoop
 {
-    private Hero _hero;
-    private bool _isRunning;
-    private RestSystem _restSystem =  new ();
-    private EncounterSystem _encounterSystem = new ();
-    private GameMenu _menu = new ();
+    private static Hero _hero;
+    private static bool _isRunning;
 
-    public void Start()
+    public static void Start()
     {
         _isRunning = true;
         _hero = CreatePlayer();
         while (_isRunning)
         {
-            _menu.ShowMainMenu(_hero, HandleChoice);
+            GameMenu.ShowMainMenu(_hero, HandleChoice);
             if (!_hero.IsAlive) GameOver();
         }
     }
@@ -31,7 +28,7 @@ public class GameLoop
     /// Создаёт нового персонажа игрока.
     /// Определяет выбранный класс героя и возвращает соответствующий объект.
     /// </summary>
-    private Hero CreatePlayer()
+    private static Hero CreatePlayer()
     {
         Console.Write("Введите имя героя: ");
         var heroName = Console.ReadLine();
@@ -76,7 +73,7 @@ public class GameLoop
     /// Обрабатывает выбор игрока из главного меню
     /// и запускает соответствующее действие.
     /// </summary>
-    private void HandleChoice(string choice)
+    private static void HandleChoice(string choice)
     {
         switch (choice)
         {
@@ -84,14 +81,14 @@ public class GameLoop
                 _hero.DisplayCharacterStats();
                 break;
             case "2":
-                _menu.ShowInventoryMenu(_hero);
+                GameMenu.ShowInventoryMenu(_hero);
                 break;
             case "3":
-                _restSystem.Rest(_hero);
+                RestSystem.Rest(_hero);
                 break;
             case "4":
                 var random =  new Random();
-                _encounterSystem.StartRandomEncounter(_hero, random.Next(1, 4));
+                EncounterSystem.StartRandomEncounter(_hero, random.Next(1, 4));
                 break;
             case "5":
                 _isRunning = false;
@@ -99,7 +96,7 @@ public class GameLoop
         }
     }
 
-    private void GameOver()
+    private static void GameOver()
     {
         Console.Clear();
         Console.WriteLine("💀 GAME OVER 💀");

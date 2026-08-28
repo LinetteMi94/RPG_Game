@@ -211,40 +211,40 @@ public class AdventureMessages : Messages
     /// <summary>
     /// Выводит случайное сообщение о потере денег.
     /// </summary>
-    public void ShowGoldLossMessage() => ShowMessage(GoldLossMessages);
+    public static void ShowGoldLossMessage() => ShowMessage(GoldLossMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о находке денег.
     /// </summary>
-    public void ShowGoldFoundMessage() => ShowMessage(GoldFoundMessages);
+    public static void ShowGoldFoundMessage() => ShowMessage(GoldFoundMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о том, что герой пришёл в себя после потери сознания.
     /// </summary>
-    public void ShowAwakeMessage() => ShowMessage(AwakeMessages);
+    public static void ShowAwakeMessage() => ShowMessage(AwakeMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о потере сознания.
     /// </summary>
-    public void ShowKnockOutMessage() => ShowMessage(KnockOutMessages);
+    public static void ShowKnockOutMessage() => ShowMessage(KnockOutMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о получении урона.
     /// </summary>
-    public void ShowDamageMessage() => ShowMessage(DamageMessages);
+    public static void ShowDamageMessage() => ShowMessage(DamageMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о восстановлении здоровья.
     /// </summary>
-    public void ShowHealMessage() => ShowMessage(HealMessages);
+    public static void ShowHealMessage() => ShowMessage(HealMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о нахождении предмета.
     /// </summary>
-    public void ShowItemMessage() => ShowMessage(ItemMessages);
+    public static void ShowItemMessage() => ShowMessage(ItemMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о спокойном путешествии.
     /// </summary>
-    public void ShowTravelMessage() => ShowMessage(TravelMessages);
+    public static void ShowTravelMessage() => ShowMessage(TravelMessages);
 }

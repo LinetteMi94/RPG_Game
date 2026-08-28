@@ -6,12 +6,12 @@ namespace RPG_Game.Game;
 /// Управляет процессом отдыха героя.
 /// Во время отдыха восстанавливает здоровье и ману персонажа.
 /// </summary>
-public class RestSystem
+public static class RestSystem
 {
     /// <summary>
     /// Запускает отдых героя и восстанавливает его ресурсы.
     /// </summary>
-    public void Rest(Hero hero)
+    public static void Rest(Hero hero)
     {
         Console.WriteLine($"{hero.Name} присаживается у костра и довольно вздыхает");
         Console.WriteLine("Отдых будет длиться 10 секунд!");

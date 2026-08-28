@@ -10,12 +10,10 @@ namespace RPG_Game.World;
 /// Управляет случайными приключениями и встречами игрока.
 /// Определяет случайное событие и запускает соответствующее приключение.
 /// </summary>
-public class EncounterSystem
+public static class EncounterSystem
 {
-    private Hero _hero;
-    private readonly AdventureMessages _adventureMessages = new ();
-
-    private readonly List<Item> _travelItems =
+    private static Hero _hero;
+    private static readonly List<Item> _travelItems =
     [
     new("Кривой рог",
         "Небольшой рог единорога.",
@@ -125,7 +123,7 @@ public class EncounterSystem
     /// </summary>
     /// <param name="heroLevel">Текущий уровень героя.</param>
     /// <returns>Случайно выбранный монстр.</returns>
-    private Monster GetRandomMonster(int heroLevel)
+    private static Monster GetRandomMonster(int heroLevel)
     {
         int monsterLevel = Math.Max(1, heroLevel + new Random().Next(-2, 3));
         var choice = new Random().Next(100);
@@ -144,7 +142,7 @@ public class EncounterSystem
     /// <summary>
     /// Создаёт нападение случайного монстра на героя
     /// </summary>
-    private void MonsterEncounter()
+    private static void MonsterEncounter()
     {
         var monster = GetRandomMonster(_hero.Level.Level);
         Console.WriteLine($"Вам повстречался на пути {monster.Name}, {monster.Level} уровень");
@@ -161,7 +159,7 @@ public class EncounterSystem
     /// <summary>
     /// Выбирает случайное приключения для героя
     /// </summary>
-    public void StartRandomEncounter(Hero hero, int adventureNumber)
+    public static void StartRandomEncounter(Hero hero, int adventureNumber)
     {
         _hero = hero;
         var choice = new Random().Next(100);
@@ -182,19 +180,19 @@ public class EncounterSystem
         }
     }
     
-    private void BadEncounter(int choice)
+    private static void BadEncounter(int choice)
     {
         switch (choice)
         {
             case < 33:
-                _adventureMessages.ShowGoldLossMessage();
+                AdventureMessages.ShowGoldLossMessage();
                 var gold = new Random().Next(2, 13);
                 if (_hero.Money<gold) gold = _hero.Money;
                 _hero.RemoveMoney(gold);
                 Console.WriteLine(" - " + gold + " золотых!");
                 break;
             case < 66: //игрок теряет немного здоровья и теряет сознание
-                _adventureMessages.ShowKnockOutMessage();
+                AdventureMessages.ShowKnockOutMessage();
                 var health1 = _hero.MaxHealth/10;
                 var lessHealth1 = new Random().Next(health1/2,health1*2);
                 if (lessHealth1 > _hero.Health) lessHealth1 = _hero.Health-1;
@@ -202,31 +200,31 @@ public class EncounterSystem
                 Console.WriteLine(" - " + lessHealth1 + " здоровья!");
                 Console.WriteLine("Потеря сознания будет длиться 10 секунд!");
                 Thread.Sleep(10000);
-                _adventureMessages.ShowAwakeMessage();
+                AdventureMessages.ShowAwakeMessage();
                 break;
             case < 100: //игрок теряет здоровье. Если здоровья остаётся 1, то он теряет сознание
-                _adventureMessages.ShowDamageMessage();
+                AdventureMessages.ShowDamageMessage();
                 var health2 = _hero.MaxHealth/10;
                 var lessHealth2 = new Random().Next(health2/3,health2*3);
                 if (lessHealth2 > _hero.Health)
                 {
                     lessHealth2 = _hero.Health-1;
-                    _adventureMessages.ShowKnockOutMessage();
+                    AdventureMessages.ShowKnockOutMessage();
                     Console.WriteLine("Потеря сознания будет длиться 15 секунд!");
                     Thread.Sleep(15000);
-                    _adventureMessages.ShowAwakeMessage();
+                    AdventureMessages.ShowAwakeMessage();
                 }
                 _hero.TakeDamage(lessHealth2, true);
                 Console.WriteLine(" - " + lessHealth2 + " здоровья!");
                 break;
         }
     }
-    private void GoodEncounter(int choice)
+    private static void GoodEncounter(int choice)
     {
         switch (choice)
         {
             case < 33:
-                _adventureMessages.ShowHealMessage();
+                AdventureMessages.ShowHealMessage();
                 var health = _hero.MaxHealth/10;
                 var healthForRestore = new Random().Next(health/2,health*2);
                 var needHealth = _hero.MaxHealth - _hero.Health;
@@ -238,20 +236,17 @@ public class EncounterSystem
                 }
                 break;
             case < 66:
-                _adventureMessages.ShowItemMessage();
+                AdventureMessages.ShowItemMessage();
                 Item item = _travelItems[new Random().Next(_travelItems.Count)];
                 _hero.AddItem(item);
                 break;
             case < 100:
-                _adventureMessages.ShowGoldFoundMessage();
+                AdventureMessages.ShowGoldFoundMessage();
                 var gold = new Random().Next(2, 13);
                 _hero.AddMoney(gold);
                 Console.WriteLine(" +  " + gold + " золотых!");
                 break;
         }
     }
-    private void NeutralEncounter()
-    {
-        _adventureMessages.ShowTravelMessage();
-    }
+    private static void NeutralEncounter() => AdventureMessages.ShowTravelMessage();
 }
