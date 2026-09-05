@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using RPG_Game.Characters.Heroes; 
 using RPG_Game.World;
 
@@ -19,7 +21,7 @@ public static class GameLoop
         _hero = CreatePlayer();
         while (_isRunning)
         {
-            GameMenu.ShowMainMenu(_hero, HandleChoice);
+            _hero.ShowMainMenu(HandleChoice);
             if (!_hero.IsAlive) GameOver();
         }
     }
@@ -68,7 +70,6 @@ public static class GameLoop
     }
 
     
-
     /// <summary>
     /// Обрабатывает выбор игрока из главного меню
     /// и запускает соответствующее действие.
@@ -81,14 +82,14 @@ public static class GameLoop
                 _hero.DisplayCharacterStats();
                 break;
             case "2":
-                GameMenu.ShowInventoryMenu(_hero);
+                _hero.ShowInventoryMenu();
                 break;
             case "3":
-                RestSystem.Rest(_hero);
+                _hero.HaveRest();
                 break;
             case "4":
                 var random =  new Random();
-                EncounterSystem.StartRandomEncounter(_hero, random.Next(1, 4));
+                _hero.StartRandomEncounter(random.Next(1, 4));
                 break;
             case "5":
                 _isRunning = false;

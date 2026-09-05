@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using RPG_Game.Characters.Heroes;
 using RPG_Game.Items;
 using RPG_Game.Messages;
@@ -17,9 +19,10 @@ public class ForestTroll(int monsterLevel = 1)
         goldReward: ScaleStat(25, monsterLevel),
         level: monsterLevel)
 {
-    private readonly double _berserkHealthPercent = 0.3;
-    
-    private readonly double _berserkDamageMultiplier = 1.5;
+    private const double BerserkHealthPercent = 0.3;
+
+    private const double BerserkDamageMultiplier = 1.5;
+
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -87,9 +90,9 @@ public class ForestTroll(int monsterLevel = 1)
     public override void Attack(Hero target, int? damage = null)
     {
         int realDamage = damage ?? Damage;
-        if (Health < MaxHealth * _berserkHealthPercent)
+        if (Health < MaxHealth * BerserkHealthPercent)
         {
-            realDamage = (int)Math.Round(Damage*_berserkDamageMultiplier);
+            realDamage = (int)Math.Round(Damage*BerserkDamageMultiplier);
             Messages.ShowSpecialMessage();
         }
         base.Attack(target, realDamage);

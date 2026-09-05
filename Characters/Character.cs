@@ -1,4 +1,5 @@
-﻿using RPG_Game.Messages;
+﻿using System;
+using RPG_Game.Messages;
 
 namespace RPG_Game.Characters;
 

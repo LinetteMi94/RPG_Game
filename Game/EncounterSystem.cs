@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using RPG_Game.Characters.Monsters;
 using RPG_Game.Characters.Heroes;
 using RPG_Game.Game;
@@ -159,7 +162,7 @@ public static class EncounterSystem
     /// <summary>
     /// Выбирает случайное приключения для героя
     /// </summary>
-    public static void StartRandomEncounter(Hero hero, int adventureNumber)
+    public static void StartRandomEncounter(this Hero hero, int adventureNumber)
     {
         _hero = hero;
         var choice = new Random().Next(100);

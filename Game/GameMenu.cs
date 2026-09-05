@@ -1,3 +1,4 @@
+using System;
 using RPG_Game.Characters.Heroes;
 using RPG_Game.Items;
 
@@ -11,7 +12,7 @@ public static class GameMenu
     /// <summary>
     /// Отображает главное меню игры и показывает доступные действия игрока.
     /// </summary>
-    public static void ShowMainMenu(Hero hero, Action<string> handleChoice)
+    public static void ShowMainMenu(this Hero hero, Action<string> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Что ты хочешь сделать сейчас {hero.Name}?");
@@ -28,7 +29,7 @@ public static class GameMenu
         Console.ReadKey();
     }
     
-    public static void ShowInventoryMenu(Hero hero)
+    public static void ShowInventoryMenu(this Hero hero)
     {
         Console.Clear();
         hero.ShowInventory();

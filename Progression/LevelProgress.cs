@@ -1,3 +1,5 @@
+using System;
+
 namespace RPG_Game.Progression;
 
 /// <summary>

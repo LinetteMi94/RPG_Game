@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RPG_Game.Messages;
 
 /// <summary>
@@ -15,20 +17,20 @@ public class BattleMessages : Messages
     /// <summary>
     /// Выводит случайное сообщение успешной атаки.
     /// </summary>
-    public void ShowDamageMessage() => ShowMessage(DamageMessages);
+    public void ShowDamageMessage() => ShowRandomMessage(DamageMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о промахе.
     /// </summary>
-    public void ShowMissMessage() => ShowMessage(MissMessages);
+    public void ShowMissMessage() => ShowRandomMessage(MissMessages);
     
     /// <summary>
     /// Выводит случайное сообщение специального эффекта.
     /// </summary>
-    public void ShowSpecialMessage() => ShowMessage(SpecialMessages);
+    public void ShowSpecialMessage() => ShowRandomMessage(SpecialMessages);
     
     /// <summary>
     /// Выводит случайное сообщение лечения.
     /// </summary>
-    public void ShowHealMessage() => ShowMessage(HealMessages);
+    public void ShowHealMessage() => ShowRandomMessage(HealMessages);
 }

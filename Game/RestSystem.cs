@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using RPG_Game.Characters.Heroes;
 
 namespace RPG_Game.Game;
@@ -11,7 +13,7 @@ public static class RestSystem
     /// <summary>
     /// Запускает отдых героя и восстанавливает его ресурсы.
     /// </summary>
-    public static void Rest(Hero hero)
+    public static void HaveRest(this Hero hero)
     {
         Console.WriteLine($"{hero.Name} присаживается у костра и довольно вздыхает");
         Console.WriteLine("Отдых будет длиться 10 секунд!");

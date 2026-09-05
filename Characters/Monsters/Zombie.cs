@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using RPG_Game.Items;
 using RPG_Game.Messages;
 
@@ -16,7 +18,7 @@ public class Zombie(int monsterLevel = 1)
         goldReward: ScaleStat(10, monsterLevel),
         level: monsterLevel)
 {
-    private readonly int _regenerationAmount = 10;
+    private const int RegenerationAmount = 10;
 
     protected override BattleMessages Messages => new()
     {
@@ -97,11 +99,9 @@ public class Zombie(int monsterLevel = 1)
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        if (damage > Armor && new Random().Next(100) < 30)
-        {
-            Messages.ShowSpecialMessage();
-            Console.WriteLine($"Восстанавлено {_regenerationAmount} здоровья!");
-            Health += _regenerationAmount;
-        }
+        if (damage <= Armor || new Random().Next(100) >= 30) return;
+        Messages.ShowSpecialMessage();
+        Console.WriteLine($"Восстанавлено {RegenerationAmount} здоровья!");
+        Health += RegenerationAmount;
     }
 }

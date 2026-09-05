@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+
 namespace RPG_Game.Messages;
 
 /// <summary>
 /// Содержит сообщения, связанные с приключениями и случайными событиями во время путешествий.
 /// </summary>
-public class AdventureMessages : Messages
+public abstract class AdventureMessages : Messages
 {
     private static readonly List<string> GoldLossMessages =
     [
@@ -211,40 +213,40 @@ public class AdventureMessages : Messages
     /// <summary>
     /// Выводит случайное сообщение о потере денег.
     /// </summary>
-    public static void ShowGoldLossMessage() => ShowMessage(GoldLossMessages);
+    public static void ShowGoldLossMessage() => ShowRandomMessage(GoldLossMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о находке денег.
     /// </summary>
-    public static void ShowGoldFoundMessage() => ShowMessage(GoldFoundMessages);
+    public static void ShowGoldFoundMessage() => ShowRandomMessage(GoldFoundMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о том, что герой пришёл в себя после потери сознания.
     /// </summary>
-    public static void ShowAwakeMessage() => ShowMessage(AwakeMessages);
+    public static void ShowAwakeMessage() => ShowRandomMessage(AwakeMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о потере сознания.
     /// </summary>
-    public static void ShowKnockOutMessage() => ShowMessage(KnockOutMessages);
+    public static void ShowKnockOutMessage() => ShowRandomMessage(KnockOutMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о получении урона.
     /// </summary>
-    public static void ShowDamageMessage() => ShowMessage(DamageMessages);
+    public static void ShowDamageMessage() => ShowRandomMessage(DamageMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о восстановлении здоровья.
     /// </summary>
-    public static void ShowHealMessage() => ShowMessage(HealMessages);
+    public static void ShowHealMessage() => ShowRandomMessage(HealMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о нахождении предмета.
     /// </summary>
-    public static void ShowItemMessage() => ShowMessage(ItemMessages);
+    public static void ShowItemMessage() => ShowRandomMessage(ItemMessages);
     
     /// <summary>
     /// Выводит случайное сообщение о спокойном путешествии.
     /// </summary>
-    public static void ShowTravelMessage() => ShowMessage(TravelMessages);
+    public static void ShowTravelMessage() => ShowRandomMessage(TravelMessages);
 }

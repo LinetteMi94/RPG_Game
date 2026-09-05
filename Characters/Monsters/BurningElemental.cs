@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using RPG_Game.Characters.Heroes;
 using RPG_Game.Items;
 using RPG_Game.Messages;
@@ -17,9 +19,9 @@ public class BurningElemental(int monsterLevel = 1)
         goldReward: ScaleStat(15, monsterLevel),
         level: monsterLevel)
 {
-    private readonly int _fireChance = 30;
-    private readonly int _fireDamage = 20;
-    
+    private const int FireChance = 30;
+    private const int FireDamage = 20;
+
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -95,12 +97,12 @@ public class BurningElemental(int monsterLevel = 1)
                 Messages.ShowDamageMessage();
                 Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
                 Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
-                bool fireAttack = new Random().Next(100) < _fireChance;
+                bool fireAttack = new Random().Next(100) < FireChance;
                 if (fireAttack)
                 {
-                    target.TakeDamage(_fireDamage, true);
+                    target.TakeDamage(FireDamage, true);
                     Messages.ShowSpecialMessage();
-                    Console.WriteLine($"Нанесено {_fireDamage} дополнительного урона от огня🔥!");
+                    Console.WriteLine($"Нанесено {FireDamage} дополнительного урона от огня🔥!");
                     Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
                 }
             }
