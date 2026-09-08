@@ -10,16 +10,15 @@ namespace RPG_Game.Characters.Heroes;
 public class Rogue(string name)
     : Hero(name,
         health: 55,
-        mana: 0,
         armor: 20,
         strength: 18,
         agility: 23,
         stamina: 21,
         intellect: 15,
-        spirit: 1,
-        new StatGrowth(2,2,1,1,1,1))
+        spirit: 12)
 {
     protected override string ClassName =>  "Разбойник";
+    protected override StatGrowth StatGrowth => new(2, 2, 1, 1, 1, 1);
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -51,4 +50,11 @@ public class Rogue(string name)
     };
 
     protected override int Damage => Agility*2;
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        base.DisplayCharacterStats();
+    }
 }

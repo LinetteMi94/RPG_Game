@@ -11,16 +11,17 @@ namespace RPG_Game.Characters.Heroes;
 public class Priest(string name) 
     : Hero(name, 
         health:54, 
-        mana: 180, 
         armor:20, 
         strength:12, 
         agility:18, 
         stamina:20, 
         intellect:24, 
-        spirit:22,
-        new StatGrowth(1,1,1,2,2,0)), 
-        IHealer<Hero>
+        spirit:22), 
+        IHealer<Hero>, IManaUser
 {
+    public int Mana { get; set; } = 180;
+    public int MaxMana { get; set; } = 180;
+    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0);
     protected override string ClassName => "Жрец";
     protected override BattleMessages Messages => new()
     {
@@ -76,4 +77,12 @@ public class Priest(string name)
     }
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        Console.WriteLine($"Мана: {Mana}/{MaxMana}");
+        base.DisplayCharacterStats();
+    }
 }

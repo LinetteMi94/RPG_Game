@@ -2,6 +2,7 @@
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 using RPG_Game.Characters.Monsters;
+using RPG_Game.Interfaces;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -12,15 +13,16 @@ namespace RPG_Game.Characters.Heroes;
 public class Warlock(string name) 
     : Hero(name, 
         health:55, 
-        mana: 180, 
         armor:20, 
         strength:11, 
         agility:18, 
         stamina:21, 
         intellect:24, 
-        spirit:22,
-        new StatGrowth(1,1,1,2,2,0))
+        spirit:22), IManaUser
 {
+    public int Mana { get; set; } = 180;
+    public int MaxMana { get; set; } = 180;
+    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0);
     protected override string ClassName =>  "Чернокнижник";
     protected override BattleMessages Messages => new()
     {
@@ -68,4 +70,13 @@ public class Warlock(string name)
             else Messages.ShowMissMessage();
         }
     }
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        Console.WriteLine($"Мана: {Mana}/{MaxMana}");
+        base.DisplayCharacterStats();
+    }
+    
 }

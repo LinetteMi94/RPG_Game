@@ -12,17 +12,16 @@ namespace RPG_Game.Characters.Heroes;
 public class Paladin(string name) 
     : Hero(name, 
             health:56, 
-            mana: 120, 
             armor:20, 
             strength:22, 
             agility:13, 
             stamina:22, 
             intellect:20, 
-            spirit:18,
-            new StatGrowth(2,1,2,1,2,2)), 
+            spirit:18), 
         IHealer<Hero>
 {
     protected override string ClassName =>  "Паладин";
+    protected override StatGrowth StatGrowth => new(2, 1, 2, 1, 2, 2);
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -74,4 +73,11 @@ public class Paladin(string name)
     }
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        base.DisplayCharacterStats();
+    }
 }

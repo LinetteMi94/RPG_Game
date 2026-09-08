@@ -11,17 +11,18 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Shaman(string name) 
     : Hero(name, 
-            health:55, 
-            mana: 150, 
+            health:55,
             armor:20, 
             strength:16, 
             agility:21, 
             stamina:21, 
             intellect:21, 
-            spirit:20,
-            new StatGrowth(2,1,2,2,1,1)), 
-        IHealer<Hero>
+            spirit:20), 
+        IHealer<Hero>, IManaUser
 {
+    public int Mana { get; set; } = 150;
+    public int MaxMana { get; set; } = 150;
+    protected override StatGrowth StatGrowth => new(2, 1, 2, 2, 1, 1);
     protected override string ClassName =>  "Шаман";
     protected override BattleMessages Messages => new()
     {
@@ -77,4 +78,12 @@ public class Shaman(string name)
     }
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        Console.WriteLine($"Мана: {Mana}/{MaxMana}");
+        base.DisplayCharacterStats();
+    }
 }

@@ -11,16 +11,15 @@ namespace RPG_Game.Characters.Heroes;
 public class Hunter(string name)
     : Hero(name,
         health: 55,
-        mana: 90,
         armor: 20,
         strength: 15,
         agility: 24,
         stamina: 21,
         intellect: 18,
-        spirit: 19,
-        new StatGrowth(1,2,2,1,1,1))
+        spirit: 19)
 {
     protected override string ClassName =>  "Охотник";
+    protected override StatGrowth StatGrowth => new(1, 2, 2, 1, 1, 1);
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -52,4 +51,11 @@ public class Hunter(string name)
     };
 
     protected override int Damage => (int)Math.Round(Agility*1.5 + Intellect*0.5);
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        base.DisplayCharacterStats();
+    }
 }

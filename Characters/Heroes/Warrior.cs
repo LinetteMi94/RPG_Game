@@ -1,4 +1,5 @@
-﻿using RPG_Game.Messages;
+﻿using RPG_Game.Characters.Monsters;
+using RPG_Game.Messages;
 using RPG_Game.Progression;
 
 namespace RPG_Game.Characters.Heroes;
@@ -10,15 +11,14 @@ namespace RPG_Game.Characters.Heroes;
 public class Warrior(string name)
     : Hero(name, 
         health:57, 
-        mana: 0, 
         armor:28, 
         strength:23, 
         agility:20, 
         stamina:25, 
         intellect:16, 
-        spirit:16,
-        new StatGrowth(2,1,2,1,1, 3))
+        spirit:16)
 {
+    protected override StatGrowth StatGrowth => new(2, 1, 2, 1, 1, 3);
     protected override string ClassName =>  "Воин";
     protected override BattleMessages Messages => new()
     {
@@ -51,4 +51,13 @@ public class Warrior(string name)
     };
 
     protected override int Damage => Strength*2;
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        base.DisplayCharacterStats();
+    }
+    
+    
 }

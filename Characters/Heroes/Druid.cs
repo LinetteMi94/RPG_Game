@@ -11,18 +11,19 @@ namespace RPG_Game.Characters.Heroes;
 public class Druid(string name) 
     : Hero(name, 
             health:55, 
-            mana: 130, 
             armor:20, 
             strength:15, 
             agility:22, 
             stamina:21, 
             intellect:20, 
-            spirit:21,
-            new StatGrowth(1,2,2,2,1,1)), 
-        IHealer<Hero>
+            spirit:21), 
+        IHealer<Hero>, IManaUser
 {
     protected override string ClassName => "Друид";
+    protected override StatGrowth StatGrowth => new(1, 2, 2, 2, 1, 1);
     protected override int Damage => Intellect+Agility;
+    public int Mana { get; set; } = 130;
+    public int MaxMana { get; set; } = 130;
     public int HealPower => (Intellect + Spirit)/2;
     
     protected override BattleMessages Messages => new()
@@ -74,4 +75,12 @@ public class Druid(string name)
     }
     
     public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
+    
+    public override void DisplayCharacterStats()
+    { 
+        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        Console.WriteLine($"Мана: {Mana}/{MaxMana}");
+        base.DisplayCharacterStats();
+    }
 }

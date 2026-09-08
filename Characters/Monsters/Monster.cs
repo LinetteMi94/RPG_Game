@@ -13,7 +13,6 @@ namespace RPG_Game.Characters.Monsters;
 public abstract class Monster(string name, int health, int armor, int damage, int expReward, int goldReward, int level) 
     : Character(name, 
         health, 
-        mana:0, 
         armor)
 {
     public int Damage { get; } = damage;

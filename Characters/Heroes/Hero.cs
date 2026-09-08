@@ -19,7 +19,7 @@ public abstract class Hero : Character
     protected int Intellect { get; private set; }
     protected int Spirit { get; private set; }
 
-    private StatGrowth StatGrowth { get; }
+    protected virtual StatGrowth StatGrowth { get; }
 
     protected internal int Money { get; private set; }
 
@@ -28,22 +28,19 @@ public abstract class Hero : Character
     protected Hero(
         string name,
         int health,
-        int mana,
         int armor,
         int strength,
         int agility,
         int stamina,
         int intellect,
-        int spirit,
-        StatGrowth statGrowth)
-        : base(name, health, mana, armor)
+        int spirit)
+        : base(name, health, armor)
     {
         Strength = strength;
         Agility = agility;
         Stamina = stamina;
         Intellect = intellect;
         Spirit = spirit;
-        StatGrowth = statGrowth;
         Level.LevelUp += OnLevelUp;
     }
 
@@ -57,7 +54,7 @@ public abstract class Hero : Character
     /// Выполняет атаку выбранного противника.
     /// Рассчитывает нанесённый урон и выводит соответствующее сообщение.
     /// </summary>
-    public virtual void Attack(Monster target)
+    public virtual void Attack(Monster target, int resource = 0)
     {
         if (IsAlive)
         {
@@ -76,7 +73,7 @@ public abstract class Hero : Character
     /// Выполняет действия при повышении уровня:
     /// увеличивает характеристики, здоровье и другие параметры героя.
     /// </summary>
-    private void OnLevelUp()
+    protected virtual void OnLevelUp()
     {
         var level = Level.Level;
         Strength += level * StatGrowth.StrengthMultiplier;
@@ -87,11 +84,6 @@ public abstract class Hero : Character
         Armor += level * StatGrowth.ArmorMultiplier;
         IncreaseMaxHealth(level*StatGrowth.StaminaMultiplier);
         RestoreHealth(MaxHealth);
-        if (MaxMana != 0)
-        {
-            IncreaseMaxMana(level*StatGrowth.IntellectMultiplier);
-            RestoreMana(MaxMana);
-        }
     }
     
     /// <summary>
@@ -162,9 +154,6 @@ public abstract class Hero : Character
     /// </summary>
     public override void DisplayCharacterStats()
     { 
-        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень - ");
-        base.DisplayCharacterStats();
-        if (Mana>0) Console.WriteLine($"Мана: {Mana}/{MaxMana}");
         Console.WriteLine($"Очки опыта: {Level.Experience}, Золотых монет: {Money}");
         Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
         Console.WriteLine();
