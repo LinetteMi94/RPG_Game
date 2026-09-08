@@ -50,12 +50,17 @@ public class Hunter(string name)
         }
     };
 
-    protected override int Damage => (int)Math.Round(Agility*1.5 + Intellect*0.5);
+    protected override int Damage { get; set; } 
     
     public override void DisplayCharacterStats()
     { 
         Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         base.DisplayCharacterStats();
+    }
+    
+    public override void ShowAbilities()
+    {
+        // меню заклинаний охотника
     }
 }

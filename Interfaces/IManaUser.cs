@@ -4,6 +4,7 @@ public interface IManaUser
 {
     int Mana { get; set; }
     int MaxMana { get; set; } 
+    int NeedMana { get; set; }
     
     /// <summary>
     /// Увеличивает ману указанного персонажа на указанное количество.

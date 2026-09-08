@@ -63,7 +63,7 @@ public class Paladin(string name)
         }
     };
 
-    protected override int Damage => (int)Math.Round(Strength*1.5 + Intellect);
+    protected override int Damage  { get; set; } 
     public int HealPower => (Intellect + Strength)/2;
     
     public void Heal()
@@ -79,5 +79,10 @@ public class Paladin(string name)
         Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         base.DisplayCharacterStats();
+    }
+    
+    public override void ShowAbilities()
+    {
+        // меню заклинаний паладина
     }
 }

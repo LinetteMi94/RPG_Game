@@ -50,7 +50,7 @@ public class Warrior(string name)
         }
     };
 
-    protected override int Damage => Strength*2;
+    protected override int Damage  { get; set; } 
     
     public override void DisplayCharacterStats()
     { 
@@ -58,6 +58,9 @@ public class Warrior(string name)
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         base.DisplayCharacterStats();
     }
-    
-    
+
+    public override void ShowAbilities()
+    {
+        // меню заклинаний воина
+    }
 }

@@ -22,6 +22,7 @@ public class Shaman(string name)
 {
     public int Mana { get; set; } = 150;
     public int MaxMana { get; set; } = 150;
+    public int NeedMana { get; set; }
     protected override StatGrowth StatGrowth => new(2, 1, 2, 2, 1, 1);
     protected override string ClassName =>  "Шаман";
     protected override BattleMessages Messages => new()
@@ -67,7 +68,7 @@ public class Shaman(string name)
         }
     };
 
-    protected override int Damage => (int)Math.Round(Intellect*1.5 + Agility);
+    protected override int Damage  { get; set; } 
     
     public int HealPower => (Intellect + Spirit)/2;
 
@@ -85,5 +86,10 @@ public class Shaman(string name)
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         Console.WriteLine($"Мана: {Mana}/{MaxMana}");
         base.DisplayCharacterStats();
+    }
+    
+    public override void ShowAbilities()
+    {
+        // меню заклинаний шамана
     }
 }

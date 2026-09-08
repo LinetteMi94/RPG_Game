@@ -35,7 +35,7 @@ public static class GameLoop
         Console.Write("Введите имя героя: ");
         var heroName = Console.ReadLine();
         Console.WriteLine("Выберите класс героя:");
-        Console.WriteLine("1. Друид  2. Охотник  3. Маг  4. Паладин  5. Жрец  6. Разбойник  7. Шаман  8. Чернокнижник  9. Воин");
+        Console.WriteLine("1. Друид  2. Охотник  3. Маг  4. Паладин  5. Жрец  6. Пират  7. Шаман  8. Чернокнижник  9. Воин");
         var choice = Console.ReadLine();
         
         if(!int.TryParse(choice, out int number) || number > 9 || number < 1)
@@ -57,7 +57,7 @@ public static class GameLoop
             case "5":
                 return new Priest(heroName);
             case "6":
-                return new Rogue(heroName);
+                return new Pirate(heroName);
             case "7":
                 return new Shaman(heroName);
             case "8":

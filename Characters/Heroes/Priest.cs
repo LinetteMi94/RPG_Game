@@ -21,6 +21,7 @@ public class Priest(string name)
 {
     public int Mana { get; set; } = 180;
     public int MaxMana { get; set; } = 180;
+    public int NeedMana { get; set; }
     protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0);
     protected override string ClassName => "Жрец";
     protected override BattleMessages Messages => new()
@@ -66,7 +67,7 @@ public class Priest(string name)
         }
     };
 
-    protected override int Damage => Intellect*2 + Spirit;
+    protected override int Damage  { get; set; } 
     
     public int HealPower => (Intellect + Spirit)/2;
 
@@ -84,5 +85,10 @@ public class Priest(string name)
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         Console.WriteLine($"Мана: {Mana}/{MaxMana}");
         base.DisplayCharacterStats();
+    }
+    
+    public override void ShowAbilities()
+    {
+        // меню заклинаний жреца
     }
 }

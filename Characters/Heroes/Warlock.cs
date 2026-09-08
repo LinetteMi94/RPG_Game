@@ -22,6 +22,8 @@ public class Warlock(string name)
 {
     public int Mana { get; set; } = 180;
     public int MaxMana { get; set; } = 180;
+    
+    public int NeedMana { get; set; }
     protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0);
     protected override string ClassName =>  "Чернокнижник";
     protected override BattleMessages Messages => new()
@@ -54,7 +56,7 @@ public class Warlock(string name)
         }
     };
 
-    protected override int Damage => (int)Math.Round(Intellect*2.5 + Spirit*0.5);
+    protected override int Damage { get; set; } 
     
     public virtual void Attack(Monster target)
     {
@@ -79,4 +81,8 @@ public class Warlock(string name)
         base.DisplayCharacterStats();
     }
     
+    public override void ShowAbilities()
+    {
+        // меню заклинаний чернокнижника
+    }
 }

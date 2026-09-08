@@ -21,9 +21,10 @@ public class Druid(string name)
 {
     protected override string ClassName => "Друид";
     protected override StatGrowth StatGrowth => new(1, 2, 2, 2, 1, 1);
-    protected override int Damage => Intellect+Agility;
+    protected override int Damage { get; set; } 
     public int Mana { get; set; } = 130;
     public int MaxMana { get; set; } = 130;
+    public int NeedMana { get; set; }
     public int HealPower => (Intellect + Spirit)/2;
     
     protected override BattleMessages Messages => new()
@@ -82,5 +83,10 @@ public class Druid(string name)
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         Console.WriteLine($"Мана: {Mana}/{MaxMana}");
         base.DisplayCharacterStats();
+    }
+    
+    public override void ShowAbilities()
+    {
+        // меню заклинаний друида
     }
 }

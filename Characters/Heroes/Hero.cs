@@ -48,7 +48,7 @@ public abstract class Hero : Character
     public List<Item> Inventory { get; } = new ();
 
     protected abstract string ClassName { get; }
-    protected abstract int Damage { get; }
+    protected abstract int Damage { get; set; }
 
     /// <summary>
     /// Выполняет атаку выбранного противника.
@@ -158,4 +158,9 @@ public abstract class Hero : Character
         Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
         Console.WriteLine();
     }
+    
+    /// <summary>
+    /// Отображает меню способностей персонажа и обрабатывает выбор игрока.
+    /// </summary>
+    public abstract void ShowAbilities();
 }
