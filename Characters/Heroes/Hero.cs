@@ -57,7 +57,6 @@ public abstract class Hero : Character
     /// </summary>
     protected virtual void Attack(Monster target, bool ignoreArmor = false)
     {
-       //if (this is IManaUser manner)
         if (IsAlive)
         {
             if (Damage > target.Armor)

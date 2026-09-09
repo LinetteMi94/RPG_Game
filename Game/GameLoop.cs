@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
-using RPG_Game.Characters.Heroes; 
+using RPG_Game.Characters.Heroes;
+using RPG_Game.Input;
 using RPG_Game.World;
 
 namespace RPG_Game.Game;
@@ -35,40 +36,31 @@ public static class GameLoop
         Console.Write("Введите имя героя: ");
         var heroName = Console.ReadLine();
         Console.WriteLine("Выберите класс героя:");
-        Console.WriteLine("1. Друид  2. Охотник  3. Маг  4. Паладин  5. Жрец  6. Пират  7. Шаман  8. Чернокнижник  9. Воин");
-        var choice = Console.ReadLine();
-        
-        if(!int.TryParse(choice, out int number) || number > 9 || number < 1)
-        {
-            Console.WriteLine("Неверный выбор. Будет выбран случайный класс");
-            Thread.Sleep(1000);
-            choice = new Random().Next(1,10).ToString();
-        }
+        var classes = "1. Друид  2. Следопыт  3. Маг  4. Менестрель  5. Астромант  6. Пират  7. Шаман  8. Колдун  9. Воин";
+        Console.WriteLine(classes);
+        var choice = classes.GetValidInput(9);
         switch (choice)
         {
-            case "1":
+            case 1:
                 return new Druid(heroName);
-            case "2":
-                return new Hunter(heroName);
-            case "3":
+            case 2:
+                return new Ranger(heroName);
+            case 3:
                 return new Mage(heroName);
-            case "4":
-                return new Paladin(heroName);
-            case "5":
-                return new Priest(heroName);
-            case "6":
+            case 4:
+                return new Minstrel(heroName);
+            case 5:
+                return new Astromancer(heroName);
+            case 6:
                 return new Pirate(heroName);
-            case "7":
+            case 7:
                 return new Shaman(heroName);
-            case "8":
+            case 8:
                 return new Warlock(heroName);
-            case "9":
+            default: 
                 return new Warrior(heroName);
-            default:
-                return null;
         }
     }
-
     
     /// <summary>
     /// Обрабатывает выбор игрока из главного меню

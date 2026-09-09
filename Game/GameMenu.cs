@@ -69,7 +69,7 @@ public static class GameMenu
         Console.WriteLine("3. Попытаться сбежать");
         Console.WriteLine("4. Ничего не делать");
         int choice;
-        if (hero is IHealer<Hero>)
+        if (hero is IHealer)
         {
             Console.WriteLine("5. Подлечиться");
             choice = InputValidator.GetValidInput(null,5);
@@ -77,8 +77,5 @@ public static class GameMenu
         else choice = InputValidator.GetValidInput(null,4);
         
         handleChoice(choice);
-        
-        //Console.WriteLine("Нажми любую клавишу для продолжения...");
-       // Console.ReadKey();
     }
 }

@@ -48,12 +48,10 @@ public class Battle
     /// </summary>
     private static void HandleBattleChoice(int choice)
     {
-        var battleIsStarted = false;
         switch (choice)
         {
             case 1:
-                if (_hero is Mage) battleIsStarted = AttackMenu.ShowMageBattleMenu(_monster, _hero.ShowAbilities);
-                if (!battleIsStarted) _hero.ShowBattleMenu(_monster, HandleBattleChoice);
+                if (!IsStartBattleForDifferentClasses()) _hero.ShowBattleMenu(_monster, HandleBattleChoice);
                 break;
             case 2:
                 Console.WriteLine("Выпить зелье");
@@ -70,9 +68,22 @@ public class Battle
                 Console.WriteLine($"{_hero!.Name} стоит и ничего не делает...");
                 break;
             case 5:
-                if (_hero is IHealer<Hero> healer) healer.Heal();
+                if (_hero is IHealer healer) healer.Heal();
                 Console.WriteLine($"{_hero!.Name}, здоровье {_hero.Health}/{_hero.MaxHealth}!");
                 break;
         }
+    }
+
+    private static bool IsStartBattleForDifferentClasses()
+    {
+        if (_hero is Astromancer) return AttackMenu.ShowAstromancerBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Druid) return AttackMenu.ShowDruidBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Mage) return AttackMenu.ShowMageBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Minstrel) return AttackMenu.ShowMinstrelBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Pirate) return AttackMenu.ShowPirateBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Ranger) return AttackMenu.ShowRangerBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Shaman) return AttackMenu.ShowShamanBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Warlock) return AttackMenu.ShowWarlockBattleMenu(_monster, _hero.ShowAbilities);
+        return AttackMenu.ShowWarriorBattleMenu(_monster, _hero.ShowAbilities);
     }
 }

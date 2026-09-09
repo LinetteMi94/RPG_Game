@@ -19,7 +19,7 @@ public class Shaman(string name)
             stamina:21, 
             intellect:21, 
             spirit:20), 
-        IHealer<Hero>, IManaUser
+        IHealer, IManaUser
 {
     public int Mana { get; set; } = 150;
     public int MaxMana { get; set; } = 150;
@@ -78,8 +78,6 @@ public class Shaman(string name)
         Messages.ShowHealMessage();
         RestoreHealth(HealPower);
     }
-    
-    public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
     
     public override void DisplayCharacterStats()
     { 

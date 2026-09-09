@@ -18,7 +18,7 @@ public class Druid(string name)
             stamina:21, 
             intellect:20, 
             spirit:21), 
-        IHealer<Hero>, IManaUser
+        IHealer, IManaUser
 {
     protected override string ClassName => "Друид";
     protected override StatGrowth StatGrowth => new(1, 2, 2, 2, 1, 1);
@@ -75,8 +75,6 @@ public class Druid(string name)
         Messages.ShowHealMessage();
         RestoreHealth(HealPower);
     }
-    
-    public void Heal(Hero hero) => hero.RestoreHealth(HealPower);
     
     public override void DisplayCharacterStats()
     { 
