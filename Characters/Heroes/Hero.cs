@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPG_Game.Characters.Monsters;
+using RPG_Game.Interfaces;
 using RPG_Game.Items;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
@@ -54,16 +55,18 @@ public abstract class Hero : Character
     /// Выполняет атаку выбранного противника.
     /// Рассчитывает нанесённый урон и выводит соответствующее сообщение.
     /// </summary>
-    public virtual void Attack(Monster target, int resource = 0)
+    protected virtual void Attack(Monster target, bool ignoreArmor = false)
     {
+       //if (this is IManaUser manner)
         if (IsAlive)
         {
             if (Damage > target.Armor)
             {
                 Messages.ShowDamageMessage();
                 Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
-                target.TakeDamage(Damage);
+                target.TakeDamage(Damage, ignoreArmor);
                 Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
+                if (this is IManaUser manner) Console.WriteLine($"{Name} мана : {manner.Mana}/{manner.MaxMana}!");
             }
             else Messages.ShowMissMessage();
         }
@@ -162,5 +165,5 @@ public abstract class Hero : Character
     /// <summary>
     /// Отображает меню способностей персонажа и обрабатывает выбор игрока.
     /// </summary>
-    public abstract void ShowAbilities();
+    public abstract void ShowAbilities(int choose, Monster target);
 }

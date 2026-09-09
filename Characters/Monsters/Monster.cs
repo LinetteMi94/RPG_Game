@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RPG_Game.Characters.Heroes;
 using RPG_Game.Items;
 using RPG_Game.Messages;
+using RPG_Game.Interfaces;
 
 namespace RPG_Game.Characters.Monsters;
 

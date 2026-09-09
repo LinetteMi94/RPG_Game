@@ -1,4 +1,5 @@
 ﻿using System;
+using RPG_Game.Characters.Monsters;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 
@@ -59,7 +60,7 @@ public class Hunter(string name)
         base.DisplayCharacterStats();
     }
     
-    public override void ShowAbilities()
+    public override void ShowAbilities(int choose, Monster target)
     {
         // меню заклинаний охотника
     }

@@ -12,34 +12,67 @@ namespace RPG_Game.Game;
 public class Battle
 {
     public event Action<Monster>? OnMonsterDefeated;
+    private static Hero? _hero;
+    private static Monster? _monster;
+    private static bool _isRunning = true;
     public void Start(Hero hero, Monster monster)
     {
+        _hero = hero;
+        _monster = monster;
         Console.WriteLine("Начинается бой!");
-        Console.WriteLine($"{hero.Name} против {monster.Name}");
-        while (true)
+        Console.WriteLine($"{_hero.Name} против {_monster.Name}");
+        while (_isRunning)
         {
             Console.WriteLine("Нажмите любую клавишу для атаки");
             Console.ReadKey();
-            hero.Attack(monster);
-            if (!monster.IsAlive)
+            hero.ShowBattleMenu(_monster, HandleBattleChoice);
+            if (!_monster.IsAlive)
             {
-                Console.WriteLine($"{monster.Name} повержен!\t {hero.Name} победил!");
-                OnMonsterDefeated?.Invoke(monster);
+                Console.WriteLine($"{_monster.Name} повержен!\t {_hero.Name} победил!");
+                OnMonsterDefeated?.Invoke(_monster);
                 break;
             }
             Console.WriteLine();
-            monster.Attack(hero);
+            _monster.Attack(_hero);
             if (!hero.IsAlive)
             {
-                Console.WriteLine($"{hero.Name} повержен!\t {monster.Name} победил!");
+                Console.WriteLine($"{_hero.Name} повержен!\t {_monster.Name} победил!");
                 break;
             }
-            
-            if (hero is IHealer<Hero> healer && new Random().Next(100) < 40)
-            {
-                healer.Heal();
-                Console.WriteLine($"{hero.Name}, здоровье {hero.Health}/{hero.MaxHealth}!");
-            }
+        }
+    }
+    
+    /// <summary>
+    /// Обрабатывает выбор игрока во время битвы
+    /// и запускает соответствующее действие.
+    /// </summary>
+    private static void HandleBattleChoice(int choice)
+    {
+        var battleIsStarted = false;
+        switch (choice)
+        {
+            case 1:
+                if (_hero is Mage) battleIsStarted = AttackMenu.ShowMageBattleMenu(_monster, _hero.ShowAbilities);
+                if (!battleIsStarted) _hero.ShowBattleMenu(_monster, HandleBattleChoice);
+                break;
+            case 2:
+                Console.WriteLine("Выпить зелье");
+                break;
+            case 3:
+                if (new Random().Next(100) < 50)
+                {
+                    Console.WriteLine("Вам удалось сбежать!");
+                    _isRunning = false;
+                }
+                else Console.WriteLine("Вы попытались сбежать, но ничего не вышло!");
+                break;
+            case 4:
+                Console.WriteLine($"{_hero!.Name} стоит и ничего не делает...");
+                break;
+            case 5:
+                if (_hero is IHealer<Hero> healer) healer.Heal();
+                Console.WriteLine($"{_hero!.Name}, здоровье {_hero.Health}/{_hero.MaxHealth}!");
+                break;
         }
     }
 }

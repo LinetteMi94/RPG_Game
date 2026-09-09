@@ -1,5 +1,8 @@
 using System;
 using RPG_Game.Characters.Heroes;
+using RPG_Game.Characters.Monsters;
+using RPG_Game.Input;
+using RPG_Game.Interfaces;
 using RPG_Game.Items;
 
 namespace RPG_Game.Game;
@@ -55,5 +58,27 @@ public static class GameMenu
             case "2":
                 break;
         }
+    }
+    
+    public static void ShowBattleMenu(this Hero? hero, Monster? monster, Action<int> handleChoice)
+    {
+        Console.Clear();
+        Console.WriteLine($"Что ты хочешь сделать в битве c {monster.Name}, {hero.Name}?");
+        Console.WriteLine("1. Атаковать");
+        Console.WriteLine("2. Выпить зелье");
+        Console.WriteLine("3. Попытаться сбежать");
+        Console.WriteLine("4. Ничего не делать");
+        int choice;
+        if (hero is IHealer<Hero>)
+        {
+            Console.WriteLine("5. Подлечиться");
+            choice = InputValidator.GetValidInput(null,5);
+        }
+        else choice = InputValidator.GetValidInput(null,4);
+        
+        handleChoice(choice);
+        
+        //Console.WriteLine("Нажми любую клавишу для продолжения...");
+       // Console.ReadKey();
     }
 }

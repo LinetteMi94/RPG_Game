@@ -25,7 +25,7 @@ public class Mage(string name)
     public int NeedMana { get; set; }
     protected override StatGrowth StatGrowth => new (1, 1, 1, 2, 2, 0);
     protected override string ClassName =>  "Маг";
-    protected override int Damage { get; set; } 
+    protected override int Damage { get; set; }
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -66,24 +66,38 @@ public class Mage(string name)
     
     public override void DisplayCharacterStats()
     { 
-        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         Console.WriteLine($"Мана: {Mana}/{MaxMana}");
         base.DisplayCharacterStats();
     }
     
-    public override void ShowAbilities()
+    public override void ShowAbilities(int choose, Monster target)
     {
         // меню заклинаний мага
-    }
-    
-    public override void Attack(Monster target, int resource)
-    {
-        if (Mana >= resource)
+        switch (choose)
         {
-            Mana -= resource;
-            base.Attack(target);
+            case 1:
+                IceArrow(target);
+                break;
+            case 2:
+                Fireball(target);
+                break;
+            case 3:
+                LightningBlast(target);
+                break;
         }
+    }
+
+    protected override void Attack(Monster target, bool ignoreArmor = false)
+    {
+        if (Mana >= NeedMana)
+        {
+            Mana -= NeedMana;
+            base.Attack(target);
+            
+        }
+        else Console.WriteLine("Недостаточно маны!");
         
     }
     
@@ -92,9 +106,9 @@ public class Mage(string name)
     /// </summary>
     private void IceArrow(Monster target)
     {
-        NeedMana = 10;
-        Damage = Intellect;
-        Attack(target, NeedMana);
+        NeedMana = 20;
+        Damage = Intellect*2;
+        Attack(target);
     }
     
     /// <summary>
@@ -102,9 +116,9 @@ public class Mage(string name)
     /// </summary>
     private void Fireball(Monster target)
     {
-        NeedMana = 15;
-        Damage = (int)Math.Round(Intellect*1.5);
-        Attack(target, NeedMana);
+        NeedMana = 30;
+        Damage = (int)Math.Round(Intellect*2.5);
+        Attack(target);
     }
     
     /// <summary>
@@ -112,8 +126,8 @@ public class Mage(string name)
     /// </summary>
     private void LightningBlast(Monster target)
     {
-        NeedMana = 20;
-        Damage = Intellect*2;
-        Attack(target, NeedMana);
+        NeedMana = 40;
+        Damage = Intellect*3;
+        Attack(target);
     }
 }

@@ -58,21 +58,6 @@ public class Warlock(string name)
 
     protected override int Damage { get; set; } 
     
-    public virtual void Attack(Monster target)
-    {
-        if (IsAlive)
-        {
-            if (Damage > target.Armor)
-            {
-                Messages.ShowDamageMessage();
-                Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
-                target.TakeDamage(Damage, true);
-                Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
-            }
-            else Messages.ShowMissMessage();
-        }
-    }
-    
     public override void DisplayCharacterStats()
     { 
         Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
@@ -81,7 +66,7 @@ public class Warlock(string name)
         base.DisplayCharacterStats();
     }
     
-    public override void ShowAbilities()
+    public override void ShowAbilities(int choose, Monster target)
     {
         // меню заклинаний чернокнижника
     }

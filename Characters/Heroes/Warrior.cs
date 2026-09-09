@@ -59,7 +59,7 @@ public class Warrior(string name)
         base.DisplayCharacterStats();
     }
 
-    public override void ShowAbilities()
+    public override void ShowAbilities(int choose, Monster target)
     {
         // меню заклинаний воина
     }
