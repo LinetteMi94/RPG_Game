@@ -1,4 +1,6 @@
-﻿using RPG_Game.Characters.Monsters;
+﻿using System;
+using RPG_Game.Characters.Monsters;
+using RPG_Game.Enums;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 using RPG_Game.Interfaces;
@@ -17,13 +19,14 @@ public class Mage(string name)
         agility:20, 
         stamina:20, 
         intellect:24, 
-        spirit:22), IManaUser
+        spirit:22)
 {
-    public int Mana { get; set; } = 180;
-    public int MaxMana { get; set; } = 180;
-    
-    public int NeedMana { get; set; }
-    protected override StatGrowth StatGrowth => new (1, 1, 1, 2, 2, 0);
+   
+    public override Resources ResourceName => Resources.Мана;
+    public override int Resource { get; set; } = 100;
+    public override int MaxResource { get; set; } = 100;
+    public override int NeedResource { get; set; }
+    protected override StatGrowth StatGrowth => new (1, 1, 1, 2, 2, 0,3);
     protected override string ClassName =>  "Маг";
     protected override int Damage { get; set; }
     protected override BattleMessages Messages => new()
@@ -56,22 +59,6 @@ public class Mage(string name)
         }
     };
     
-    protected override void OnLevelUp()
-    {
-        base.OnLevelUp();
-        IManaUser manaUser = this;
-        manaUser.IncreaseMaxMana(Level.Level*StatGrowth.IntellectMultiplier);
-        manaUser.RestoreFullMana();
-    }
-    
-    public override void DisplayCharacterStats()
-    { 
-        Console.WriteLine($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
-        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
-        Console.WriteLine($"Мана: {Mana}/{MaxMana}");
-        base.DisplayCharacterStats();
-    }
-    
     public override void ShowAbilities(int choose, Monster target)
     {
         // меню заклинаний мага
@@ -91,9 +78,9 @@ public class Mage(string name)
 
     protected override void Attack(Monster target, bool ignoreArmor = false)
     {
-        if (Mana >= NeedMana)
+        if (Resource >= NeedResource)
         {
-            Mana -= NeedMana;
+            Resource -= NeedResource;
             base.Attack(target);
             
         }
@@ -106,7 +93,7 @@ public class Mage(string name)
     /// </summary>
     private void IceArrow(Monster target)
     {
-        NeedMana = 20;
+        NeedResource = 20;
         Damage = Intellect*2;
         Attack(target);
     }
@@ -116,7 +103,7 @@ public class Mage(string name)
     /// </summary>
     private void Fireball(Monster target)
     {
-        NeedMana = 30;
+        NeedResource = 30;
         Damage = (int)Math.Round(Intellect*2.5);
         Attack(target);
     }
@@ -126,7 +113,7 @@ public class Mage(string name)
     /// </summary>
     private void LightningBlast(Monster target)
     {
-        NeedMana = 40;
+        NeedResource = 40;
         Damage = Intellect*3;
         Attack(target);
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPG_Game.Characters.Monsters;
+using RPG_Game.Enums;
 using RPG_Game.Interfaces;
 using RPG_Game.Items;
 using RPG_Game.Messages;
@@ -12,7 +13,7 @@ namespace RPG_Game.Characters.Heroes;
 /// Представляет героя игры.
 /// Наследует общие свойства и поведение от класса Character.
 /// </summary>
-public abstract class Hero : Character
+public abstract class Hero : Character, IResourсeCharacter
 {
     protected int Strength { get; private set; }
     protected int Agility { get; private set; }
@@ -50,6 +51,10 @@ public abstract class Hero : Character
 
     protected abstract string ClassName { get; }
     protected abstract int Damage { get; set; }
+    public abstract Resources ResourceName { get; }
+    public abstract int Resource { get; set; }
+    public abstract int MaxResource { get; set; }
+    public abstract int NeedResource { get; set; }
 
     /// <summary>
     /// Выполняет атаку выбранного противника.
@@ -65,7 +70,7 @@ public abstract class Hero : Character
                 Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
                 target.TakeDamage(Damage, ignoreArmor);
                 Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
-                if (this is IManaUser manner) Console.WriteLine($"{Name} мана : {manner.Mana}/{manner.MaxMana}!");
+                Console.WriteLine($"{Name} {ResourceName}: {Resource}/{MaxResource}!");
             }
             else Messages.ShowMissMessage();
         }
@@ -85,7 +90,12 @@ public abstract class Hero : Character
         Spirit += level * StatGrowth.SpiritMultiplier;
         Armor += level * StatGrowth.ArmorMultiplier;
         IncreaseMaxHealth(level*StatGrowth.StaminaMultiplier);
-        RestoreHealth(MaxHealth);
+        RestoreFullHealth();
+        if (this is IResourсeCharacter user && user is not Ranger or Pirate)
+        {
+            user.IncreaseMaxResource(level*StatGrowth.ResourceMultiplier);
+            user.RestoreFullResource();
+        }
     }
     
     /// <summary>
@@ -156,6 +166,9 @@ public abstract class Hero : Character
     /// </summary>
     public override void DisplayCharacterStats()
     { 
+        Console.WriteLine($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        Console.WriteLine($"{ResourceName}: {Resource}/{MaxResource}");
         Console.WriteLine($"Очки опыта: {Level.Experience}, Золотых монет: {Money}");
         Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
         Console.WriteLine();
@@ -165,4 +178,6 @@ public abstract class Hero : Character
     /// Отображает меню способностей персонажа и обрабатывает выбор игрока.
     /// </summary>
     public abstract void ShowAbilities(int choose, Monster target);
+
+
 }

@@ -1,4 +1,5 @@
 ﻿using RPG_Game.Characters.Monsters;
+using RPG_Game.Enums;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 
@@ -18,8 +19,13 @@ public class Warrior(string name)
         intellect:16, 
         spirit:16)
 {
-    protected override StatGrowth StatGrowth => new(2, 1, 2, 1, 1, 3);
+    protected override StatGrowth StatGrowth => new(2, 1, 2, 1, 1, 3,0);
     protected override string ClassName =>  "Воин";
+    protected override int Damage  { get; set; } 
+    public override Resources ResourceName => Resources.Ярость;
+    public override int Resource { get; set; } = 0;
+    public override int MaxResource { get; set; } = 100;
+    public override int NeedResource { get; set; }
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -49,16 +55,7 @@ public class Warrior(string name)
             "🛡️ Сильный замах воина заканчивается ударом в пустоту!"
         }
     };
-
-    protected override int Damage  { get; set; } 
     
-    public override void DisplayCharacterStats()
-    { 
-        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
-        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
-        base.DisplayCharacterStats();
-    }
-
     public override void ShowAbilities(int choose, Monster target)
     {
         // меню заклинаний воина

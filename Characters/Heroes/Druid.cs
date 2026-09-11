@@ -1,4 +1,6 @@
-﻿using RPG_Game.Characters.Monsters;
+﻿using System;
+using RPG_Game.Characters.Monsters;
+using RPG_Game.Enums;
 using RPG_Game.Interfaces;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
@@ -18,15 +20,17 @@ public class Druid(string name)
             stamina:21, 
             intellect:20, 
             spirit:21), 
-        IHealer, IManaUser
+        IHealer
 {
     protected override string ClassName => "Друид";
-    protected override StatGrowth StatGrowth => new(1, 2, 2, 2, 1, 1);
-    protected override int Damage { get; set; } 
-    public int Mana { get; set; } = 130;
-    public int MaxMana { get; set; } = 130;
-    public int NeedMana { get; set; }
+    protected override StatGrowth StatGrowth => new(1, 2, 2, 2, 1, 1,2);
+    protected override int Damage { get; set; }
+    public override Resources ResourceName => Resources.Мана;
+    public override int Resource { get; set; } = 100;
+    public override int MaxResource { get; set; } = 100;
+    public override int NeedResource { get; set; }
     public int HealPower => (Intellect + Spirit)/2;
+    
     
     protected override BattleMessages Messages => new()
     {
@@ -74,14 +78,6 @@ public class Druid(string name)
     {
         Messages.ShowHealMessage();
         RestoreHealth(HealPower);
-    }
-    
-    public override void DisplayCharacterStats()
-    { 
-        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
-        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
-        Console.WriteLine($"Мана: {Mana}/{MaxMana}");
-        base.DisplayCharacterStats();
     }
     
     public override void ShowAbilities(int choose, Monster target)

@@ -76,14 +76,14 @@ public class Battle
 
     private static bool IsStartBattleForDifferentClasses()
     {
-        if (_hero is Astromancer) return AttackMenu.ShowAstromancerBattleMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Druid) return AttackMenu.ShowDruidBattleMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Mage) return AttackMenu.ShowMageBattleMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Minstrel) return AttackMenu.ShowMinstrelBattleMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Pirate) return AttackMenu.ShowPirateBattleMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Ranger) return AttackMenu.ShowRangerBattleMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Shaman) return AttackMenu.ShowShamanBattleMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Warlock) return AttackMenu.ShowWarlockBattleMenu(_monster, _hero.ShowAbilities);
-        return AttackMenu.ShowWarriorBattleMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Astromancer) return AttackMenu.ShowAstromancerAttackMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Druid) return AttackMenu.ShowDruidAttackMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Mage) return AttackMenu.ShowMageAttackMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Minstrel) return AttackMenu.ShowMinstrelAttackMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Pirate) return AttackMenu.ShowPirateAttackMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Ranger) return AttackMenu.ShowRangerAttackMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Shaman) return AttackMenu.ShowShamanAttackMenu(_monster, _hero.ShowAbilities);
+        if (_hero is Warlock) return AttackMenu.ShowWarlockAttackMenu(_monster, _hero.ShowAbilities);
+        return AttackMenu.ShowWarriorAttackMenu(_monster, _hero.ShowAbilities);
     }
 }

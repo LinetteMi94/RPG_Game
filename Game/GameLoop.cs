@@ -37,7 +37,6 @@ public static class GameLoop
         var heroName = Console.ReadLine();
         Console.WriteLine("Выберите класс героя:");
         var classes = "1. Друид  2. Следопыт  3. Маг  4. Менестрель  5. Астромант  6. Пират  7. Шаман  8. Колдун  9. Воин";
-        Console.WriteLine(classes);
         var choice = classes.GetValidInput(9);
         switch (choice)
         {

@@ -10,7 +10,8 @@ public class StatGrowth(
     int staminaMultiplier,
     int intellectMultiplier,
     int spiritMultiplier,
-    int armorMultiplier)
+    int armorMultiplier,
+    int resourceMultiplier)
 {
     public int StrengthMultiplier { get; } = strengthMultiplier;
     public int AgilityMultiplier { get; } = agilityMultiplier;
@@ -18,4 +19,5 @@ public class StatGrowth(
     public int IntellectMultiplier { get; } = intellectMultiplier;
     public int SpiritMultiplier { get; } = spiritMultiplier;
     public int ArmorMultiplier { get; } = armorMultiplier;
+    public int ResourceMultiplier { get; } = resourceMultiplier;
 }

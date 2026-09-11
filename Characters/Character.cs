@@ -50,6 +50,14 @@ public abstract class Character(string name, int health, int armor)
         if (Health > MaxHealth) Health = MaxHealth;
     }
     
+    /// <summary>
+    /// Полностью восстанавливает здоровье указанного персонажа.
+    /// </summary>
+    protected internal void RestoreFullHealth()
+    {
+        Health = MaxHealth;
+    }
+    
 
     protected void IncreaseMaxHealth(int amount) => MaxHealth += amount;
 }

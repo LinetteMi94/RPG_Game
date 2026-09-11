@@ -9,7 +9,7 @@ namespace RPG_Game.Game;
 
 public static class AttackMenu
 {
-    public static bool ShowDruidBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowDruidAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -25,7 +25,7 @@ public static class AttackMenu
     
     
     
-    public static bool ShowMageBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowMageAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -39,7 +39,7 @@ public static class AttackMenu
         return true;
     }
     
-    public static bool ShowMinstrelBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowMinstrelAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -53,7 +53,7 @@ public static class AttackMenu
         return true;
     }
     
-    public static bool ShowPirateBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowPirateAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -67,7 +67,7 @@ public static class AttackMenu
         return true;
     }
     
-    public static bool ShowAstromancerBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowAstromancerAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -81,7 +81,7 @@ public static class AttackMenu
         return true;
     }
     
-    public static bool ShowRangerBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowRangerAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -95,7 +95,7 @@ public static class AttackMenu
         return true;
     }
     
-    public static bool ShowShamanBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowShamanAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -109,7 +109,7 @@ public static class AttackMenu
         return true;
     }
     
-    public static bool ShowWarlockBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowWarlockAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
@@ -123,7 +123,7 @@ public static class AttackMenu
         return true;
     }
     
-    public static bool ShowWarriorBattleMenu(Monster? monster, Action<int, Monster> handleChoice)
+    public static bool ShowWarriorAttackMenu(Monster? monster, Action<int, Monster> handleChoice)
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");

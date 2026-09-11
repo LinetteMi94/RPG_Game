@@ -2,6 +2,7 @@
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 using RPG_Game.Characters.Monsters;
+using RPG_Game.Enums;
 using RPG_Game.Interfaces;
 
 namespace RPG_Game.Characters.Heroes;
@@ -18,14 +19,15 @@ public class Warlock(string name)
         agility:18, 
         stamina:21, 
         intellect:24, 
-        spirit:22), IManaUser
+        spirit:22)
 {
-    public int Mana { get; set; } = 180;
-    public int MaxMana { get; set; } = 180;
-    
-    public int NeedMana { get; set; }
-    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0);
+    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0,3);
     protected override string ClassName =>  "Колдун";
+    protected override int Damage { get; set; } 
+    public override Resources ResourceName => Resources.Мана;
+    public override int Resource { get; set; } = 100;
+    public override int MaxResource { get; set; } = 100;
+    public override int NeedResource { get; set; }
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -55,16 +57,6 @@ public class Warlock(string name)
             "😈 Колдун призывает силу Бездны, но атака проходит мимо!"
         }
     };
-
-    protected override int Damage { get; set; } 
-    
-    public override void DisplayCharacterStats()
-    { 
-        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
-        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
-        Console.WriteLine($"Мана: {Mana}/{MaxMana}");
-        base.DisplayCharacterStats();
-    }
     
     public override void ShowAbilities(int choose, Monster target)
     {

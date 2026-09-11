@@ -1,4 +1,6 @@
-﻿using RPG_Game.Characters.Monsters;
+﻿using System;
+using RPG_Game.Characters.Monsters;
+using RPG_Game.Enums;
 using RPG_Game.Interfaces;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
@@ -19,8 +21,13 @@ public class Astromancer(string name)
         intellect:24, 
         spirit:22)
 {
-    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0);
+    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0, 3);
     protected override string ClassName => "Астромант";
+    protected override int Damage  { get; set; } 
+    public override Resources ResourceName => Resources.Эфир;
+    public override int Resource { get; set; } = 100;
+    public override int MaxResource { get; set; } = 100;
+    public override int NeedResource { get; set; }
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -50,15 +57,6 @@ public class Astromancer(string name)
             "🪐 Небесные силы атакуют противника, но он успевает уклониться!"
         }
     };
-
-    protected override int Damage  { get; set; } 
-    
-    public override void DisplayCharacterStats()
-    { 
-        Console.Write($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
-        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
-        base.DisplayCharacterStats();
-    }
     
     public override void ShowAbilities(int choose, Monster target)
     {
