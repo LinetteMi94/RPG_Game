@@ -36,8 +36,8 @@ public static class GameLoop
         Console.Write("Введите имя героя: ");
         var heroName = Console.ReadLine();
         Console.WriteLine("Выберите класс героя:");
-        var classes = "1. Друид  2. Следопыт  3. Маг  4. Менестрель  5. Астромант  6. Пират  7. Шаман  8. Колдун  9. Воин";
-        var choice = classes.GetValidInput(9);
+        var classes = "1. Друид  2. Следопыт  3. Маг  4. Менестрель  5. Астромант  6. Пират  7. Шаман  8. Колдун  9. Воин  10. Циркач";
+        var choice = classes.GetValidInput(10);
         switch (choice)
         {
             case 1:
@@ -56,8 +56,10 @@ public static class GameLoop
                 return new Shaman(heroName);
             case 8:
                 return new Warlock(heroName);
-            default: 
+            case 9:
                 return new Warrior(heroName);
+            default: 
+                return new Trickster(heroName);
         }
     }
     
