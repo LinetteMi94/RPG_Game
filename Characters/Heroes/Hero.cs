@@ -17,10 +17,10 @@ namespace RPG_Game.Characters.Heroes;
 public abstract class Hero : Character, IResourсeCharacter
 {
     protected internal int Strength { get; protected set; }
-    protected int Agility { get; set; }
+    protected internal int Agility { get; set; }
     protected int Stamina { get; set; }
     protected internal int Intellect { get; protected set; }
-    protected int Spirit { get; set; }
+    protected internal int Spirit { get; set; }
 
     protected virtual StatGrowth StatGrowth { get; }
 

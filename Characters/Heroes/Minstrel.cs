@@ -29,8 +29,87 @@ public class Minstrel(string name)
     public override Resources ResourceName => Resources.Ноты;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
-    public override List<Spell> LearnedSpells { get; set; }
-    public override List<Spell> SpellsToLearn { get; set; }
+   public override List<Spell> LearnedSpells { get; set; } 
+        = [new("Бить голыми руками")
+            {
+                GetDamage = minstrel  => minstrel .Strength,
+                Messages = new()
+                {
+                    DamageMessages =
+                    {
+                        "👊 Менестрель атакует врага кулаком!",
+                        "💥 Менестрель наносит противнику мощный удар!",
+                        "🥊 Менестрель бросается в рукопашную атаку!"
+                    },
+                    MissMessages =
+                    {
+                        "👊 Менестрель замахивается, но удар проходит мимо!",
+                        "💨 Менестрель пытается ударить врага, но тот уклоняется!",
+                        "🥊 Менестрель промахивается и едва не теряет равновесие!"
+                    }
+                }
+            },
+            new("Резкая нота")
+                {
+                    NeedResource = 10,
+                    GetDamage = minstrel  => (int)Math.Round((minstrel.Intellect + minstrel.Spirit) * 0.75),
+                    Messages = new()
+                    {
+                        DamageMessages =
+                        {
+                            "🎵 Резкая нота пронзает слух противника!",
+                            "🎶 Менестрель извлекает ноту, от которой враг вздрагивает!",
+                            "🔊 Звонкий звук обрушивается на противника!"
+                        },
+                        MissMessages =
+                        {
+                            "🎵 Резкая нота проносится мимо цели!",
+                            "🎶 Звук достигает противника, но не причиняет ему вреда!",
+                            "🔊 Менестрель играет ноту, но враг успевает уклониться!"
+                        }
+                    }
+                }
+            , new ("Диссонанс")
+                {
+                    NeedResource = 25,
+                    GetDamage = minstrel  => (int)Math.Round((minstrel.Intellect + minstrel.Spirit) * 1.5),
+                    Messages = new()
+                    {
+                        DamageMessages =
+                        {
+                            "🎼 Диссонанс разрывает тишину и поражает противника!",
+                            "🎵 Менестрель извлекает мучительный аккорд, обрушивая его на врага!",
+                            "🔊 Волна искажённого звука сотрясает противника!"
+                        },
+                        MissMessages =
+                        {
+                            "🎼 Диссонанс раздаётся вокруг противника, но не задевает его!",
+                            "🎵 Менестрель берёт неверную ноту, и атака рассеивается!",
+                            "🔊 Звуковая волна проходит рядом с врагом!"
+                        }
+                    }
+                }];
+    public override List<Spell> SpellsToLearn  { get; set; }
+        = [new("Песнь разрушения")
+                {
+                    NeedResource = 45,
+                    GetDamage = minstrel  => (int)Math.Round((minstrel.Intellect + minstrel.Spirit) * 2.5),
+                    Messages = new()
+                    {
+                        DamageMessages =
+                        {
+                            "🎶 Менестрель исполняет Песнь разрушения, обрушивая звуковую волну на врага!",
+                            "🎵 Мелодия превращается в разрушительную силу и поражает противника!",
+                            "🔥 Последняя нота песни сотрясает противника с невероятной мощью!"
+                        },
+                        MissMessages =
+                        {
+                            "🎶 Песнь разрушения звучит во всей своей мощи, но враг успевает уклониться!",
+                            "🎵 Разрушительная мелодия проходит мимо цели!",
+                            "🔊 Менестрель завершает песнь, но звуковая волна не достигает противника!"
+                        }
+                    }
+                }];
 
     private BattleMessages Messages => new()
     {

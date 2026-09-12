@@ -50,7 +50,7 @@ public class Mage(string name)
             },
             new("Ледяная стрела")
                 {
-                    NeedResource = 20,
+                    NeedResource = 15,
                     GetDamage = mage => mage.Intellect * 2,
                     Messages = new()
                     {
@@ -70,8 +70,8 @@ public class Mage(string name)
                 }
             , new ("Огненный шар")
                 {
-                    NeedResource = 30,
-                    GetDamage = mage => (int)(mage.Intellect*2.5),
+                    NeedResource = 20,
+                    GetDamage = mage => (int)(mage.Intellect*1.5),
                     Messages = new()
                     {
                         DamageMessages =
@@ -91,8 +91,8 @@ public class Mage(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Электрический разряд")
                 {
-                    NeedResource = 40,
-                    GetDamage = mage => mage.Intellect * 3,
+                    NeedResource = 45,
+                    GetDamage = mage => (int)(mage.Intellect * 3.5),
                     Messages = new()
                     {
                         DamageMessages =

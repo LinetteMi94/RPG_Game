@@ -28,8 +28,89 @@ public class Druid(string name)
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
-    public override List<Spell> LearnedSpells { get; set; }
-    public override List<Spell> SpellsToLearn { get; set; }
+    public override List<Spell> LearnedSpells { get; set; } 
+        = [new("Бить голыми руками")
+            {
+                GetDamage = druid => druid.Strength,
+                Messages = new()
+                {
+                    DamageMessages =
+                    {
+                        "👊 Друид атакует врага кулаком!",
+                        "💥 Друид наносит противнику мощный удар!",
+                        "🥊 Друид бросается в рукопашную атаку!"
+                    },
+                    MissMessages =
+                    {
+                        "👊 Друид замахивается, но удар проходит мимо!",
+                        "💨 Друид пытается ударить врага, но тот уклоняется!",
+                        "🥊 Друид промахивается и едва не теряет равновесие!"
+                    }
+                }
+            },
+            new("Терновый хлыст")
+            {
+                    NeedResource = 15,
+                    GetDamage = druid => (int)(druid.Intellect*1.5),
+                    Messages = new()
+                    {
+                        DamageMessages =
+                        {
+                            "🌿 Терновый хлыст обвивается вокруг противника и наносит удар!",
+                            "🍃 Друид призывает лозы, и острые шипы впиваются во врага!",
+                            "🌱 Из земли вырываются колючие ветви и атакуют противника!"
+                        },
+                        MissMessages =
+                        {
+                            "🌿 Терновый хлыст не достигает противника!",
+                            "🍃 Лозы хлещут воздух, но враг успевает отскочить!",
+                            "🌱 Колючие ветви вырываются из земли, но проходят мимо цели!"
+                        }
+                    }
+            },
+            new ("Гнев природы")
+                {
+                    NeedResource = 30,
+                    GetDamage = druid => (int)(druid.Intellect*2.5),
+                    Messages = new()
+                    {
+                        DamageMessages =
+                        {
+                            "🌪️ Друид призывает силу природы, обрушивая её на врага!",
+                            "🌳 Земля содрогается, а корни атакуют противника со всех сторон!",
+                            "🍃 Буря листьев и ветвей обрушивается на врага!"
+                        },
+                        MissMessages =
+                        {
+                            "🌪️ Гнев природы проносится мимо противника!",
+                            "🌳 Корни вырываются из земли, но враг успевает уклониться!",
+                            "🍃 Буря поднимается вокруг цели, но не причиняет ей вреда!"
+                        }
+                    }
+                }];
+    
+    public override List<Spell> SpellsToLearn  { get; set; }
+        = [new("Пробуждение древнего леса")
+                {
+                    NeedResource = 50,
+                    GetDamage = druid => druid.Intellect * 4,
+                    Messages = new()
+                    {
+                        DamageMessages =
+                        {
+                            "🌳 Древний лес пробуждается и обрушивает свою силу на противника!",
+                            "🌿 Корни и ветви древних деревьев сметают врага!",
+                            "🍂 Сила древнего леса обрушивается на противника со всей мощью!"
+                        },
+                        MissMessages =
+                        {
+                            "🌳 Древний лес пробуждается, но противник успевает уклониться!",
+                            "🌿 Корни тянутся к врагу, но смыкаются в пустоте!",
+                            "🍂 Ветви обрушиваются рядом с целью, не задев её!"
+                        }
+                    }
+                }];
+    
     public int HealPower => (Intellect + Spirit)/2;
 
 
