@@ -25,7 +25,6 @@ public class Druid(string name)
 {
     protected override string ClassName => "Друид";
     protected override StatGrowth StatGrowth => new(1, 2, 2, 2, 1, 1,2);
-    protected override int Damage { get; set; }
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
@@ -80,10 +79,5 @@ public class Druid(string name)
     {
         Messages.ShowHealMessage();
         RestoreHealth(HealPower);
-    }
-    
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний друида
     }
 }

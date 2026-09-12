@@ -30,7 +30,6 @@ public class Shaman(string name)
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; }
     public override List<Spell> SpellsToLearn { get; set; }
-    protected override int Damage  { get; set; } 
     public int HealPower => (Intellect + Spirit)/2;
     protected override BattleMessages Messages => new()
     {
@@ -79,10 +78,5 @@ public class Shaman(string name)
     {
         Messages.ShowHealMessage();
         RestoreHealth(HealPower);
-    }
-    
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний шамана
     }
 }

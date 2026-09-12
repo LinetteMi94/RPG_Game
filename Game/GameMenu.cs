@@ -13,7 +13,7 @@ namespace RPG_Game.Game;
 public static class GameMenu
 {
     /// <summary>
-    /// Отображает главное меню игры и показывает доступные действия игрока.
+    /// Отображает главное меню игры.
     /// </summary>
     public static void ShowMainMenu(this Hero hero, Action<string> handleChoice)
     {
@@ -32,6 +32,9 @@ public static class GameMenu
         Console.ReadKey();
     }
     
+    /// <summary>
+    /// Отображает меню инвентаря и обрабатывает выбор игрока.
+    /// </summary>
     public static void ShowInventoryMenu(this Hero hero)
     {
         Console.Clear();
@@ -60,6 +63,9 @@ public static class GameMenu
         }
     }
     
+    /// <summary>
+    /// Отображает меню битвы.
+    /// </summary>
     public static void ShowBattleMenu(this Hero? hero, Monster? monster, Action<int> handleChoice)
     {
         Console.Clear();
@@ -75,7 +81,24 @@ public static class GameMenu
             choice = InputValidator.GetValidInput(null,5);
         }
         else choice = InputValidator.GetValidInput(null,4);
-        
         handleChoice(choice);
+    }
+    
+    /// <summary>
+    /// Отображает меню заклинаний.
+    /// </summary>
+    public static int ShowAttackMenu(this Hero hero, Monster? monster)
+    {
+        var counter = hero.LearnedSpells.Count + 1;
+        Console.Clear();
+        Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
+        for (int j = 0; j < counter-1; j++)
+        {
+            Console.WriteLine($"{j+1}. {hero.LearnedSpells[j].SpellName}");
+        }
+        Console.WriteLine($"{counter}. Назад");
+        int choice = InputValidator.GetValidInput(null,counter);
+        if(choice == counter) return -1;
+        return choice;
     }
 }

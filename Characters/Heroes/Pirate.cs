@@ -27,7 +27,6 @@ public class Pirate(string name)
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; }
     public override List<Spell> SpellsToLearn { get; set; }
-    protected override int Damage { get; set; } 
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -57,9 +56,4 @@ public class Pirate(string name)
             "💰 Пират отвлекается на добычу и промахивается!"
         }
     };
-    
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний пирата
-    }
 }

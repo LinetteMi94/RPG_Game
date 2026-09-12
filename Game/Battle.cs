@@ -14,18 +14,20 @@ public class Battle
     public event Action<Monster>? OnMonsterDefeated;
     private static Hero? _hero;
     private static Monster? _monster;
-    private static bool _isRunning = true;
+    private static bool _isBattleRunning = true;
+    private static bool _isRoundRunning;
     public void Start(Hero hero, Monster monster)
     {
         _hero = hero;
         _monster = monster;
         Console.WriteLine("Начинается бой!");
         Console.WriteLine($"{_hero.Name} против {_monster.Name}");
-        while (_isRunning)
+        while (_isBattleRunning)
         {
             Console.WriteLine("Нажмите любую клавишу для атаки");
             Console.ReadKey();
-            hero.ShowBattleMenu(_monster, HandleBattleChoice);
+            _isRoundRunning = true;
+            while(_isRoundRunning) hero.ShowBattleMenu(_monster, HandleBattleChoice);
             if (!_monster.IsAlive)
             {
                 Console.WriteLine($"{_monster.Name} повержен!\t {_hero.Name} победил!");
@@ -51,7 +53,15 @@ public class Battle
         switch (choice)
         {
             case 1:
-                if (!IsStartBattleForDifferentClasses()) _hero.ShowBattleMenu(_monster, HandleBattleChoice);
+                var spellIndex = _hero.ShowAttackMenu(_monster)-1;
+                if (spellIndex >= 0)
+                {
+                    var spellForAttack = _hero.LearnedSpells[spellIndex];
+                    _hero.Attack(_monster, spellForAttack);
+                    _isRoundRunning = false;
+                    Console.WriteLine("Нажми любую клавишу для продолжения...");
+                    Console.ReadKey();
+                }
                 break;
             case 2:
                 Console.WriteLine("Выпить зелье");
@@ -60,7 +70,7 @@ public class Battle
                 if (new Random().Next(100) < 50)
                 {
                     Console.WriteLine("Вам удалось сбежать!");
-                    _isRunning = false;
+                    _isBattleRunning = false;
                 }
                 else Console.WriteLine("Вы попытались сбежать, но ничего не вышло!");
                 break;
@@ -72,18 +82,5 @@ public class Battle
                 Console.WriteLine($"{_hero!.Name}, здоровье {_hero.Health}/{_hero.MaxHealth}!");
                 break;
         }
-    }
-
-    private static bool IsStartBattleForDifferentClasses()
-    {
-        if (_hero is Astromancer) return AttackMenu.ShowAstromancerAttackMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Druid) return AttackMenu.ShowDruidAttackMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Mage) return AttackMenu.ShowMageAttackMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Minstrel) return AttackMenu.ShowMinstrelAttackMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Pirate) return AttackMenu.ShowPirateAttackMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Ranger) return AttackMenu.ShowRangerAttackMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Shaman) return AttackMenu.ShowShamanAttackMenu(_monster, _hero.ShowAbilities);
-        if (_hero is Warlock) return AttackMenu.ShowWarlockAttackMenu(_monster, _hero.ShowAbilities);
-        return AttackMenu.ShowWarriorAttackMenu(_monster, _hero.ShowAbilities);
     }
 }

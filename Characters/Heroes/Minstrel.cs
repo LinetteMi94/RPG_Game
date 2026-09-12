@@ -25,7 +25,6 @@ public class Minstrel(string name)
 {
     protected override string ClassName =>  "Менестрель";
     protected override StatGrowth StatGrowth => new(2, 1, 2, 1, 2, 2,1);
-    protected override int Damage  { get; set; } 
     public int HealPower => (Intellect + Strength)/2;
     public override Resources ResourceName => Resources.Ноты;
     public override int Resource { get; set; } = 100;
@@ -79,10 +78,5 @@ public class Minstrel(string name)
     {
         Messages.ShowHealMessage();
         RestoreHealth(HealPower);
-    }
-    
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний менестреля
     }
 }

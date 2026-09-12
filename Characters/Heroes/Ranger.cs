@@ -23,7 +23,6 @@ public class Ranger(string name)
 {
     protected override string ClassName =>  "Следопыт";
     protected override StatGrowth StatGrowth => new(1, 2, 2, 1, 1, 1,1);
-    protected override int Damage { get; set; }
     public override Resources ResourceName => Resources.Концентрация;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
@@ -59,9 +58,4 @@ public class Ranger(string name)
             "💨 Следопыт теряет момент, и выстрел проходит мимо!"
         }
     };
-
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний следопыта
-    }
 }

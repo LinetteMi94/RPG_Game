@@ -22,7 +22,6 @@ public class Warrior(string name)
 {
     protected override StatGrowth StatGrowth => new(2, 1, 2, 1, 1, 3,0);
     protected override string ClassName =>  "Воин";
-    protected override int Damage  { get; set; } 
     public override Resources ResourceName => Resources.Ярость;
     public override int Resource { get; set; } = 0;
     public override int MaxResource { get; set; } = 100;
@@ -57,9 +56,4 @@ public class Warrior(string name)
             "🛡️ Сильный замах воина заканчивается ударом в пустоту!"
         }
     };
-    
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний воина
-    }
 }

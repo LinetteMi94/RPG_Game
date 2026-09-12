@@ -24,7 +24,6 @@ public class Warlock(string name)
 {
     protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0,3);
     protected override string ClassName =>  "Колдун";
-    protected override int Damage { get; set; } 
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
@@ -59,9 +58,4 @@ public class Warlock(string name)
             "😈 Колдун призывает силу Бездны, но атака проходит мимо!"
         }
     };
-    
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний колдуна
-    }
 }

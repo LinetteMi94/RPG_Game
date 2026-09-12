@@ -51,7 +51,7 @@ public abstract class Hero : Character, IResourсeCharacter
     public List<Item> Inventory { get; } = new ();
 
     protected abstract string ClassName { get; }
-    protected abstract int Damage { get; set; }
+    protected int Damage { get; set; }
     public abstract Resources ResourceName { get; }
     public abstract int Resource { get; set; }
     public abstract int MaxResource { get; set; }
@@ -62,7 +62,7 @@ public abstract class Hero : Character, IResourсeCharacter
     /// Выполняет атаку выбранного противника.
     /// Рассчитывает нанесённый урон и выводит соответствующее сообщение.
     /// </summary>
-    protected virtual void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
+    protected internal virtual void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
     {
         if (IsAlive)
         {
@@ -176,11 +176,4 @@ public abstract class Hero : Character, IResourсeCharacter
         Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
         Console.WriteLine();
     }
-    
-    /// <summary>
-    /// Отображает меню способностей персонажа и обрабатывает выбор игрока.
-    /// </summary>
-    public abstract void ShowAbilities(int choose, Monster target);
-
-
 }

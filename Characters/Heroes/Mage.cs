@@ -28,9 +28,13 @@ public class Mage(string name)
     public override int MaxResource { get; set; } = 100;
     protected override StatGrowth StatGrowth => new (1, 1, 1, 2, 2, 0,3);
     protected override string ClassName =>  "Маг";
-    protected override int Damage { get; set; }
     public override List<Spell> LearnedSpells { get; set; } 
-        = [new("Ледяная стрела")
+        = [new("Бить голыми руками")
+            {
+                //NeedResource = 0,
+                GetDamage = mage => mage.Strength
+            },
+            new("Ледяная стрела")
                 {
                     NeedResource = 20,
                     GetDamage = mage => mage.Intellect * 2
@@ -76,28 +80,7 @@ public class Mage(string name)
         }
     };
     
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        Spell? spellForAttack = null;
-        switch (choose)
-        {
-            case 1:
-                spellForAttack = new Spell(null) {GetDamage =  mage => mage.Strength};
-                break;
-            case 2:
-                spellForAttack = LearnedSpells.FirstOrDefault(spell => spell.SpellName == "Ледяная стрела");
-                break;
-            case 3:
-                spellForAttack = LearnedSpells.FirstOrDefault(spell => spell.SpellName == "Огненный шар");
-                break;
-            case 4:
-                spellForAttack = LearnedSpells.FirstOrDefault(spell => spell.SpellName == "Электрический разряд");
-                break;
-        }
-        Attack(target, spellForAttack);
-    }
-
-    protected override void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
+    protected internal override void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
     {
         if (Resource >= spell.NeedResource)
         {

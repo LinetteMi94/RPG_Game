@@ -24,12 +24,12 @@ public class Astromancer(string name)
 {
     protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0, 3);
     protected override string ClassName => "Астромант";
-    protected override int Damage  { get; set; } 
     public override Resources ResourceName => Resources.Эфир;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; }
     public override List<Spell> SpellsToLearn { get; set; }
+
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -59,9 +59,4 @@ public class Astromancer(string name)
             "🪐 Небесные силы атакуют противника, но он успевает уклониться!"
         }
     };
-    
-    public override void ShowAbilities(int choose, Monster target)
-    {
-        // меню заклинаний астроманта
-    }
 }
