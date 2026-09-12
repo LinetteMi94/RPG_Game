@@ -14,17 +14,17 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Druid(string name) 
     : Hero(name, 
-            health:55, 
-            armor:20, 
-            strength:15, 
-            agility:22, 
-            stamina:21, 
-            intellect:20, 
-            spirit:21), 
+            health:60, 
+            armor:15, 
+            strength:10, 
+            agility:17, 
+            stamina:20, 
+            intellect:25, 
+            spirit:30), 
         IHealer
 {
     protected override string ClassName => "Друид";
-    protected override StatGrowth StatGrowth => new(1, 2, 2, 2, 1, 1,2);
+    protected override StatGrowth StatGrowth => new(1, 1, 2, 3, 3, 1,2);
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;

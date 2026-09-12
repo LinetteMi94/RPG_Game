@@ -14,17 +14,17 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Minstrel(string name) 
     : Hero(name, 
-            health:56, 
-            armor:20, 
-            strength:22, 
-            agility:13, 
-            stamina:22, 
+            health:58, 
+            armor:15, 
+            strength:12, 
+            agility:22, 
+            stamina:18, 
             intellect:20, 
-            spirit:18), 
+            spirit:27), 
         IHealer
 {
     protected override string ClassName =>  "Менестрель";
-    protected override StatGrowth StatGrowth => new(2, 1, 2, 1, 2, 2,1);
+    protected override StatGrowth StatGrowth => new(1, 2, 1, 2, 3, 1,1);
     public int HealPower => (Intellect + Strength)/2;
     public override Resources ResourceName => Resources.Ноты;
     public override int Resource { get; set; } = 100;

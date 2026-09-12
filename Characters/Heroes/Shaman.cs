@@ -14,16 +14,16 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Shaman(string name) 
     : Hero(name, 
-            health:55,
-            armor:20, 
-            strength:16, 
-            agility:21, 
+            health:62,
+            armor:18, 
+            strength:13, 
+            agility:18, 
             stamina:21, 
-            intellect:21, 
-            spirit:20), 
+            intellect:22, 
+            spirit:29), 
         IHealer
 {
-    protected override StatGrowth StatGrowth => new(2, 1, 2, 2, 1, 1,2);
+    protected override StatGrowth StatGrowth => new(1, 1, 2, 2, 3, 1,2);
     protected override string ClassName =>  "Шаман";
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;

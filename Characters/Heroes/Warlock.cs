@@ -14,15 +14,15 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Warlock(string name) 
     : Hero(name, 
-        health:55, 
-        armor:20, 
-        strength:11, 
-        agility:18, 
-        stamina:21, 
-        intellect:24, 
-        spirit:22)
+        health:52, 
+        armor:13, 
+        strength:9, 
+        agility:15, 
+        stamina:17, 
+        intellect:33, 
+        spirit:17)
 {
-    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0,3);
+    protected override StatGrowth StatGrowth => new(1, 1, 1, 4, 2, 1,3);
     protected override string ClassName =>  "Колдун";
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;

@@ -12,16 +12,16 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Pirate(string name)
     : Hero(name,
-        health: 55,
+        health: 60,
         armor: 20,
-        strength: 18,
-        agility: 23,
-        stamina: 21,
-        intellect: 15,
-        spirit: 12)
+        strength: 23,
+        agility: 27,
+        stamina: 20,
+        intellect: 8,
+        spirit: 10)
 {
     protected override string ClassName =>  "Пират";
-    protected override StatGrowth StatGrowth => new(2, 2, 1, 1, 1, 1,0);
+    protected override StatGrowth StatGrowth => new(2, 3, 2, 1, 1, 1,0);
     public override Resources ResourceName => Resources.Азарт;
     public override int Resource { get; set; } = 0;
     public override int MaxResource { get; set; } = 100;

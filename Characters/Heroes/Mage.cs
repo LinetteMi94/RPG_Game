@@ -14,19 +14,19 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Mage(string name) 
     : Hero(name, 
-        health:54, 
-        armor:20,
-        strength:12, 
-        agility:20, 
-        stamina:20, 
-        intellect:24, 
+        health:50, 
+        armor:12,
+        strength:8, 
+        agility:16, 
+        stamina:16, 
+        intellect:32, 
         spirit:22)
 {
    
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
-    protected override StatGrowth StatGrowth => new (1, 1, 1, 2, 2, 0,3);
+    protected override StatGrowth StatGrowth => new (1, 1, 1, 4, 2, 1,3);
     protected override string ClassName =>  "Маг";
     public override List<Spell> LearnedSpells { get; set; } 
         = [new("Бить голыми руками")

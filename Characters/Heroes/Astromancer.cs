@@ -14,15 +14,15 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public class Astromancer(string name) 
     : Hero(name, 
-        health:54, 
-        armor:20, 
-        strength:12, 
+        health:50, 
+        armor:11, 
+        strength:7, 
         agility:18, 
-        stamina:20, 
-        intellect:24, 
-        spirit:22)
+        stamina:15, 
+        intellect:34, 
+        spirit:23)
 {
-    protected override StatGrowth StatGrowth => new(1, 1, 1, 2, 2, 0, 3);
+    protected override StatGrowth StatGrowth => new(1, 1, 1, 4, 2, 1, 3);
     protected override string ClassName => "Астромант";
     public override Resources ResourceName => Resources.Эфир;
     public override int Resource { get; set; } = 100;

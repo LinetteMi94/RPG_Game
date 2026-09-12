@@ -14,15 +14,15 @@ namespace RPG_Game.Characters.Heroes;
 public class Ranger(string name)
     : Hero(name,
         health: 55,
-        armor: 20,
-        strength: 15,
-        agility: 24,
-        stamina: 21,
-        intellect: 18,
-        spirit: 19)
+        armor: 16,
+        strength: 18,
+        agility: 30,
+        stamina: 18,
+        intellect: 12,
+        spirit: 12)
 {
     protected override string ClassName =>  "Следопыт";
-    protected override StatGrowth StatGrowth => new(1, 2, 2, 1, 1, 1,1);
+    protected override StatGrowth StatGrowth => new(2, 3, 2, 1, 1, 1,1);
     public override Resources ResourceName => Resources.Концентрация;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
