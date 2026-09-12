@@ -11,7 +11,6 @@ public interface IResourсeCharacter
     Resources ResourceName { get; }
     int Resource { get; set; }
     int MaxResource { get; set; } 
-    int NeedResource { get; set; }
     
     /// <summary>
     /// Увеличивает ресурс указанного персонажа на указанное количество.

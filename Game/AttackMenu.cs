@@ -29,12 +29,13 @@ public static class AttackMenu
     {
         Console.Clear();
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
-        Console.WriteLine("1. ❄️ Ледяная стрела");
-        Console.WriteLine("2. 🔥 Огненный шар");
-        Console.WriteLine("3. ⚡ Молниеносный взрыв");
-        Console.WriteLine("4. Назад");
-        int choice = InputValidator.GetValidInput(null,4);
-        if(choice == 4) return false;
+        Console.WriteLine("1. ️ Бить голыми руками");
+        Console.WriteLine("2. ❄️ Ледяная стрела");
+        Console.WriteLine("3. 🔥 Огненный шар");
+        Console.WriteLine("4. ⚡ Молниеносный взрыв");
+        Console.WriteLine("5. Назад");
+        int choice = InputValidator.GetValidInput(null,5);
+        if(choice == 5) return false;
         handleChoice(choice, monster);
         return true;
     }

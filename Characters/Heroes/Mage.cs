@@ -4,6 +4,7 @@ using RPG_Game.Enums;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 using RPG_Game.Interfaces;
+using RPG_Game.Magic;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -25,10 +26,26 @@ public class Mage(string name)
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
-    public override int NeedResource { get; set; }
     protected override StatGrowth StatGrowth => new (1, 1, 1, 2, 2, 0,3);
     protected override string ClassName =>  "Маг";
     protected override int Damage { get; set; }
+    public override List<Spell> LearnedSpells { get; set; } 
+        = [new("Ледяная стрела")
+                {
+                    NeedResource = 20,
+                    GetDamage = mage => mage.Intellect * 2
+                }
+            , new ("Огненный шар")
+                {
+                    NeedResource = 30,
+                    GetDamage = mage => (int)(mage.Intellect*2.5)
+                }];
+    public override List<Spell> SpellsToLearn  { get; set; }
+        = [new("Электрический разряд")
+                {
+                    NeedResource = 40,
+                    GetDamage = mage => mage.Intellect * 3
+                }];
     protected override BattleMessages Messages => new()
     {
         DamageMessages =
@@ -61,60 +78,32 @@ public class Mage(string name)
     
     public override void ShowAbilities(int choose, Monster target)
     {
-        // меню заклинаний мага
+        Spell? spellForAttack = null;
         switch (choose)
         {
             case 1:
-                IceArrow(target);
+                spellForAttack = new Spell(null) {GetDamage =  mage => mage.Strength};
                 break;
             case 2:
-                Fireball(target);
+                spellForAttack = LearnedSpells.FirstOrDefault(spell => spell.SpellName == "Ледяная стрела");
                 break;
             case 3:
-                LightningBlast(target);
+                spellForAttack = LearnedSpells.FirstOrDefault(spell => spell.SpellName == "Огненный шар");
+                break;
+            case 4:
+                spellForAttack = LearnedSpells.FirstOrDefault(spell => spell.SpellName == "Электрический разряд");
                 break;
         }
+        Attack(target, spellForAttack);
     }
 
-    protected override void Attack(Monster target, bool ignoreArmor = false)
+    protected override void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
     {
-        if (Resource >= NeedResource)
+        if (Resource >= spell.NeedResource)
         {
-            Resource -= NeedResource;
-            base.Attack(target);
-            
+            Resource -= spell.NeedResource;
+            base.Attack(target,spell);
         }
         else Console.WriteLine("Недостаточно маны!");
-        
-    }
-    
-    /// <summary>
-    /// Выпускает ледяной снаряд в противника.
-    /// </summary>
-    private void IceArrow(Monster target)
-    {
-        NeedResource = 20;
-        Damage = Intellect*2;
-        Attack(target);
-    }
-    
-    /// <summary>
-    /// Создаёт огненный шар и направляет его в противника.
-    /// </summary>
-    private void Fireball(Monster target)
-    {
-        NeedResource = 30;
-        Damage = (int)Math.Round(Intellect*2.5);
-        Attack(target);
-    }
-    
-    /// <summary>
-    /// Обрушивает на противника мощный электрический разряд.
-    /// </summary>
-    private void LightningBlast(Monster target)
-    {
-        NeedResource = 40;
-        Damage = Intellect*3;
-        Attack(target);
     }
 }

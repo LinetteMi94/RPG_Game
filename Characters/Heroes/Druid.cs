@@ -2,6 +2,7 @@
 using RPG_Game.Characters.Monsters;
 using RPG_Game.Enums;
 using RPG_Game.Interfaces;
+using RPG_Game.Magic;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 
@@ -28,7 +29,8 @@ public class Druid(string name)
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
-    public override int NeedResource { get; set; }
+    public override List<Spell> LearnedSpells { get; set; }
+    public override List<Spell> SpellsToLearn { get; set; }
     public int HealPower => (Intellect + Spirit)/2;
     
     

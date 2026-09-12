@@ -4,6 +4,7 @@ using RPG_Game.Progression;
 using RPG_Game.Characters.Monsters;
 using RPG_Game.Enums;
 using RPG_Game.Interfaces;
+using RPG_Game.Magic;
 
 namespace RPG_Game.Characters.Heroes;
 
@@ -27,7 +28,8 @@ public class Warlock(string name)
     public override Resources ResourceName => Resources.Мана;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
-    public override int NeedResource { get; set; }
+    public override List<Spell> LearnedSpells { get; set; }
+    public override List<Spell> SpellsToLearn { get; set; }
     protected override BattleMessages Messages => new()
     {
         DamageMessages =

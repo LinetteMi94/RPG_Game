@@ -4,6 +4,7 @@ using RPG_Game.Characters.Monsters;
 using RPG_Game.Enums;
 using RPG_Game.Interfaces;
 using RPG_Game.Items;
+using RPG_Game.Magic;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 
@@ -15,10 +16,10 @@ namespace RPG_Game.Characters.Heroes;
 /// </summary>
 public abstract class Hero : Character, IResourсeCharacter
 {
-    protected int Strength { get; private set; }
+    protected internal int Strength { get; private set; }
     protected int Agility { get; private set; }
     protected int Stamina { get; private set; }
-    protected int Intellect { get; private set; }
+    protected internal int Intellect { get; private set; }
     protected int Spirit { get; private set; }
 
     protected virtual StatGrowth StatGrowth { get; }
@@ -54,16 +55,18 @@ public abstract class Hero : Character, IResourсeCharacter
     public abstract Resources ResourceName { get; }
     public abstract int Resource { get; set; }
     public abstract int MaxResource { get; set; }
-    public abstract int NeedResource { get; set; }
+    public abstract List<Spell> LearnedSpells  { get; set; }
+    public abstract List<Spell> SpellsToLearn  { get; set; }
 
     /// <summary>
     /// Выполняет атаку выбранного противника.
     /// Рассчитывает нанесённый урон и выводит соответствующее сообщение.
     /// </summary>
-    protected virtual void Attack(Monster target, bool ignoreArmor = false)
+    protected virtual void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
     {
         if (IsAlive)
         {
+            Damage = spell.GetDamage(this);
             if (Damage > target.Armor)
             {
                 Messages.ShowDamageMessage();
