@@ -21,7 +21,7 @@ public abstract class Monster(string name, int health, int armor, int damage, in
     public int ExpReward { get; } = expReward;
     public int GoldReward { get; } = goldReward;
     
-    protected override BattleMessages Messages { get; } = new();
+    protected abstract BattleMessages Messages { get; }
 
     public virtual List<Item> Loot { get; } = new();
 

@@ -16,8 +16,6 @@ public abstract class Character(string name, int health, int armor)
     public int MaxHealth { get; private set; } = health;
     
     
-    protected abstract BattleMessages Messages { get; } 
-    
     /// <summary>
     /// Уменьшает здоровье персонажа на указанное количество.
     /// </summary>

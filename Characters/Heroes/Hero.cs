@@ -46,12 +46,11 @@ public abstract class Hero : Character, IResourсeCharacter
         Spirit = spirit;
         Level.LevelUp += OnLevelUp;
     }
-
-    protected override BattleMessages Messages { get; } = new();
+    
     public List<Item> Inventory { get; } = new ();
 
     protected abstract string ClassName { get; }
-    protected int Damage { get; set; }
+    private int Damage { get; set; }
     public abstract Resources ResourceName { get; }
     public abstract int Resource { get; set; }
     public abstract int MaxResource { get; set; }
@@ -69,13 +68,13 @@ public abstract class Hero : Character, IResourсeCharacter
             Damage = spell.GetDamage(this);
             if (Damage > target.Armor)
             {
-                Messages.ShowDamageMessage();
+                spell.Messages.ShowDamageMessage();
                 Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
                 target.TakeDamage(Damage, ignoreArmor);
                 Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
                 Console.WriteLine($"{Name} {ResourceName}: {Resource}/{MaxResource}!");
             }
-            else Messages.ShowMissMessage();
+            else spell.Messages.ShowMissMessage();
         }
     }
 
@@ -83,7 +82,7 @@ public abstract class Hero : Character, IResourсeCharacter
     /// Выполняет действия при повышении уровня:
     /// увеличивает характеристики, здоровье и другие параметры героя.
     /// </summary>
-    protected virtual void OnLevelUp()
+    private void OnLevelUp()
     {
         var level = Level.Level;
         Strength += level * StatGrowth.StrengthMultiplier;
