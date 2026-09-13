@@ -49,7 +49,7 @@ public class Druid(string name)
                         "🥊 Друид промахивается и едва не теряет равновесие!"
                     }
                 },
-                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Cast.mp3")
             },
             new("Терновый хлыст")
             {
@@ -69,7 +69,8 @@ public class Druid(string name)
                             "🍃 Лозы хлещут воздух, но враг успевает отскочить!",
                             "🌱 Колючие ветви вырываются из земли, но проходят мимо цели!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Thorn_Whip_Cast.mp3")
             },
             new ("Гнев природы")
                 {
@@ -111,7 +112,8 @@ public class Druid(string name)
                             "🌿 Корни тянутся к врагу, но смыкаются в пустоте!",
                             "🍂 Ветви обрушиваются рядом с целью, не задев её!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Awakening_Of_The_Ancient_Forest_Impact.mp3", "")
                 }];
     
     public int HealPower => (Intellect + Spirit)/2;

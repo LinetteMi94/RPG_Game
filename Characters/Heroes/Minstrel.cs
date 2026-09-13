@@ -50,7 +50,7 @@ public class Minstrel(string name)
                         "🥊 Менестрель промахивается и едва не теряет равновесие!"
                     }
                 },
-                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Cast.mp3")
             },
             new("Резкая нота")
                 {
@@ -70,7 +70,8 @@ public class Minstrel(string name)
                             "🎶 Звук достигает противника, но не причиняет ему вреда!",
                             "🔊 Менестрель играет ноту, но враг успевает уклониться!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Sharp_Note_Impact.mp3", "Sounds/Spells/Sharp_Note_Cast.mp3")
                 }
             , new ("Диссонанс")
                 {
@@ -90,7 +91,8 @@ public class Minstrel(string name)
                             "🎵 Менестрель берёт неверную ноту, и атака рассеивается!",
                             "🔊 Звуковая волна проходит рядом с врагом!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Dissonance_Impact.mp3", "Sounds/Spells/Dissonance_Cast.mp3")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Песнь разрушения")
@@ -111,7 +113,8 @@ public class Minstrel(string name)
                             "🎵 Разрушительная мелодия проходит мимо цели!",
                             "🔊 Менестрель завершает песнь, но звуковая волна не достигает противника!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Song_Of_Destruction_Impact.mp3", "Sounds/Spells/Song_Of_Destruction_Cast.mp3")
                 }];
 
     private BattleMessages Messages => new()

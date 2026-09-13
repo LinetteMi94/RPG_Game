@@ -46,7 +46,7 @@ public class Pirate(string name)
                         "🥊 Пират промахивается и едва не теряет равновесие!"
                     }
                 },
-                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Cast.mp3")
             },
             new("Коварный удар")
                 {
@@ -67,8 +67,8 @@ public class Pirate(string name)
                             "⚔️ Пират наносит коварный удар, но промахивается!"
                         }
                     }
-                }
-            , new ("Бутылочный разгром")
+                },
+                new ("Бутылочный разгром")
                 {
                     NeedResource = 20,
                     GetDamage = pirate => (int)(pirate.Intellect*1.5),
@@ -86,7 +86,8 @@ public class Pirate(string name)
                             "💨 Бутылка пролетает мимо головы противника!",
                             "🏴‍☠️ Пират пытается огреть врага бутылкой, но тот успевает отскочить!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Bottle_Bash_Impact.mp3", "Sounds/Spells/Bottle_Bash_Cast.mp3dfghjklkjhgfdsdfghjk")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Капитанский натиск")

@@ -49,7 +49,7 @@ public class Shaman(string name)
                         "🥊 Шаман промахивается и едва не теряет равновесие!"
                     }
                 },
-                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Cast.mp3")
             },
             new("Духовное пламя")
                 {

@@ -48,7 +48,7 @@ public class Warlock(string name)
                         "🥊 Колдун промахивается и едва не теряет равновесие!"
                     }
                 },
-                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Cast.mp3")
             },
             new("Порча")
                 {
@@ -68,7 +68,8 @@ public class Warlock(string name)
                             "☠️ Проклятие Колдуна не находит свою жертву!",
                             "🌑 Тёмная магия проходит мимо противника!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Corruption_Impact.mp3", "Sounds/Spells/Corruption_Cast.mp3")
                 }
             , new ("Теневой удар")
                 {
@@ -88,7 +89,8 @@ public class Warlock(string name)
                             "🖤 Сгусток тёмной энергии ударяет рядом с целью!",
                             "☠️ Колдун выпускает теневую силу, но враг успевает уклониться!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Shadow_Strike_Impact.mp3", "Sounds/Spells/Shadow_Strike_Cast.mp3")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Проклятие бездны")
@@ -109,6 +111,7 @@ public class Warlock(string name)
                             "🌑 Сила Бездны рассеивается, не достигнув противника!",
                             "☠️ Колдун призывает Бездну, но враг успевает вырваться из зоны поражения!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Curse_Of_The_Abyss_Impact.mp3", "Sounds/Spells/Curse_Of_The_Abyss_Cast.mp3")
                 }];
 }

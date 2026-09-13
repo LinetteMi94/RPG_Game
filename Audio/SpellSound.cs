@@ -6,14 +6,14 @@ namespace RPG_Game.Audio;
 /// Представляет звуковой эффект заклинания.
 /// Содержит параметры звука и позволяет воспроизводить его во время применения заклинания.
 /// </summary>
-public class SpellSound(string hitSound,  string missSound)
+public class SpellSound(string hitSound,  string castSound)
 {
     private string HitSound { get; } = hitSound;
-    private string MissSound { get; } = missSound;
+    private string CastSound { get; } = castSound;
 
     public void PlayHitSound() => PlaySound(HitSound);
     
-    public void PlayMissSound() => PlaySound(MissSound);
+    public void PlayCastSound() => PlaySound(CastSound);
 
     private void PlaySound(string sound)
     {

@@ -68,6 +68,7 @@ public abstract class Hero : Character, IResourсeCharacter
         {
             Resource -= spell.NeedResource;
             Damage = spell.GetDamage(this);
+            spell.Sound.PlayCastSound();
             if (Damage > target.Armor)
             {
                 spell.Messages.ShowDamageMessage();
@@ -75,11 +76,7 @@ public abstract class Hero : Character, IResourсeCharacter
                 spell.Sound.PlayHitSound();
                 target.TakeDamage(Damage, ignoreArmor);
             }
-            else
-            {
-                spell.Messages.ShowMissMessage();
-                spell.Sound.PlayMissSound();
-            }
+            else spell.Messages.ShowMissMessage();
         }
         else Console.WriteLine(NoResourceMessage);
     }
