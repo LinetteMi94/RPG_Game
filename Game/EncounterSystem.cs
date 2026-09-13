@@ -152,7 +152,9 @@ public static class EncounterSystem
         var battle = new Battle();
         battle.OnMonsterDefeated += monster =>
         {
+            Console.WriteLine();
             _hero.Level.AddExperience(monster.ExpReward);
+            Console.WriteLine();
             _hero.AddMoney(monster.GoldReward);
             _hero.TakeLoot(monster);
         };

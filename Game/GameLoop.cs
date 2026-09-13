@@ -23,6 +23,8 @@ public static class GameLoop
         while (_isRunning)
         {
             _hero.ShowMainMenu(HandleChoice);
+            Console.WriteLine("Нажми любую клавишу для продолжения...");
+            Console.ReadKey();
             if (!_hero.IsAlive) GameOver();
         }
     }
@@ -78,9 +80,11 @@ public static class GameLoop
                 _hero.ShowInventoryMenu();
                 break;
             case "3":
+                _hero.DisplayHeader();
                 _hero.HaveRest();
                 break;
             case "4":
+                _hero.DisplayHeader();
                 var random =  new Random();
                 _hero.StartRandomEncounter(random.Next(1, 4));
                 break;

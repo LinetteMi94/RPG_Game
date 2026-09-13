@@ -74,8 +74,6 @@ public abstract class Hero : Character, IResourсeCharacter
                 spell.Messages.ShowDamageMessage();
                 Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
                 target.TakeDamage(Damage, ignoreArmor);
-                Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
-                Console.WriteLine($"{Name} {ResourceName}: {Resource}/{MaxResource}!");
             }
             else spell.Messages.ShowMissMessage();
         }

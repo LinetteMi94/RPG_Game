@@ -44,7 +44,6 @@ public abstract class Monster(string name, int health, int armor, int damage, in
             {
                 Messages.ShowDamageMessage();
                 Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
-                Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
             }
             else Messages.ShowMissMessage();
             Console.WriteLine();
