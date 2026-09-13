@@ -21,6 +21,7 @@ public class Trickster(string name)
 {
     protected override string ClassName =>  "Циркач";
     public override Resources ResourceName => Resources.Адреналин;
+    protected override string NoResourceMessage => "Недостаточно адреналина!";
     protected override StatGrowth StatGrowth => new (1, 4, 2, 1, 2, 1,2);
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;

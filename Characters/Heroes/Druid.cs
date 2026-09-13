@@ -26,6 +26,7 @@ public class Druid(string name)
     protected override string ClassName => "Друид";
     protected override StatGrowth StatGrowth => new(1, 1, 2, 3, 3, 1,2);
     public override Resources ResourceName => Resources.Мана;
+    protected override string NoResourceMessage => "Недостаточно маны!";
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; } 

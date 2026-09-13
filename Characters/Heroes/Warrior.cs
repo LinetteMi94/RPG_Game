@@ -23,6 +23,7 @@ public class Warrior(string name)
     protected override StatGrowth StatGrowth => new(3, 1, 3, 1, 1, 2,0);
     protected override string ClassName =>  "Воин";
     public override Resources ResourceName => Resources.Ярость;
+    protected override string NoResourceMessage => "Недостаточно ярости!";
     public override int Resource { get; set; } = 0;
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; } 

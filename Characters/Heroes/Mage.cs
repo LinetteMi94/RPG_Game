@@ -28,6 +28,7 @@ public class Mage(string name)
     public override int MaxResource { get; set; } = 100;
     protected override StatGrowth StatGrowth => new (1, 1, 1, 4, 2, 1,3);
     protected override string ClassName =>  "Маг";
+    protected override string NoResourceMessage => "Недостаточно маны!";
     public override List<Spell> LearnedSpells { get; set; } 
         = [new("Бить голыми руками")
             {
@@ -109,14 +110,4 @@ public class Mage(string name)
                         }
                     }
                 }];
-    
-    protected internal override void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
-    {
-        if (Resource >= spell.NeedResource)
-        {
-            Resource -= spell.NeedResource;
-            base.Attack(target,spell);
-        }
-        else Console.WriteLine("Недостаточно маны!");
-    }
 }

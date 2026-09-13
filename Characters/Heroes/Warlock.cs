@@ -25,6 +25,7 @@ public class Warlock(string name)
     protected override StatGrowth StatGrowth => new(1, 1, 1, 4, 2, 1,3);
     protected override string ClassName =>  "Колдун";
     public override Resources ResourceName => Resources.Мана;
+    protected override string NoResourceMessage => "Недостаточно маны!";
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; } 

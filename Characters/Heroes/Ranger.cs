@@ -24,6 +24,7 @@ public class Ranger(string name)
     protected override string ClassName =>  "Следопыт";
     protected override StatGrowth StatGrowth => new(2, 3, 2, 1, 1, 1,1);
     public override Resources ResourceName => Resources.Концентрация;
+    protected override string NoResourceMessage => "Недостаточно концентрации!";
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; } 

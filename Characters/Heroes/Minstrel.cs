@@ -27,6 +27,7 @@ public class Minstrel(string name)
     protected override StatGrowth StatGrowth => new(1, 2, 1, 2, 3, 1,1);
     public int HealPower => (Intellect + Strength)/2;
     public override Resources ResourceName => Resources.Ноты;
+    protected override string NoResourceMessage => "Недостаточно нот!";
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
    public override List<Spell> LearnedSpells { get; set; } 

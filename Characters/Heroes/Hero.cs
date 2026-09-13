@@ -50,6 +50,7 @@ public abstract class Hero : Character, IResourсeCharacter
     public List<Item> Inventory { get; } = new ();
 
     protected abstract string ClassName { get; }
+    protected abstract string NoResourceMessage { get; }
     private int Damage { get; set; }
     public abstract Resources ResourceName { get; }
     public abstract int Resource { get; set; }
@@ -63,8 +64,10 @@ public abstract class Hero : Character, IResourсeCharacter
     /// </summary>
     protected internal virtual void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
     {
-        if (IsAlive)
+        //if (IsAlive)
+        if(Resource >= spell.NeedResource)
         {
+            Resource -= spell.NeedResource;
             Damage = spell.GetDamage(this);
             if (Damage > target.Armor)
             {
@@ -76,6 +79,7 @@ public abstract class Hero : Character, IResourсeCharacter
             }
             else spell.Messages.ShowMissMessage();
         }
+        else Console.WriteLine(NoResourceMessage);
     }
 
     /// <summary>

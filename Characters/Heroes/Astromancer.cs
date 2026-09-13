@@ -24,6 +24,7 @@ public class Astromancer(string name)
 {
     protected override StatGrowth StatGrowth => new(1, 1, 1, 4, 2, 1, 3);
     protected override string ClassName => "Астромант";
+    protected override string NoResourceMessage => "Недостаточно эфира!";
     public override Resources ResourceName => Resources.Эфир;
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;

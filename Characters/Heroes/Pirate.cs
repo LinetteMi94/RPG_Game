@@ -23,6 +23,7 @@ public class Pirate(string name)
     protected override string ClassName =>  "Пират";
     protected override StatGrowth StatGrowth => new(2, 3, 2, 1, 1, 1,0);
     public override Resources ResourceName => Resources.Азарт;
+    protected override string NoResourceMessage => "Недостаточно азарта!";
     public override int Resource { get; set; } = 0;
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; } 
