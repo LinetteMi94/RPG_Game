@@ -49,8 +49,8 @@ public abstract class Monster(string name, int health, int armor, int damage, in
             Console.WriteLine();
         }
     }
-    
-    public virtual void TakeDamage(int damage) => base.TakeDamage(damage);
+
+    protected virtual void TakeDamage(int damage) => base.TakeDamage(damage);
     
     /// <summary>
     /// Рассчитывает значение характеристики монстра в зависимости от его уровня.

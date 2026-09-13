@@ -1,4 +1,5 @@
 ﻿using System;
+using RPG_Game.Audio;
 using RPG_Game.Messages;
 using RPG_Game.Progression;
 using RPG_Game.Characters.Monsters;
@@ -46,7 +47,8 @@ public class Warlock(string name)
                         "💨 Колдун пытается ударить врага, но тот уклоняется!",
                         "🥊 Колдун промахивается и едва не теряет равновесие!"
                     }
-                }
+                },
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
             },
             new("Порча")
                 {

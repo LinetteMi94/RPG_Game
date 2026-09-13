@@ -1,3 +1,4 @@
+using RPG_Game.Audio;
 using RPG_Game.Enums;
 using RPG_Game.Magic;
 using RPG_Game.Progression;
@@ -43,7 +44,8 @@ public class Trickster(string name)
                         "💨 Циркач пытается ударить врага, но тот уклоняется!",
                         "🥊 Циркач промахивается и едва не теряет равновесие!"
                     }
-                }
+                },
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
             },
             new("Жонглирование клинками")
                 {

@@ -83,6 +83,8 @@ public static class GameMenu
         }
         else choice = InputValidator.GetValidInput(null,4);
         handleChoice(choice);
+        Console.WriteLine("Нажми любую клавишу для продолжения...");
+        Console.ReadKey();
     }
     
     /// <summary>
@@ -96,16 +98,7 @@ public static class GameMenu
         Console.WriteLine();
         for (int j = 0; j < counter-1; j++)
         {
-            Console.Write($"{j+1}. {hero.LearnedSpells[j].SpellName}");
-            if (hero.LearnedSpells[j].NeedResource != 0)
-            {
-                Console.Write($"   ({hero.ResourceName}: {hero.LearnedSpells[j].NeedResource})");
-            }
-
-            var maxDamage = hero.LearnedSpells[j].GetDamage(hero);
-            var minDamage = maxDamage - monster.Armor;
-            if (minDamage<0) minDamage = 0;
-            Console.WriteLine($"   Урон: {minDamage} - {maxDamage}");
+            ShowSpellInformation(hero,monster,j);
         }
         Console.WriteLine($"{counter}. Назад");
         int choice = InputValidator.GetValidInput(null,counter);
@@ -122,5 +115,21 @@ public static class GameMenu
         Console.WriteLine($"{hero.Name}    Health: {hero.Health}/{hero.MaxHealth}    {hero.ResourceName}: {hero.Resource}/{hero.MaxResource}");
         if (monster != null) Console.WriteLine($"{monster.Name}    Health: {monster.Health}/{monster.MaxHealth}");
         Console.WriteLine();
+    }
+    
+    /// <summary>
+    /// Выводит на экран информацию о заклинании.
+    /// </summary>
+    private static void ShowSpellInformation(Hero hero, Monster? monster, int index)
+    {
+        Console.Write($"{index+1}. {hero.LearnedSpells[index].SpellName}");
+        if (hero.LearnedSpells[index].NeedResource != 0)
+        {
+            Console.Write($"   ({hero.ResourceName}: {hero.LearnedSpells[index].NeedResource})");
+        }
+        var maxDamage = hero.LearnedSpells[index].GetDamage(hero);
+        var minDamage = maxDamage - monster.Armor;
+        if (minDamage<0) minDamage = 0;
+        Console.WriteLine($"   Урон: {minDamage} - {maxDamage}");
     }
 }

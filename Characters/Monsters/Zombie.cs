@@ -96,7 +96,7 @@ public class Zombie(int monsterLevel = 1)
             150)
     ];
 
-    public override void TakeDamage(int damage)
+    protected override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
         if (damage <= Armor || new Random().Next(100) >= 30) return;

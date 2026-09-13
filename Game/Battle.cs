@@ -14,7 +14,7 @@ public class Battle
     public event Action<Monster>? OnMonsterDefeated;
     private static Hero? _hero;
     private static Monster? _monster;
-    private static bool _isBattleRunning = true;
+    private static bool _isBattleRunning;
     private static bool _isRoundRunning;
     public void Start(Hero hero, Monster monster)
     {
@@ -22,6 +22,7 @@ public class Battle
         _monster = monster;
         Console.WriteLine("Начинается бой!");
         Console.WriteLine($"{_hero.Name} против {_monster.Name}");
+        _isBattleRunning = true;
         while (_isBattleRunning)
         {
             Console.WriteLine("Нажмите любую клавишу для атаки");
@@ -88,7 +89,5 @@ public class Battle
                 _isRoundRunning = false;
                 break;
         }
-        Console.WriteLine("Нажми любую клавишу для продолжения...");
-        Console.ReadKey();
     }
 }

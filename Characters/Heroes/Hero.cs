@@ -64,7 +64,6 @@ public abstract class Hero : Character, IResourсeCharacter
     /// </summary>
     protected internal virtual void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
     {
-        //if (IsAlive)
         if(Resource >= spell.NeedResource)
         {
             Resource -= spell.NeedResource;
@@ -73,9 +72,14 @@ public abstract class Hero : Character, IResourсeCharacter
             {
                 spell.Messages.ShowDamageMessage();
                 Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
+                spell.Sound.PlayHitSound();
                 target.TakeDamage(Damage, ignoreArmor);
             }
-            else spell.Messages.ShowMissMessage();
+            else
+            {
+                spell.Messages.ShowMissMessage();
+                spell.Sound.PlayMissSound();
+            }
         }
         else Console.WriteLine(NoResourceMessage);
     }

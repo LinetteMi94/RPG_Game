@@ -1,4 +1,5 @@
 ﻿using System;
+using RPG_Game.Audio;
 using RPG_Game.Characters.Monsters;
 using RPG_Game.Enums;
 using RPG_Game.Magic;
@@ -45,7 +46,8 @@ public class Ranger(string name)
                         "💨 Следопыт пытается ударить врага, но тот уклоняется!",
                         "🥊 Следопыт промахивается и едва не теряет равновесие!"
                     }
-                }
+                },
+                Sound = new SpellSound("Sounds/Spells/Punch_Hit.mp3", "Sounds/Spells/Punch_Miss.mp3")
             },
             new("Меткий выстрел")
                 {

@@ -190,11 +190,15 @@ public static class EncounterSystem
         switch (choice)
         {
             case < 33:
-                AdventureMessages.ShowGoldLossMessage();
                 var gold = new Random().Next(2, 13);
                 if (_hero.Money<gold) gold = _hero.Money;
-                _hero.RemoveMoney(gold);
-                Console.WriteLine(" - " + gold + " золотых!");
+                if (gold != 0)
+                {
+                    _hero.RemoveMoney(gold);
+                    AdventureMessages.ShowGoldLossMessage();
+                    Console.WriteLine(" - " + gold + " золотых!");
+                }
+                else AdventureMessages.ShowGoldLossAttemptMessage();
                 break;
             case < 66: //игрок теряет немного здоровья и теряет сознание
                 AdventureMessages.ShowKnockOutMessage();
@@ -229,16 +233,18 @@ public static class EncounterSystem
         switch (choice)
         {
             case < 33:
+                if (_hero.Health == _hero.MaxHealth)
+                {
+                    AdventureMessages.ShowFullHealthHealMessage();
+                    break;
+                }
                 AdventureMessages.ShowHealMessage();
                 var health = _hero.MaxHealth/10;
                 var healthForRestore = new Random().Next(health/2,health*2);
                 var needHealth = _hero.MaxHealth - _hero.Health;
                 if (needHealth < healthForRestore) healthForRestore = needHealth;
-                if (healthForRestore != 0)
-                {
-                    Console.WriteLine(" + " + healthForRestore + " здоровья!");
-                    _hero.RestoreHealth(healthForRestore);
-                }
+                Console.WriteLine(" + " + healthForRestore + " здоровья!");
+                _hero.RestoreHealth(healthForRestore);
                 break;
             case < 66:
                 AdventureMessages.ShowItemMessage();
