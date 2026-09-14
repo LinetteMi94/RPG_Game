@@ -25,7 +25,7 @@ public class Shaman(string name)
         IHealer
 {
     protected override StatGrowth StatGrowth => new(1, 1, 2, 2, 3, 1,2);
-    protected override string ClassName =>  "Шаман";
+    protected internal override string ClassName =>  "Шаман";
     public override Resources ResourceName => Resources.Мана;
     protected override string NoResourceMessage => "Недостаточно маны!";
     public override int Resource { get; set; } = 100;

@@ -20,7 +20,7 @@ public class Trickster(string name)
         intellect:16, 
         spirit:22)
 {
-    protected override string ClassName =>  "Циркач";
+    protected internal override string ClassName =>  "Циркач";
     public override Resources ResourceName => Resources.Адреналин;
     protected override string NoResourceMessage => "Недостаточно адреналина!";
     protected override StatGrowth StatGrowth => new (1, 4, 2, 1, 2, 1,2);

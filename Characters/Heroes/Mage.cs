@@ -28,7 +28,7 @@ public class Mage(string name)
     public override int Resource { get; set; } = 100;
     public override int MaxResource { get; set; } = 100;
     protected override StatGrowth StatGrowth => new (1, 1, 1, 4, 2, 1,3);
-    protected override string ClassName =>  "Маг";
+    protected internal override string ClassName =>  "Маг";
     protected override string NoResourceMessage => "Недостаточно маны!";
     public override List<Spell> LearnedSpells { get; set; } 
         = [new("Бить голыми руками")

@@ -9,6 +9,7 @@ public class Spell(string spellName)
 {
     public string SpellName { get; } = spellName;
     public int NeedResource { get; init; }
+    public int GiveResource { get; init; }
     public Func<Hero, int> GetDamage { get; set; }
     public BattleMessages Messages { get; set; } 
     

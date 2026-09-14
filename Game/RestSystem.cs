@@ -1,4 +1,5 @@
 using System;
+using System.Formats.Tar;
 using System.Threading;
 using RPG_Game.Characters.Heroes;
 using RPG_Game.Interfaces;
@@ -20,7 +21,7 @@ public static class RestSystem
         Console.WriteLine("Отдых будет длиться 10 секунд!");
         Thread.Sleep(10000);
         hero.RestoreFullHealth();
-        if (hero is IResourсeCharacter user && user is not Ranger or Pirate)
+        if (hero.ClassName != "Пират" && hero.ClassName != "Воин" && hero is IResourсeCharacter user)
         {
             user.RestoreFullResource();
             Console.WriteLine($"Здоровье и {hero.ResourceName} {hero.Name} полностью восстановлены!");

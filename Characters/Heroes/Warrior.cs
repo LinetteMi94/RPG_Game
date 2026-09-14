@@ -22,7 +22,7 @@ public class Warrior(string name)
         spirit:12)
 {
     protected override StatGrowth StatGrowth => new(3, 1, 3, 1, 1, 2,0);
-    protected override string ClassName =>  "Воин";
+    protected internal override string ClassName =>  "Воин";
     public override Resources ResourceName => Resources.Ярость;
     protected override string NoResourceMessage => "Недостаточно ярости!";
     public override int Resource { get; set; } = 0;
@@ -30,6 +30,7 @@ public class Warrior(string name)
     public override List<Spell> LearnedSpells { get; set; } 
         = [new("Бить голыми руками")
             {
+                GiveResource = 15,
                 GetDamage = warrior => warrior.Strength,
                 Messages = new()
                 {
@@ -50,7 +51,7 @@ public class Warrior(string name)
             },
             new("Сильный удар")
                 {
-                    NeedResource = 15,
+                    GiveResource = 25,
                     GetDamage =warrior => warrior.Strength * 2,
                     Messages = new()
                     {

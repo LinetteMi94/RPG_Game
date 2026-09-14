@@ -24,7 +24,7 @@ public class Minstrel(string name)
             spirit:27), 
         IHealer
 {
-    protected override string ClassName =>  "Менестрель";
+    protected internal override string ClassName =>  "Менестрель";
     protected override StatGrowth StatGrowth => new(1, 2, 1, 2, 3, 1,1);
     public int HealPower => (Intellect + Strength)/2;
     public override Resources ResourceName => Resources.Ноты;

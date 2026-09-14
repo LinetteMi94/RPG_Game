@@ -21,7 +21,7 @@ public class Pirate(string name)
         intellect: 8,
         spirit: 10)
 {
-    protected override string ClassName =>  "Пират";
+    protected internal override string ClassName =>  "Пират";
     protected override StatGrowth StatGrowth => new(2, 3, 2, 1, 1, 1,0);
     public override Resources ResourceName => Resources.Азарт;
     protected override string NoResourceMessage => "Недостаточно азарта!";
@@ -30,6 +30,7 @@ public class Pirate(string name)
     public override List<Spell> LearnedSpells { get; set; } 
         = [new("Бить голыми руками")
             {
+                GiveResource = 15,
                 GetDamage = pirate => pirate.Strength,
                 Messages = new()
                 {
@@ -50,7 +51,7 @@ public class Pirate(string name)
             },
             new("Коварный удар")
                 {
-                    NeedResource = 10,
+                    GiveResource = 25,
                     GetDamage = pirate => (int)Math.Round((pirate.Strength + pirate.Agility) * 0.75),
                     Messages = new()
                     {
@@ -66,12 +67,12 @@ public class Pirate(string name)
                             "🗡️ Клинок пирата рассекает воздух!",
                             "⚔️ Пират наносит коварный удар, но промахивается!"
                         }
-                    }
+                    },
                 },
                 new ("Бутылочный разгром")
                 {
                     NeedResource = 20,
-                    GetDamage = pirate => (int)(pirate.Intellect*1.5),
+                    GetDamage = pirate => (int)(pirate.Stamina*1.5),
                     Messages = new()
                     {
                         DamageMessages =

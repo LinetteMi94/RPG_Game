@@ -24,7 +24,7 @@ public class Druid(string name)
             spirit:30), 
         IHealer
 {
-    protected override string ClassName => "Друид";
+    protected internal override string ClassName => "Друид";
     protected override StatGrowth StatGrowth => new(1, 1, 2, 3, 3, 1,2);
     public override Resources ResourceName => Resources.Мана;
     protected override string NoResourceMessage => "Недостаточно маны!";

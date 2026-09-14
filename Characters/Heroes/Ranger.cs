@@ -22,7 +22,7 @@ public class Ranger(string name)
         intellect: 12,
         spirit: 12)
 {
-    protected override string ClassName =>  "Следопыт";
+    protected internal override string ClassName =>  "Следопыт";
     protected override StatGrowth StatGrowth => new(2, 3, 2, 1, 1, 1,1);
     public override Resources ResourceName => Resources.Концентрация;
     protected override string NoResourceMessage => "Недостаточно концентрации!";

@@ -18,7 +18,7 @@ public abstract class Hero : Character, IResourсeCharacter
 {
     protected internal int Strength { get; protected set; }
     protected internal int Agility { get; set; }
-    protected int Stamina { get; set; }
+    protected internal int Stamina { get; set; }
     protected internal int Intellect { get; protected set; }
     protected internal int Spirit { get; set; }
 
@@ -49,7 +49,7 @@ public abstract class Hero : Character, IResourсeCharacter
     
     public List<Item> Inventory { get; } = new ();
 
-    protected abstract string ClassName { get; }
+    protected internal abstract string ClassName { get; }
     protected abstract string NoResourceMessage { get; }
     private int Damage { get; set; }
     public abstract Resources ResourceName { get; }
@@ -75,6 +75,7 @@ public abstract class Hero : Character, IResourсeCharacter
                 Console.WriteLine($"{Name} наносит {Damage - target.Armor} урона {target.Name}!");
                 spell.Sound.PlayHitSound();
                 target.TakeDamage(Damage, ignoreArmor);
+                if (this is IResourсeCharacter user) user.RestoreResource(spell.GiveResource);
             }
             else spell.Messages.ShowMissMessage();
         }
