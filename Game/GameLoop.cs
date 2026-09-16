@@ -74,9 +74,11 @@ public static class GameLoop
         switch (choice)
         {
             case "1":
+                _hero.RestorationOfInitialResourceAndHealth();
                 _hero.DisplayCharacterStats();
                 break;
             case "2":
+                _hero.RestorationOfInitialResourceAndHealth();
                 _hero.ShowInventoryMenu();
                 break;
             case "3":

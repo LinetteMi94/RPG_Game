@@ -174,12 +174,15 @@ public static class EncounterSystem
                 MonsterEncounter();
                 break;
             case 2:
+                _hero.RestorationOfInitialResourceAndHealth();
                 BadEncounter(choice);
                 break;
             case 3:
+                _hero.RestorationOfInitialResourceAndHealth();
                 GoodEncounter(choice);
                 break;
             case 4:
+                _hero.RestorationOfInitialResourceAndHealth();
                 NeutralEncounter();
                 break;
         }

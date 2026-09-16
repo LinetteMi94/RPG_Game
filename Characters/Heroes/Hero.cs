@@ -179,4 +179,23 @@ public abstract class Hero : Character, IResourсeCharacter
         Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
         Console.WriteLine();
     }
+    
+    /// <summary>
+    /// Восстанавливает начальное значение ресурса и здоровья во время спокойного путешествия игрока раз в ход
+    /// </summary>
+    public void RestorationOfInitialResourceAndHealth()
+    {
+        var resourceForRestoration = (int)Math.Round(MaxResource*0.05);
+        var healthForRestoration = (int)Math.Round(MaxHealth*0.05);
+        Health += healthForRestoration;
+        if(Health > MaxHealth) Health = MaxHealth;
+        if (ClassName == "Пират" && ClassName == "Воин")
+        {
+            Resource -= resourceForRestoration;
+            if(Resource < 0) Resource = 0;
+            return;
+        }
+        Resource += resourceForRestoration;
+        if(Resource > MaxResource) Resource = MaxResource;
+    }
 }
