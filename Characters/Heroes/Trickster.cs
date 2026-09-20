@@ -65,7 +65,8 @@ public class Trickster(string name)
                             "🎪 Циркач жонглирует клинками, но ни один не достигает цели!",
                             "💨 Клинки рассекают воздух рядом с врагом!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Trickster/Blade_Juggling_Impact.mp3", "Sounds/Spells/Trickster/Blade_Juggling_Cast.mp3")
                 }
             , new ("Акробатический выпад")
                 {
@@ -85,7 +86,8 @@ public class Trickster(string name)
                             "🎪 Акробатический выпад проходит мимо цели!",
                             "💨 Циркач приземляется после трюка, не задев противника!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Trickster/Acrobatic_Lunge_Impact.mp3", "Sounds/Spells/Trickster/Acrobatic_Lunge_Cast.mp3")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Смертельное представление")
@@ -107,7 +109,7 @@ public class Trickster(string name)
                             "🤹 Смертельный номер заканчивается эффектным приземлением, но враг остаётся невредим!"
                         }
                     },
-                    Sound = new SpellSound("Sounds/Spells/Deadly_Performance_Cast.mp3", "")
+                    Sound = new SpellSound("Sounds/Spells/Trickster/Deadly_Performance_Impact.mp3", "Sounds/Spells/Trickster/Deadly_Performance_Cast.mp3")
                 }];
     
 }

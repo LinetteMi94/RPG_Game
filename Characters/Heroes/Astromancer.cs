@@ -69,7 +69,7 @@ public class Astromancer(string name)
                             "🌠 Астромант выпускает импульс, но противник успевает уклониться!"
                         }
                     },
-                    Sound = new SpellSound("Sounds/Spells/Astral_Impulse_Impact.mp3", "Sounds/Spells/Astral_Impulse_Cast.mp3")
+                    Sound = new SpellSound("Sounds/Spells/Astromancer/Astral_Impulse_Impact.mp3", "Sounds/Spells/Astromancer/Astral_Impulse_Cast.mp3")
             },
             new ("Падающая звезда")
                 {
@@ -90,7 +90,7 @@ public class Astromancer(string name)
                             "💥 Астромант вызывает падающую звезду, но враг успевает отскочить!"
                         }
                     },
-                    Sound = new SpellSound("Sounds/Spells/Falling_Star_Impact.mp3", "Sounds/Spells/Falling_Star_Cast.mp3")
+                    Sound = new SpellSound("Sounds/Spells/Astromancer/Falling_Star_Impact.mp3", "Sounds/Spells/Astromancer/Falling_Star_Cast.mp3")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Разрыв пространства")
@@ -112,6 +112,6 @@ public class Astromancer(string name)
                             "✨ Астромант открывает разлом, но противник успевает выйти из зоны поражения!"
                         }
                     },
-                    Sound = new SpellSound("Sounds/Spells/Space_Rift_Impact.mp3", "Sounds/Spells/Space_Rift_Cast.mp3")
+                    Sound = new SpellSound("Sounds/Spells/Astromancer/Space_Rift_Impact.mp3", "Sounds/Spells/Astromancer/Space_Rift_Cast.mp3")
                 }];
 }

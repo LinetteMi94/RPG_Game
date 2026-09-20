@@ -185,8 +185,8 @@ public abstract class Hero : Character, IResourсeCharacter
     /// </summary>
     public void RestorationOfInitialResourceAndHealth()
     {
-        var resourceForRestoration = (int)Math.Round(MaxResource*0.05);
-        var healthForRestoration = (int)Math.Round(MaxHealth*0.05);
+        var resourceForRestoration = (int)Math.Round(MaxResource*0.02);
+        var healthForRestoration = (int)Math.Round(MaxHealth*0.02);
         Health += healthForRestoration;
         if(Health > MaxHealth) Health = MaxHealth;
         if (ClassName == "Пират" && ClassName == "Воин")

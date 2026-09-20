@@ -67,7 +67,8 @@ public class Ranger(string name)
                             "🎯 Следопыт выпускает стрелу, но противник успевает уклониться!",
                             "💨 Стрела рассекает воздух рядом с врагом!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Ranger/Precise_Shot_Impact.mp3", "Sounds/Spells/Ranger/Precise_Shot_Cast.mp3")
                 }
             , new ("Охотничий выпад")
                 {
@@ -87,7 +88,8 @@ public class Ranger(string name)
                             "💨 Клинок проходит в нескольких сантиметрах от врага!",
                             "⚔️ Следопыт пытается нанести выпад, но промахивается!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Ranger/Hunters_Lunge_Impact.mp3", "Sounds/Spells/Ranger/Hunters_Lunge_Cast.mp3")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Залп стрел")
@@ -108,6 +110,7 @@ public class Ranger(string name)
                             "💨 Стрелы пролетают мимо цели одна за другой!",
                             "🏹 Весь залп рассекает воздух, не задев противника!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Ranger/Volley_Of_Arrows_Impact.mp3", "Sounds/Spells/Ranger/Volley_Of_Arrows_Cast.mp3")
                 }];
 }

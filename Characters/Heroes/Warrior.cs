@@ -67,7 +67,8 @@ public class Warrior(string name)
                             "💨 Тяжёлый удар воина рассекает воздух!",
                             "🗡️ Воин наносит удар, но промахивается!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Warrior/Powerful_Strike_Impact.mp3", "Sounds/Spells/Warrior/Powerful_Strike_Cast.mp3")
                 }
             , new ("Сокрушительный выпад")
                 {
@@ -87,7 +88,8 @@ public class Warrior(string name)
                             "💨 Сокрушительный выпад проходит мимо цели!",
                             "🗡️ Воин пытается пробить защиту врага, но промахивается!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Warrior/Devastating_Lunge_Impact.mp3", "Sounds/Spells/Warrior/Devastating_Lunge_Cast.mp3")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Размашистый удар")
@@ -108,7 +110,8 @@ public class Warrior(string name)
                             "⚔️ Воин вкладывает всю силу в удар, но враг успевает уклониться!",
                             "💨 Оружие с грохотом рассекает воздух рядом с противником!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Warrior/Sweeping_Strike_Impact.mp3", "Sounds/Spells/Warrior/Sweeping_Strike_Cast.mp3")
                 }];
     
 }

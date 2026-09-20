@@ -8,10 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Sounds\Spells\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="NAudio" Version="2.2.1" />
     </ItemGroup>
 
@@ -25,117 +21,393 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="Sounds\Spells\Astral_Impulse.mp3" />
-      <Content Include="Sounds\Spells\Astral_Impulse_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Bottle_Bash_Cast.mp3" />
-      <Content Include="Sounds\Spells\Bottle_Bash_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Ice_Arrow_Impact.mp3" />
-      <Content Include="Sounds\Spells\Ice_Arrow_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Awakening_Of_The_Ancient_Forest_Impact.mp3" />
-      <Content Include="Sounds\Spells\Awakening_Of_The_Ancient_Forest_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Fireball_Impact.mp3" />
-      <Content Include="Sounds\Spells\Fireball_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Electric_Discharge_Impact.mp3" />
-      <Content Include="Sounds\Spells\Electric_Discharge_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Astral_Impulse_Impact.mp3" />
-      <Content Include="Sounds\Spells\Astral_Impulse_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Ice_Arrow_Cast.mp3" />
-      <Content Include="Sounds\Spells\Ice_Arrow_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Curse_Of_The_Abyss_Cast.mp3" />
-      <Content Include="Sounds\Spells\Curse_Of_The_Abyss_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Thorn_Whip_Cast.mp3" />
-      <Content Include="Sounds\Spells\Thorn_Whip_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Corruption_Cast.mp3" />
-      <Content Include="Sounds\Spells\Corruption_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Shadow_Strike_Cast.mp3" />
-      <Content Include="Sounds\Spells\Shadow_Strike_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Curse_Of_The_Abyss_Impact.mp3" />
-      <Content Include="Sounds\Spells\Curse_Of_The_Abyss_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Sharp_Note_Cast.mp3" />
-      <Content Include="Sounds\Spells\Dissonance_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Corruption_Impact.mp3" />
-      <Content Include="Sounds\Spells\Corruption_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Shadow_Strike_Impact.mp3" />
-      <Content Include="Sounds\Spells\Shadow_Strike_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Dissonance_Cast.mp3" />
-      <Content Include="Sounds\Spells\Sharp_Note_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Deadly_Performance_Cast.mp3" />
-      <Content Include="Sounds\Spells\Deadly_Performance_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Falling_Star_Impact.mp3" />
-      <Content Include="Sounds\Spells\Falling_Star_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Falling_Star_Cast.mp3" />
-      <Content Include="Sounds\Spells\Falling_Star_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Space_Rift_Cast.mp3" />
-      <Content Include="Sounds\Spells\Space_Rift_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Space_Rift_Impact.mp3" />
-      <Content Include="Sounds\Spells\Space_Rift_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Fireball_Cast.mp3" />
-      <Content Include="Sounds\Spells\Fireball_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Electric_Discharge_Cast.mp3" />
-      <Content Include="Sounds\Spells\Electric_Discharge_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Song_Of_Destruction_Cast.mp3" />
-      <Content Include="Sounds\Spells\Song_Of_Destruction_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Sharp_Note_Impact.mp3" />
-      <Content Include="Sounds\Spells\Sharp_Note_Impact.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Dissonance2_Cast.mp3" />
-      <Content Include="Sounds\Spells\Dissonance_Cast.mp3">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Sounds\Spells\Song_Of_Destruction_Impact.mp3" />
-      <Content Include="Sounds\Spells\Song_Of_Destruction_Impact.mp3">
+      <None Remove="Sounds\Spells\Dirty_Strike_Cast.mp3" />
+      <None Remove="Sounds\Spells\Dirty_Strike_Impact.mp3" />
+      <None Remove="Sounds\Spells\Bottle_Bash_Cast2.mp3" />
+      <None Remove="Sounds\Spells\Captains Rush_Cast.mp3" />
+      <None Remove="Sounds\Spells\Captains Rush_Impact.mp3" />
+      <Content Update="Sounds\Spells\Mage\Ice_Arrow_Cast.mp3">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <Content Update="Sounds\Spells\Mage\Ice_Arrow_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Mage\Fireball_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Mage\Fireball_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Mage\Electric_Discharge_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Mage\Electric_Discharge_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Shaman\Spirit_Flame_Cast.mp3" />
+      <Content Include="Sounds\Spells\Shaman\Spirit_Flame_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Pirate\Captains_Rush_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Pirate\Captains_Rush_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Pirate\Bottle_Bash_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Pirate\Dirty_Strike_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Pirate\Dirty_Strike_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Astromancer\Astral_Impulse_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Astromancer\Astral_Impulse_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Astromancer\Falling_Star_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Astromancer\Falling_Star_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Astromancer\Space_Rift_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Astromancer\Space_Rift_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Druid\Thorn_Whip_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Druid\Awakening_Of_The_Ancient_Forest_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Minstrel\Sharp_Note_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Minstrel\Sharp_Note_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Minstrel\Dissonance_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Minstrel\Dissonance_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Minstrel\Song_Of_Destruction_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Minstrel\Song_Of_Destruction_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Warlock\Corruption_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Warlock\Corruption_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Warlock\Shadow_Strike_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Warlock\Shadow_Strike_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Warlock\Curse_Of_The_Abyss_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Warlock\Curse_Of_The_Abyss_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="Sounds\Spells\Trickster\Deadly_Performance_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Druid\Spirit_Flame_Impact.mp3" />
+      <Content Update="Sounds\Spells\Shaman\Spirit_Flame_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Shaman\Wrath_Of_Spirits_Cast.mp3" />
+      <Content Include="Sounds\Spells\Shaman\Wrath_Of_Spirits_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Shaman\Wrath_Of_Spirits_Impact.mp3" />
+      <Content Include="Sounds\Spells\Shaman\Wrath_Of_Spirits_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Monsters\Leopard\Leopard_Attack.mp3" />
+      <Content Include="Sounds\Monsters\Leopard\Leopard_Attack.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Monsters\Zombie\Zombie_Attack.mp3" />
+      <Content Include="Sounds\Monsters\Zombie\Zombie_Attack.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Shaman\Wrath_Of_Heaven_Impact.mp3" />
+      <Content Include="Sounds\Spells\Shaman\Wrath_Of_Heaven_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Shaman\Wrath_Of_Heaven_Cast.mp3" />
+      <Content Include="Sounds\Spells\Shaman\Wrath_Of_Heaven_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Trickster\Blade_Juggling_Cast.mp3" />
+      <Content Include="Sounds\Spells\Trickster\Blade_Juggling_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Trickster\Blade_Juggling_Impact.mp3" />
+      <Content Include="Sounds\Spells\Trickster\Blade_Juggling_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Trickster\Acrobatic_Lunge_Cast.mp3" />
+      <Content Include="Sounds\Spells\Trickster\Acrobatic_Lunge_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Trickster\Acrobatic_Lunge_Impact.mp3" />
+      <Content Include="Sounds\Spells\Trickster\Acrobatic_Lunge_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Trickster\Deadly_Performance_Cast.mp3" />
+      <Content Include="Sounds\Spells\Trickster\Deadly_Performance_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Trickster\Deadly_Performance_Impact.mp3" />
+      <Content Include="Sounds\Spells\Trickster\Deadly_Performance_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Druid\Thorn_Whip_Cast.mp3" />
+      <Content Include="Sounds\Spells\Druid\Thorn_Whip_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Druid\Thorn_Whip_Impact.mp3" />
+      <Content Include="Sounds\Spells\Druid\Thorn_Whip_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Druid\Awakening_Of_The_Ancient_Forest_Cast.mp3" />
+      <Content Include="Sounds\Spells\Druid\Awakening_Of_The_Ancient_Forest_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Druid\Wrath_Of_Nature_Cast.mp3" />
+      <Content Include="Sounds\Spells\Druid\Wrath_Of_Nature_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Druid\Wrath_Of_Nature_Impact.mp3" />
+      <Content Include="Sounds\Spells\Druid\Wrath_Of_Nature_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warrior\Powerful_Strike_Cast.mp3" />
+      <Content Include="Sounds\Spells\Warrior\Powerful_Strike_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warrior\Devastating_Lunge_Cast.mp3" />
+      <Content Include="Sounds\Spells\Warrior\Devastating_Lunge_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warrior\Sweeping_Strike_Cast.mp3" />
+      <Content Include="Sounds\Spells\Warrior\Sweeping_Strike_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warrior\Powerful_Strike_Impact.mp3" />
+      <Content Include="Sounds\Spells\Warrior\Powerful_Strike_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warrior\Devastating_Lunge_Impact.mp3" />
+      <Content Include="Sounds\Spells\Warrior\Devastating_Lunge_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warrior\Sweeping_Strike_Impact.mp3" />
+      <Content Include="Sounds\Spells\Warrior\Sweeping_Strike_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Ranger\Precise_Shot_Cast.mp3" />
+      <Content Include="Sounds\Spells\Ranger\Precise_Shot_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Ranger\Precise_Shot_Impact.mp3" />
+      <Content Include="Sounds\Spells\Ranger\Precise_Shot_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Ranger\Hunters_Lunge_Cast.mp3" />
+      <Content Include="Sounds\Spells\Ranger\Hunters_Lunge_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Ranger\Hunters_Lunge_Impact.mp3" />
+      <Content Include="Sounds\Spells\Ranger\Hunters_Lunge_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Ranger\Volley_Of_Arrows_Cast.mp3" />
+      <Content Include="Sounds\Spells\Ranger\Volley_Of_Arrows_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Ranger\Volley_Of_Arrows_Impact.mp3" />
+      <Content Include="Sounds\Spells\Ranger\Volley_Of_Arrows_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Shaman\Spirit_Flame_Impact.mp3" />
+      <Content Include="Sounds\Spells\Shaman\Spirit_Flame_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Pirate\Dirty_Strike_Cast.mp3" />
+      <Content Include="Sounds\Spells\Pirate\Dirty_Strike_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Pirate\Dirty_Strike_Impact.mp3" />
+      <Content Include="Sounds\Spells\Pirate\Dirty_Strike_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Pirate\Bottle_Bash_Cast.mp3" />
+      <Content Include="Sounds\Spells\Pirate\Bottle_Bash_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Pirate\Bottle_Bash_Impact.mp3" />
+      <Content Include="Sounds\Spells\Pirate\Bottle_Bash_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Pirate\Captains_Rush_Cast.mp3" />
+      <Content Include="Sounds\Spells\Pirate\Captains_Rush_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Pirate\Captains_Rush_Impact.mp3" />
+      <Content Include="Sounds\Spells\Pirate\Captains_Rush_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Mage\Electric_Discharge_Cast.mp3" />
+      <Content Include="Sounds\Spells\Mage\Electric_Discharge_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Mage\Electric_Discharge_Impact.mp3" />
+      <Content Include="Sounds\Spells\Mage\Electric_Discharge_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Mage\Fireball_Cast.mp3" />
+      <Content Include="Sounds\Spells\Mage\Fireball_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Mage\Fireball_Impact.mp3" />
+      <Content Include="Sounds\Spells\Mage\Fireball_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Mage\Ice_Arrow_Cast.mp3" />
+      <Content Include="Sounds\Spells\Mage\Ice_Arrow_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Mage\Ice_Arrow_Impact.mp3" />
+      <Content Include="Sounds\Spells\Mage\Ice_Arrow_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Astromancer\Astral_Impulse_Cast.mp3" />
+      <Content Include="Sounds\Spells\Astromancer\Astral_Impulse_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Astromancer\Astral_Impulse_Impact.mp3" />
+      <Content Include="Sounds\Spells\Astromancer\Astral_Impulse_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Astromancer\Falling_Star_Cast.mp3" />
+      <Content Include="Sounds\Spells\Astromancer\Falling_Star_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Astromancer\Falling_Star_Impact.mp3" />
+      <Content Include="Sounds\Spells\Astromancer\Falling_Star_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Astromancer\Space_Rift_Cast.mp3" />
+      <Content Include="Sounds\Spells\Astromancer\Space_Rift_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Astromancer\Space_Rift_Impact.mp3" />
+      <Content Include="Sounds\Spells\Astromancer\Space_Rift_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Druid\Awakening_Of_The_Ancient_Forest_Impact.mp3" />
+      <Content Include="Sounds\Spells\Druid\Awakening_Of_The_Ancient_Forest_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Minstrel\Dissonance_Cast.mp3" />
+      <Content Include="Sounds\Spells\Minstrel\Dissonance_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Minstrel\Dissonance_Impact.mp3" />
+      <Content Include="Sounds\Spells\Minstrel\Dissonance_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Minstrel\Sharp_Note_Cast.mp3" />
+      <Content Include="Sounds\Spells\Minstrel\Sharp_Note_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Minstrel\Song_Of_Destruction_Cast.mp3" />
+      <Content Include="Sounds\Spells\Minstrel\Song_Of_Destruction_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Minstrel\Sharp_Note_Impact.mp3" />
+      <Content Include="Sounds\Spells\Minstrel\Sharp_Note_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Minstrel\Song_Of_Destruction_Impact.mp3" />
+      <Content Include="Sounds\Spells\Minstrel\Song_Of_Destruction_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warlock\Corruption_Impact.mp3" />
+      <Content Include="Sounds\Spells\Warlock\Corruption_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warlock\Corruption_Cast.mp3" />
+      <Content Include="Sounds\Spells\Warlock\Corruption_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warlock\Curse_Of_The_Abyss_Cast.mp3" />
+      <Content Include="Sounds\Spells\Warlock\Curse_Of_The_Abyss_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warlock\Curse_Of_The_Abyss_Impact.mp3" />
+      <Content Include="Sounds\Spells\Warlock\Curse_Of_The_Abyss_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warlock\Shadow_Strike_Cast.mp3" />
+      <Content Include="Sounds\Spells\Warlock\Shadow_Strike_Cast.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Sounds\Spells\Warlock\Shadow_Strike_Impact.mp3" />
+      <Content Include="Sounds\Spells\Warlock\Shadow_Strike_Impact.mp3">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Sounds\Monsters\Leopard\" />
+      <Folder Include="Sounds\Monsters\Zombie\" />
+      <Folder Include="Sounds\Spells\Warrior\" />
+      <Folder Include="Sounds\Spells\Ranger\" />
     </ItemGroup>
 
 </Project>

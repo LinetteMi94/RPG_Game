@@ -70,6 +70,7 @@ public class Pirate(string name)
                             "⚔️ Пират наносит коварный удар, но промахивается!"
                         }
                     },
+                    Sound = new SpellSound("Sounds/Spells/Pirate/Dirty_Strike_Impact.mp3", "Sounds/Spells/Pirate/Dirty_Strike_Cast.mp3")
                 },
                 new ("Бутылочный разгром")
                 {
@@ -90,7 +91,7 @@ public class Pirate(string name)
                             "🏴‍☠️ Пират пытается огреть врага бутылкой, но тот успевает отскочить!"
                         }
                     },
-                    Sound = new SpellSound("Sounds/Spells/Bottle_Bash_Impact.mp3", "Sounds/Spells/Bottle_Bash_Cast.mp3dfghjklkjhgfdsdfghjk")
+                    Sound = new SpellSound("Sounds/Spells/Pirate/Bottle_Bash_Impact.mp3", "Sounds/Spells/Pirate/Bottle_Bash_Cast.mp3")
                 }];
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Капитанский натиск")
@@ -111,6 +112,7 @@ public class Pirate(string name)
                             "⚔️ Клинок с грохотом ударяет мимо цели!",
                             "💨 Пират идёт ва-банк, но противник выходит из-под удара!" 
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Pirate/Captains_Rush_Impact.mp3", "Sounds/Spells/Pirate/Captains_Rush_Cast.mp3")
                 }];
 }

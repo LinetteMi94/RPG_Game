@@ -69,7 +69,8 @@ public class Shaman(string name)
                             "👻 Духовный огонь вспыхивает рядом с противником, но не задевает его!",
                             "🔥 Шаман призывает пламя, но враг успевает уклониться!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Shaman/Spirit_Flame_Impact.mp3", "Sounds/Spells/Shaman/Spirit_Flame_Cast.mp3")
                 }
             , new ("Гнев духов")
                 {
@@ -89,7 +90,8 @@ public class Shaman(string name)
                             "🌪️ Гнев духов проносится рядом с целью!",
                             "⚡ Призванные духи не успевают настичь противника!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Shaman/Wrath_Of_Spirits_Impact.mp3", "Sounds/Spells/Shaman/Wrath_Of_Spirits_Cast.mp3")
                 }];
     
     public override List<Spell> SpellsToLearn  { get; set; }
@@ -111,7 +113,8 @@ public class Shaman(string name)
                             "⚡ Гром раскатывается над полем боя, но враг избегает удара!",
                             "🌩️ Шаман призывает небесную силу, но молния не достигает цели!"
                         }
-                    }
+                    },
+                    Sound = new SpellSound("Sounds/Spells/Shaman/Wrath_Of_Heaven_Impact.mp3", "Sounds/Spells/Shaman/Wrath_Of_Heaven_Cast.mp3")
                 }];
     
     public int HealPower => (Intellect + Spirit)/2;
