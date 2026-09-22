@@ -21,7 +21,7 @@ public static class RestSystem
         Console.WriteLine("Отдых будет длиться 10 секунд!");
         Thread.Sleep(10000);
         hero.RestoreFullHealth();
-        if (hero.ClassName != "Пират" && hero.ClassName != "Воин" && hero is IResourсeCharacter user)
+        if (hero.ClassName != "Пират" && hero.ClassName != "Циркач"  && hero.ClassName != "Воин" && hero is IResourсeCharacter user)
         {
             user.RestoreFullResource();
             Console.WriteLine($"Здоровье и {hero.ResourceName} {hero.Name} полностью восстановлены!");

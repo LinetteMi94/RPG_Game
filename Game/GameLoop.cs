@@ -38,8 +38,8 @@ public static class GameLoop
         Console.Write("Введите имя героя: ");
         var heroName = Console.ReadLine();
         Console.WriteLine("Выберите класс героя:");
-        var classes = "1. Друид  2. Следопыт  3. Маг  4. Менестрель  5. Астромант  6. Пират  7. Шаман  8. Колдун  9. Воин  10. Циркач";
-        var choice = classes.GetValidInput(10);
+        Console.WriteLine("1. Друид  2. Следопыт  3. Маг  4. Менестрель  5. Астромант  6. Пират  7. Шаман  8. Колдун  9. Воин  10. Циркач");
+        var choice = InputValidator.GetValidInput(10);
         switch (choice)
         {
             case 1:
@@ -69,28 +69,31 @@ public static class GameLoop
     /// Обрабатывает выбор игрока из главного меню
     /// и запускает соответствующее действие.
     /// </summary>
-    private static void HandleChoice(string choice)
+    private static void HandleChoice(int choice)
     {
         switch (choice)
         {
-            case "1":
+            case 1:
                 _hero.RestorationOfInitialResourceAndHealth();
                 _hero.DisplayCharacterStats();
                 break;
-            case "2":
+            case 2:
                 _hero.RestorationOfInitialResourceAndHealth();
                 _hero.ShowInventoryMenu();
                 break;
-            case "3":
+            case 3:
                 _hero.DisplayHeader();
                 _hero.HaveRest();
                 break;
-            case "4":
+            case 4:
+                _hero.ShowTownMenu();
+                break;
+            case 5:
                 _hero.DisplayHeader();
                 var random =  new Random();
                 _hero.StartRandomEncounter(random.Next(1, 4));
                 break;
-            case "5":
+            case 6:
                 _isRunning = false;
                 break;
         }

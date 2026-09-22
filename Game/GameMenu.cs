@@ -15,21 +15,19 @@ public static class GameMenu
     /// <summary>
     /// Отображает главное меню игры.
     /// </summary>
-    public static void ShowMainMenu(this Hero hero, Action<string> handleChoice)
+    public static void ShowMainMenu(this Hero hero, Action<int> handleChoice)
     {
         DisplayHeader(hero);
         Console.WriteLine($"Что ты хочешь сделать сейчас {hero.Name}?");
         Console.WriteLine("1. Посмотреть карточку героя");
         Console.WriteLine("2. Посмотреть инвентарь");
         Console.WriteLine("3. Отдохнуть");
-        Console.WriteLine("4. Отправиться навстречу приключениям");
-        Console.WriteLine("5. Выйти из игры");
+        Console.WriteLine("4. Отправиться в город");
+        Console.WriteLine("5. Отправиться навстречу приключениям");
+        Console.WriteLine("6. Выйти из игры");
         
-        var choice = Console.ReadLine();
+        var choice = InputValidator.GetValidInput(6);
         handleChoice(choice);
-        
-        //Console.WriteLine("Нажми любую клавишу для продолжения...");
-        //Console.ReadKey();
     }
     
     /// <summary>
@@ -44,21 +42,16 @@ public static class GameMenu
         Console.WriteLine($"Что ты хочешь сделать {hero.Name}?");
         Console.WriteLine("1. Выкинуть предмет");
         Console.WriteLine("2. Выйти из инвентаря");
-        var choice = Console.ReadLine();
+        var choice = InputValidator.GetValidInput(2);
         switch (choice)
         {
-            case "1":
+            case 1:
                 Console.WriteLine($"Введи порядковый номер ненужного хлама, {hero.Name}");
-                if (int.TryParse(Console.ReadLine(), out int number) &&
-                    number >= 1 &&
-                    number <= hero.Inventory.Count)
-                {
-                    Item item = hero.Inventory[number - 1];
-                    hero.RemoveItem(item);
-                }
-                else Console.WriteLine("Ты выкинул что-то ненужное... Но что же это было?");
+                var number = InputValidator.GetValidInput(hero.Inventory.Count);
+                Item item = hero.Inventory[number - 1];
+                hero.RemoveItem(item);
                 break;
-            case "2":
+            case 2:
                 break;
         }
     }
@@ -79,9 +72,9 @@ public static class GameMenu
         if (hero is IHealer)
         {
             Console.WriteLine("5. Подлечиться");
-            choice = InputValidator.GetValidInput(null,5);
+            choice = InputValidator.GetValidInput(5);
         }
-        else choice = InputValidator.GetValidInput(null,4);
+        else choice = InputValidator.GetValidInput(4);
         handleChoice(choice);
         Console.WriteLine("Нажми любую клавишу для продолжения...");
         Console.ReadKey();
@@ -101,7 +94,7 @@ public static class GameMenu
             ShowSpellInformation(hero,monster,j);
         }
         Console.WriteLine($"{counter}. Назад");
-        int choice = InputValidator.GetValidInput(null,counter);
+        int choice = InputValidator.GetValidInput(counter);
         if(choice == counter) return -1;
         return choice;
     }
@@ -131,5 +124,49 @@ public static class GameMenu
         var minDamage = maxDamage - monster.Armor;
         if (minDamage<0) minDamage = 0;
         Console.WriteLine($"   Урон: {minDamage} - {maxDamage}");
+    }
+    
+    /// <summary>
+    /// Отображает меню города и обрабатывает выбор игрока.
+    /// </summary>
+    public static void ShowTownMenu(this Hero hero) 
+    {
+        Console.Clear();
+        hero.DisplayHeader();
+        Console.WriteLine();
+        Console.WriteLine($"Куда ты хочешь направиться {hero.Name}?");
+        Console.WriteLine("1. Посетить таверну");
+        Console.WriteLine("2. Пойти к аптекарю");
+        Console.WriteLine("3. Найти старьёвщика");
+        Console.WriteLine("4. Прогуляться");
+        Console.WriteLine("5. Зайти к наставнику");
+        Console.WriteLine("6. Выйти из города");
+        var choice = InputValidator.GetValidInput(6);
+        switch (choice)
+        {
+            case 1:
+                // Посетить таверну
+                Console.WriteLine("Вы посетили таверну");
+                break;
+            case 2:
+                // Пойти к аптекарю
+                Console.WriteLine("Вы пошли к аптекарю");
+                break;
+            case 3:
+                // Найти старьёвщика
+                Console.WriteLine("Вы нашли старьёвщика");
+                break;
+            case 4:
+                // Прогуляться
+                Console.WriteLine("Вы прогуливаетесь по городу");
+                break;
+            case 5:
+                // Найти наставника
+                Console.WriteLine("Вы нашли наставника");
+                break;
+            case 6:
+                Console.WriteLine($"{hero.Name} выходит из города");
+                break;
+        }
     }
 }

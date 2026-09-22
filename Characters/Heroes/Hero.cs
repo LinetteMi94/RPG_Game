@@ -189,13 +189,15 @@ public abstract class Hero : Character, IResourсeCharacter
         var healthForRestoration = (int)Math.Round(MaxHealth*0.02);
         Health += healthForRestoration;
         if(Health > MaxHealth) Health = MaxHealth;
-        if (ClassName == "Пират" && ClassName == "Воин")
+        if (ClassName == "Пират" || ClassName == "Воин" || ClassName == "Циркач")
         {
             Resource -= resourceForRestoration;
             if(Resource < 0) Resource = 0;
-            return;
         }
-        Resource += resourceForRestoration;
-        if(Resource > MaxResource) Resource = MaxResource;
+        else
+        {
+            Resource += resourceForRestoration;
+            if(Resource > MaxResource) Resource = MaxResource;
+        }
     }
 }

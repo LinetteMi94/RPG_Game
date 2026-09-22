@@ -24,11 +24,12 @@ public class Trickster(string name)
     public override Resources ResourceName => Resources.Адреналин;
     protected override string NoResourceMessage => "Недостаточно адреналина!";
     protected override StatGrowth StatGrowth => new (1, 4, 2, 1, 2, 1,2);
-    public override int Resource { get; set; } = 100;
+    public override int Resource { get; set; } = 0;
     public override int MaxResource { get; set; } = 100;
     public override List<Spell> LearnedSpells { get; set; } 
         = [new("Бить голыми руками")
             {
+                GiveResource = 15,
                 GetDamage = trickster => trickster.Strength,
                 Messages = new()
                 {
@@ -49,7 +50,7 @@ public class Trickster(string name)
             },
             new("Жонглирование клинками")
                 {
-                    NeedResource = 15,
+                    GiveResource = 25,
                     GetDamage = trickster => (int)Math.Round(trickster.Agility * 1.5),
                     Messages = new()
                     {
