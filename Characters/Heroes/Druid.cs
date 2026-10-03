@@ -97,6 +97,8 @@ public class Druid(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Пробуждение древнего леса")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 50,
                     GetDamage = druid => druid.Intellect * 4,
                     Messages = new()

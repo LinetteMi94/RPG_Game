@@ -25,11 +25,11 @@ public static class GameMenu
         Console.WriteLine("4. Отправиться в город");
         Console.WriteLine("5. Отправиться навстречу приключениям");
         Console.WriteLine("6. Выйти из игры");
-        
+
         var choice = InputValidator.GetValidInput(6);
         handleChoice(choice);
     }
-    
+
     /// <summary>
     /// Отображает меню инвентаря и обрабатывает выбор игрока.
     /// </summary>
@@ -55,7 +55,7 @@ public static class GameMenu
                 break;
         }
     }
-    
+
     /// <summary>
     /// Отображает меню битвы.
     /// </summary>
@@ -75,11 +75,12 @@ public static class GameMenu
             choice = InputValidator.GetValidInput(5);
         }
         else choice = InputValidator.GetValidInput(4);
+
         handleChoice(choice);
         Console.WriteLine("Нажми любую клавишу для продолжения...");
         Console.ReadKey();
     }
-    
+
     /// <summary>
     /// Отображает меню заклинаний.
     /// </summary>
@@ -89,13 +90,14 @@ public static class GameMenu
         DisplayHeader(hero, monster);
         Console.WriteLine($"Каким заклинанием ты хочешь атаковать {monster.Name}?");
         Console.WriteLine();
-        for (int j = 0; j < counter-1; j++)
+        for (int j = 0; j < counter - 1; j++)
         {
-            ShowSpellInformation(hero,monster,j);
+            ShowSpellInformation(hero, monster, j);
         }
+
         Console.WriteLine($"{counter}. Назад");
         int choice = InputValidator.GetValidInput(counter);
-        if(choice == counter) return -1;
+        if (choice == counter) return -1;
         return choice;
     }
 
@@ -105,31 +107,36 @@ public static class GameMenu
     public static void DisplayHeader(this Hero hero, Monster? monster = null)
     {
         Console.Clear();
-        Console.WriteLine($"{hero.Name}    Health: {hero.Health}/{hero.MaxHealth}    {hero.ResourceName}: {hero.Resource}/{hero.MaxResource}");
+        Console.WriteLine(
+            $"{hero.Name}    Health: {hero.Health}/{hero.MaxHealth}    {hero.ResourceName}: {hero.Resource}/{hero.MaxResource}");
         if (monster != null) Console.WriteLine($"{monster.Name}    Health: {monster.Health}/{monster.MaxHealth}");
         Console.WriteLine();
     }
-    
+
     /// <summary>
-    /// Выводит на экран информацию о заклинании.
+    /// Выводит на экран информацию о выбранном заклинании героя и его уроне по противнику.
     /// </summary>
+    /// <param name="hero">Герой, использующий заклинание.</param>
+    /// <param name="monster">Противник, по которому рассчитывается урон.</param>
+    /// <param name="index">Индекс выбранного заклинания в списке изученных заклинаний.</param>
     private static void ShowSpellInformation(Hero hero, Monster? monster, int index)
     {
-        Console.Write($"{index+1}. {hero.LearnedSpells[index].SpellName}");
+        Console.Write($"{index + 1}. {hero.LearnedSpells[index].SpellName}");
         if (hero.LearnedSpells[index].NeedResource != 0)
         {
             Console.Write($"   ({hero.ResourceName}: {hero.LearnedSpells[index].NeedResource})");
         }
+
         var maxDamage = hero.LearnedSpells[index].GetDamage(hero);
         var minDamage = maxDamage - monster.Armor;
-        if (minDamage<0) minDamage = 0;
+        if (minDamage < 0) minDamage = 0;
         Console.WriteLine($"   Урон: {minDamage} - {maxDamage}");
     }
-    
+
     /// <summary>
     /// Отображает меню города и обрабатывает выбор игрока.
     /// </summary>
-    public static void ShowTownMenu(this Hero hero) 
+    public static void ShowTownMenu(this Hero hero, Action<int> handleChoice)
     {
         Console.Clear();
         hero.DisplayHeader();
@@ -142,31 +149,6 @@ public static class GameMenu
         Console.WriteLine("5. Зайти к наставнику");
         Console.WriteLine("6. Выйти из города");
         var choice = InputValidator.GetValidInput(6);
-        switch (choice)
-        {
-            case 1:
-                // Посетить таверну
-                Console.WriteLine("Вы посетили таверну");
-                break;
-            case 2:
-                // Пойти к аптекарю
-                Console.WriteLine("Вы пошли к аптекарю");
-                break;
-            case 3:
-                // Найти старьёвщика
-                Console.WriteLine("Вы нашли старьёвщика");
-                break;
-            case 4:
-                // Прогуляться
-                Console.WriteLine("Вы прогуливаетесь по городу");
-                break;
-            case 5:
-                // Найти наставника
-                Console.WriteLine("Вы нашли наставника");
-                break;
-            case 6:
-                Console.WriteLine($"{hero.Name} выходит из города");
-                break;
-        }
+        handleChoice(choice);
     }
 }

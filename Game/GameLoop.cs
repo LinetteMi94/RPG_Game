@@ -15,20 +15,8 @@ public static class GameLoop
 {
     private static Hero _hero;
     private static bool _isRunning;
+    private static bool _isCityActive;
 
-    public static void Start()
-    {
-        _isRunning = true;
-        _hero = CreatePlayer();
-        while (_isRunning)
-        {
-            _hero.ShowMainMenu(HandleChoice);
-            Console.WriteLine("Нажми любую клавишу для продолжения...");
-            Console.ReadKey();
-            if (!_hero.IsAlive) GameOver();
-        }
-    }
-    
     /// <summary>
     /// Создаёт нового персонажа игрока.
     /// Определяет выбранный класс героя и возвращает соответствующий объект.
@@ -65,11 +53,92 @@ public static class GameLoop
         }
     }
     
+    public static void Start()
+    {
+        _isRunning = true;
+        _hero = CreatePlayer();
+        while (_isRunning)
+        {
+            _hero.ShowMainMenu(HandleMainMenuChoice);
+            Console.WriteLine("Нажми любую клавишу для продолжения...");
+            Console.ReadKey();
+            if (!_hero.IsAlive) GameOver();
+        }
+    }
+    
+    /// <summary>
+    /// Обрабатывает выбор игрока из меню города
+    /// и запускает соответствующее действие.
+    /// </summary>
+    private static void HandleTownMenuChoice(int choice)
+    {
+        _hero.RestorationOfInitialResourceAndHealth();
+        switch (choice)
+        {
+            case 1:
+                // Посетить таверну
+                Console.WriteLine("Вы посетили таверну");
+                break;
+            case 2:
+                // Пойти к аптекарю
+                Console.WriteLine("Вы пошли к аптекарю");
+                break;
+            case 3:
+                // Найти старьёвщика
+                Console.WriteLine("Вы нашли старьёвщика");
+                break;
+            case 4:
+                // Прогуляться
+                Console.WriteLine("Вы прогуливаетесь по городу");
+                break;
+            case 5:
+                VisitMentor();
+                break;
+            case 6:
+                Console.WriteLine($"{_hero.Name} выходит из города");
+                _isCityActive = false;
+                break;
+        }
+        Console.WriteLine("Нажми любую клавишу для продолжения...");
+        Console.ReadKey();
+    }
+
+    /// <summary>
+    /// Позволяет герою посетить наставника, просмотреть доступные неизученные заклинания и изучить выбранное.
+    /// </summary>
+    private static void VisitMentor()
+    {
+        Console.Clear();
+        Console.WriteLine("📚 Ты входишь в дом наставника.\n");
+        Console.WriteLine("Наставник: Добро пожаловать.");
+        Console.WriteLine("📚 Наставник внимательно смотрит на тебя.");
+        var spells = _hero.SpellsToLearn.Where(x => x.NeedLevel <= _hero.Level.Level).ToList();
+        if (!spells.Any())
+        {
+            Console.WriteLine("Наставник: Я пока не могу научить тебя ничему новому.\n");
+            return;
+        } 
+        Console.WriteLine("Наставник: Я могу обучить тебя новому заклинанию.\n");
+        _hero.ShowSpells(spells, true);
+        Console.WriteLine("\nВыбери заклинание для изучения (0 - выход в город)");
+        var choice = InputValidator.GetValidInput(spells.Count, 0);
+        if (choice <= 0) return;
+        var spell = spells.Where((x,i) => i==choice-1).Single();
+        if (_hero.Money >= spell.NeedGold)
+        {
+            _hero.LearnedSpells.Add(spell);
+            _hero.SpellsToLearn.Remove(spell);
+            Console.WriteLine($"Ты изучил заклинание {spell.SpellName}!");
+            _hero.RemoveMoney(spell.NeedGold);
+        }
+        Console.WriteLine($"Не хватило золота!");
+    }
+    
     /// <summary>
     /// Обрабатывает выбор игрока из главного меню
     /// и запускает соответствующее действие.
     /// </summary>
-    private static void HandleChoice(int choice)
+    private static void HandleMainMenuChoice(int choice)
     {
         switch (choice)
         {
@@ -86,7 +155,12 @@ public static class GameLoop
                 _hero.HaveRest();
                 break;
             case 4:
-                _hero.ShowTownMenu();
+                _isCityActive = true;
+                while (_isCityActive)
+                {
+                    _hero.RestorationOfInitialResourceAndHealth();
+                    _hero.ShowTownMenu(HandleTownMenuChoice);
+                }
                 break;
             case 5:
                 _hero.DisplayHeader();

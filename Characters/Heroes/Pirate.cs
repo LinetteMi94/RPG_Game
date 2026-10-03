@@ -96,6 +96,8 @@ public class Pirate(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Капитанский натиск")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 45,
                     GetDamage = pirate => (int)Math.Round((pirate.Strength + pirate.Agility) * 2.5),
                     Messages = new()

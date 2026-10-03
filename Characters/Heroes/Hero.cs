@@ -59,10 +59,26 @@ public abstract class Hero : Character, IResourсeCharacter
     public abstract List<Spell> SpellsToLearn  { get; set; }
 
     /// <summary>
+    /// Добавляет предмет в инвентарь героя.
+    /// </summary>
+    internal void AddItem(Item item)
+    {
+        Inventory.Add(item);
+        item.ShowDescription();
+        Console.WriteLine($"{item.Name} добавлен в инвентарь");
+        Console.WriteLine();
+    }
+    
+    /// <summary>
+    /// Добавляет деньги в кошелёк героя
+    /// </summary>
+    protected internal void AddMoney(int money) => Money += money;
+    
+    /// <summary>
     /// Выполняет атаку выбранного противника.
     /// Рассчитывает нанесённый урон и выводит соответствующее сообщение.
     /// </summary>
-    protected internal virtual void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
+    protected internal void Attack(Monster target, Spell? spell, bool ignoreArmor = false)
     {
         if(Resource >= spell.NeedResource)
         {
@@ -82,6 +98,22 @@ public abstract class Hero : Character, IResourсeCharacter
         else Console.WriteLine(NoResourceMessage);
     }
 
+    /// <summary>
+    /// Выводит информацию о персонаже:
+    /// характеристики, уровень, здоровье, ману и другие параметры.
+    /// </summary>
+    public override void DisplayCharacterStats()
+    { 
+        Console.WriteLine($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
+        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
+        Console.WriteLine($"{ResourceName}: {Resource}/{MaxResource}");
+        Console.WriteLine($"Очки опыта: {Level.Experience}, Золотых монет: {Money}");
+        Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
+        Console.WriteLine();
+        Console.WriteLine("Известные заклинания:");
+        ShowSpells(LearnedSpells);
+    }
+    
     /// <summary>
     /// Выполняет действия при повышении уровня:
     /// увеличивает характеристики, здоровье и другие параметры героя.
@@ -105,38 +137,6 @@ public abstract class Hero : Character, IResourсeCharacter
     }
     
     /// <summary>
-    /// Добавляет деньги в кошелёк героя
-    /// </summary>
-    protected internal void AddMoney(int money) => Money += money;
-    
-    /// <summary>
-    /// Отнимает деньги из кошелька героя
-    /// </summary>
-    protected internal void RemoveMoney(int money) => Money -= money;
-
-    /// <summary>
-    /// Получает случайный предмет из списка добычи побеждённого монстра
-    /// и добавляет его в инвентарь героя.
-    /// </summary>
-    protected internal void TakeLoot(Monster monster)
-    {
-        Item item = monster.Loot[new Random().Next(monster.Loot.Count)];
-        Console.WriteLine($"🎁 С {monster.Name} выпал предмет: {item.Name}");
-        AddItem(item);
-    }
-
-    /// <summary>
-    /// Добавляет предмет в инвентарь героя.
-    /// </summary>
-    internal void AddItem(Item item)
-    {
-        Inventory.Add(item);
-        item.ShowDescription();
-        Console.WriteLine($"{item.Name} добавлен в инвентарь");
-        Console.WriteLine();
-    }
-    
-    /// <summary>
     /// Удаляет предмет из инвентаря героя.
     /// </summary>
     public void RemoveItem(Item item)
@@ -145,6 +145,32 @@ public abstract class Hero : Character, IResourсeCharacter
         item.ShowDescription();
         Console.WriteLine($"{item.Name} выброшен из рюкзака");
         Console.WriteLine();
+    }
+    
+    /// <summary>
+    /// Отнимает деньги из кошелька героя
+    /// </summary>
+    protected internal void RemoveMoney(int money) => Money -= money;
+    
+    /// <summary>
+    /// Восстанавливает начальное значение ресурса и здоровья во время спокойного путешествия игрока раз в ход
+    /// </summary>
+    public void RestorationOfInitialResourceAndHealth()
+    {
+        var resourceForRestoration = (int)Math.Round(MaxResource*0.02);
+        var healthForRestoration = (int)Math.Round(MaxHealth*0.02);
+        Health += healthForRestoration;
+        if(Health > MaxHealth) Health = MaxHealth;
+        if (ClassName == "Пират" || ClassName == "Воин" || ClassName == "Циркач")
+        {
+            Resource -= resourceForRestoration;
+            if(Resource < 0) Resource = 0;
+        }
+        else
+        {
+            Resource += resourceForRestoration;
+            if(Resource > MaxResource) Resource = MaxResource;
+        }
     }
     
     /// <summary>
@@ -167,37 +193,40 @@ public abstract class Hero : Character, IResourсeCharacter
     }
 
     /// <summary>
-    /// Выводит информацию о персонаже:
-    /// характеристики, уровень, здоровье, ману и другие параметры.
+    /// Выводит на экран список заклинаний с учётом режима отображения.
     /// </summary>
-    public override void DisplayCharacterStats()
-    { 
-        Console.WriteLine($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
-        Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
-        Console.WriteLine($"{ResourceName}: {Resource}/{MaxResource}");
-        Console.WriteLine($"Очки опыта: {Level.Experience}, Золотых монет: {Money}");
-        Console.WriteLine($"Броня: {Armor}, Сила: {Strength}, Ловкость: {Agility}, Выносливость: {Stamina}, Интеллект: {Intellect}, Дух: {Spirit}");
-        Console.WriteLine();
+    /// <param name="spells">Список заклинаний для отображения.</param>
+    /// <param name="_isForLearning">Указывает, отображаются ли заклинания для изучения.</param>
+    public void ShowSpells(List<Spell> spells, bool _isForLearning = false)
+    {
+        var counter = 0;
+        foreach (var spell in spells)
+        {
+            counter++;
+            Console.Write($"{counter}. {spell.SpellName}   ");
+            Console.Write($"Наносит урона: {spell.GetDamage(this)}   ");
+            if (spell is { NeedResource: 0, GiveResource: 0 })
+            {
+                Console.WriteLine();
+                continue;
+            }
+            Console.WriteLine(spell.NeedResource > 0
+                ? $"Требуется: {ResourceName} {spell.NeedResource}"
+                : $"Даёт: {ResourceName} {spell.GiveResource}");
+            if (_isForLearning) Console.WriteLine($"Стоимость обучения: {spell.NeedGold} зол.   (В наличии {Money} зол.)");
+        }
     }
     
     /// <summary>
-    /// Восстанавливает начальное значение ресурса и здоровья во время спокойного путешествия игрока раз в ход
+    /// Получает случайный предмет из списка добычи побеждённого монстра
+    /// и добавляет его в инвентарь героя.
     /// </summary>
-    public void RestorationOfInitialResourceAndHealth()
+    protected internal void TakeLoot(Monster monster)
     {
-        var resourceForRestoration = (int)Math.Round(MaxResource*0.02);
-        var healthForRestoration = (int)Math.Round(MaxHealth*0.02);
-        Health += healthForRestoration;
-        if(Health > MaxHealth) Health = MaxHealth;
-        if (ClassName == "Пират" || ClassName == "Воин" || ClassName == "Циркач")
-        {
-            Resource -= resourceForRestoration;
-            if(Resource < 0) Resource = 0;
-        }
-        else
-        {
-            Resource += resourceForRestoration;
-            if(Resource > MaxResource) Resource = MaxResource;
-        }
+        Item item = monster.Loot[new Random().Next(monster.Loot.Count)];
+        Console.WriteLine($"🎁 С {monster.Name} выпал предмет: {item.Name}");
+        AddItem(item);
     }
+    
+   
 }

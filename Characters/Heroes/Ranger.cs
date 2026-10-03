@@ -94,6 +94,8 @@ public class Ranger(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Залп стрел")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 50,
                     GetDamage = ranger => (int)Math.Round(ranger.Agility * 3.5),
                     Messages = new()

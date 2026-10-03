@@ -94,6 +94,8 @@ public class Warrior(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Размашистый удар")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 50,
                     GetDamage = warrior => warrior.Strength * 4,
                     Messages = new()

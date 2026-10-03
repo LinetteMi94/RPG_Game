@@ -97,6 +97,8 @@ public class Shaman(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Гнев небес")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 50,
                     GetDamage = shaman => (int)Math.Round((shaman.Spirit + shaman.Intellect) * 2.5),
                     Messages = new()

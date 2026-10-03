@@ -96,6 +96,8 @@ public class Mage(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Электрический разряд")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 45,
                     GetDamage = mage => (int)(mage.Intellect * 3.5),
                     Messages = new()

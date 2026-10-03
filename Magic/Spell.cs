@@ -10,6 +10,9 @@ public class Spell(string spellName)
     public string SpellName { get; } = spellName;
     public int NeedResource { get; init; }
     public int GiveResource { get; init; }
+    
+    public int NeedLevel { get; init; }
+    public int NeedGold { get; init; }
     public Func<Hero, int> GetDamage { get; set; }
     public BattleMessages Messages { get; set; } 
     

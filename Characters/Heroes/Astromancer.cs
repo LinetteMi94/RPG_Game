@@ -95,6 +95,8 @@ public class Astromancer(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Разрыв пространства")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 50,
                     GetDamage = mage => mage.Intellect * 4,
                     Messages = new()

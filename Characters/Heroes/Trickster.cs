@@ -93,6 +93,8 @@ public class Trickster(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Смертельное представление")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 50,
                     GetDamage = trickster => trickster.Agility * 4,
                     Messages = new()

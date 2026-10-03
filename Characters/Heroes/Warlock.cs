@@ -95,6 +95,8 @@ public class Warlock(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Проклятие бездны")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 50,
                     GetDamage = warlock => warlock.Intellect * 4,
                     Messages = new()

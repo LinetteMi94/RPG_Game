@@ -97,6 +97,8 @@ public class Minstrel(string name)
     public override List<Spell> SpellsToLearn  { get; set; }
         = [new("Песнь разрушения")
                 {
+                    NeedLevel = 2,
+                    NeedGold = 40,
                     NeedResource = 45,
                     GetDamage = minstrel  => (int)Math.Round((minstrel.Intellect + minstrel.Spirit) * 2.5),
                     Messages = new()
