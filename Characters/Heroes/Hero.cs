@@ -24,7 +24,7 @@ public abstract class Hero : Character, IResourсeCharacter
 
     protected virtual StatGrowth StatGrowth { get; }
 
-    protected internal int Money { get; private set; }
+    protected internal int Money { get; set; }
 
     public LevelProgress Level { get; } = new();
 
@@ -103,7 +103,8 @@ public abstract class Hero : Character, IResourсeCharacter
     /// характеристики, уровень, здоровье, ману и другие параметры.
     /// </summary>
     public override void DisplayCharacterStats()
-    { 
+    {
+        Console.Clear();
         Console.WriteLine($"Персонаж: {Name}, {ClassName}, {Level.Level} уровень");
         Console.WriteLine($"Здоровье: {Health}/{MaxHealth}");
         Console.WriteLine($"{ResourceName}: {Resource}/{MaxResource}");
@@ -112,6 +113,23 @@ public abstract class Hero : Character, IResourсeCharacter
         Console.WriteLine();
         Console.WriteLine("Известные заклинания:");
         ShowSpells(LearnedSpells);
+    }
+
+    /// <summary>
+    /// Изучает заклинание, проверяя наличие необходимого количества золота и списывая его стоимость.
+    /// </summary>
+    /// <param name="spell">Заклинание, которое герой изучает.</param>
+    public void LearnSpell(Spell spell)
+    {
+        if (Money >= spell.NeedGold)
+        {
+            LearnedSpells.Add(spell);
+            SpellsToLearn.Remove(spell);
+            Console.WriteLine($"Ты изучил заклинание {spell.SpellName}!");
+            RemoveMoney(spell.NeedGold);
+            return;
+        }
+        Console.WriteLine($"Не хватило золота!");
     }
     
     /// <summary>
@@ -137,13 +155,20 @@ public abstract class Hero : Character, IResourсeCharacter
     }
     
     /// <summary>
-    /// Удаляет предмет из инвентаря героя.
+    /// Удаляет указанный предмет из инвентаря героя.
     /// </summary>
-    public void RemoveItem(Item item)
+    /// <param name="item">Предмет, который необходимо удалить из инвентаря.</param>
+    /// <param name="_isForSelling">Указывает, удаляется ли предмет в связи с его продажей.</param>
+    public void RemoveItem(Item item, bool _isForSelling = false)
     {
         Inventory.Remove(item);
-        item.ShowDescription();
-        Console.WriteLine($"{item.Name} выброшен из рюкзака");
+        if (!_isForSelling)
+        {
+            Console.WriteLine($"{item.Name} выброшен из рюкзака\n");
+            return;
+        }
+        Money += item.Price;
+        Console.WriteLine($"Вы продали {item.Name}! Получено {item.Price} зол.\n");
         Console.WriteLine();
     }
     
@@ -181,15 +206,25 @@ public abstract class Hero : Character, IResourсeCharacter
         if (Inventory.Count != 0)
         {
            Console.WriteLine($"🎒 Инвентарь {Name}:");
-           int number = 1;
-           foreach (Item item in Inventory)
-           {
-               Console.Write($"{number++}. ");
-               item.ShowDescription();
-               Console.WriteLine();
-           }
+           ShowItems(Inventory.ToArray());
         }
         else Console.WriteLine($"🎒 Инвентарь {Name} пуст.");
+    }
+    
+    /// <summary>
+    /// Отображает список доступных предметов.
+    /// </summary>
+    /// <param name="items">Массив предметов для отображения.</param>
+    public void ShowItems(Item[] items)
+    {
+        if (items.Length == 0) return;
+        int number = 1;
+        foreach (Item item in items)
+        { 
+            Console.Write($"{number++}. ");
+            item.ShowDescription();
+            Console.WriteLine();
+        }
     }
 
     /// <summary>

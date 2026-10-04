@@ -23,7 +23,7 @@ public static class InputValidator
             {
                 return choice;
             }
-            Console.WriteLine($"Пожалуйста, введите число от 1 до {max}!");
+            Console.WriteLine($"Пожалуйста, введите число от {min} до {max}!");
         }
     }
 }

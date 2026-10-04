@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using RPG_Game.Characters.Heroes;
+using RPG_Game.Enums;
 using RPG_Game.Input;
 using RPG_Game.World;
 
@@ -84,8 +85,7 @@ public static class GameLoop
                 Console.WriteLine("Вы пошли к аптекарю");
                 break;
             case 3:
-                // Найти старьёвщика
-                Console.WriteLine("Вы нашли старьёвщика");
+                VisitScrapDealer();
                 break;
             case 4:
                 // Прогуляться
@@ -124,14 +124,50 @@ public static class GameLoop
         var choice = InputValidator.GetValidInput(spells.Count, 0);
         if (choice <= 0) return;
         var spell = spells.Where((x,i) => i==choice-1).Single();
-        if (_hero.Money >= spell.NeedGold)
+        _hero.LearnSpell(spell);
+    }
+
+    /// <summary>
+    /// Позволяет герою посетить старьёвщика и продать ему разный хлам.
+    /// </summary>
+    private static void VisitScrapDealer()
+    {
+        Console.Clear();
+        Console.WriteLine("Ты заходишь в небольшую лавку. За прилавком стоит торговец и внимательно рассматривает тебя.\n");
+        Console.WriteLine("Старьёвщик: Есть что-нибудь на продажу?");
+        Console.WriteLine("1. Да\n2. Нет");
+        var choice = InputValidator.GetValidInput(2);
+        if (choice == 2)
         {
-            _hero.LearnedSpells.Add(spell);
-            _hero.SpellsToLearn.Remove(spell);
-            Console.WriteLine($"Ты изучил заклинание {spell.SpellName}!");
-            _hero.RemoveMoney(spell.NeedGold);
+            Console.WriteLine("Старьёвщик: Как знаешь. Приходи, когда захочешь избавиться от чего-нибудь ненужного.");
+            return;
         }
-        Console.WriteLine($"Не хватило золота!");
+        Console.WriteLine("Старьёвщик: Показывай. За хорошие вещи дам приличную цену. За откровенный хлам... ну, тоже что-нибудь дам.\n");
+        while (true)
+        {
+            var items = _hero.Inventory.Where(x => x.Type is ItemTypes.Junk or ItemTypes.Rare or ItemTypes.Valuable && x.Price > 0).ToArray();
+            if (!items.Any())
+                    {
+                        Console.WriteLine("Вы гордо показываете пустой рюкзак.");
+                        Console.WriteLine("Старьёвщик окидывает взглядом содержимое твоего рюкзака.");
+                        Console.WriteLine("Старьёвщик: Вижу, продавать тебе пока нечего. Загляни позже.");
+                        return;
+                    } 
+            _hero.ShowItems(items);
+            Console.WriteLine("Старьёвщик: Ну что, что из этого ты готов мне продать?");
+            Console.WriteLine("\nВыбери вещь для продажи (0 - выход в город)");
+            var choiceItem = InputValidator.GetValidInput(items.Length, 0);
+            if (choiceItem == 0)
+            {
+                Console.WriteLine("Старьёвщик: Ну что ж, до встречи. Не выбрасывай всякие безделушки, лучше неси их мне.");
+                Console.WriteLine("Вы выходите из лавки.");
+                return;
+            }
+            var item = items[choiceItem - 1];
+            _hero.RemoveItem(item,true);
+            Console.WriteLine("Нажми любую клавишу для продолжения...");
+            Console.ReadKey();
+        }
     }
     
     /// <summary>

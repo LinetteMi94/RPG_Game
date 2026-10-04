@@ -1,4 +1,5 @@
 using System;
+using RPG_Game.Enums;
 
 namespace RPG_Game.Items;
 
@@ -6,11 +7,12 @@ namespace RPG_Game.Items;
 /// Представляет предмет
 /// Содержит название, описание и стоимость предмета.
 /// </summary>
-public class Item(string name, string description, double price = 0)
+public class Item(string name, string description, ItemTypes type, int price = 0)
 {
     public string Name { get; } = name;
+    public ItemTypes Type { get; set; } = type;
     private string Description { get; } = description;
-    private double Price { get; } = price;
+    public int Price { get; set; } = price;
 
     /// <summary>
     /// Возвращает информацию о предмете:

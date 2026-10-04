@@ -126,11 +126,9 @@ public static class GameMenu
         {
             Console.Write($"   ({hero.ResourceName}: {hero.LearnedSpells[index].NeedResource})");
         }
-
-        var maxDamage = hero.LearnedSpells[index].GetDamage(hero);
-        var minDamage = maxDamage - monster.Armor;
+        var minDamage = hero.LearnedSpells[index].GetDamage(hero) - monster.Armor;
         if (minDamage < 0) minDamage = 0;
-        Console.WriteLine($"   Урон: {minDamage} - {maxDamage}");
+        Console.WriteLine($"   Урон: {minDamage}");
     }
 
     /// <summary>
