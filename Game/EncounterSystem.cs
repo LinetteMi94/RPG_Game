@@ -133,6 +133,7 @@ public static class EncounterSystem
         var choice = new Random().Next(100);
         return choice switch
         {
+            < 10 => new Vampire(monsterLevel),
             < 25 => new Rat(monsterLevel),
             < 40 => new Leopard(monsterLevel),
             < 55 => new Zombie(monsterLevel),
