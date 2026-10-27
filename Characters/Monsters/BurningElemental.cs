@@ -91,26 +91,24 @@ public class BurningElemental(int monsterLevel = 1)
     
     public override void Attack(Hero target, int? damage = null)
     {
-        int realDamage = damage ?? Damage;
-        if (IsAlive)
+        var realDamage = damage ?? Damage;
+        if (!IsAlive) return;
+        if (realDamage > target.Armor)
         {
-            if (realDamage > target.Armor)
+            target.TakeDamage(realDamage);
+            Messages.ShowDamageMessage();
+            Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
+            Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
+            var fireAttack = new Random().Next(100) < FireChance;
+            if (fireAttack)
             {
-                target.TakeDamage(realDamage);
-                Messages.ShowDamageMessage();
-                Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
+                target.TakeDamage(FireDamage, true);
+                Messages.ShowSpecialMessage();
+                Console.WriteLine($"Нанесено {FireDamage} дополнительного урона от огня🔥!");
                 Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
-                bool fireAttack = new Random().Next(100) < FireChance;
-                if (fireAttack)
-                {
-                    target.TakeDamage(FireDamage, true);
-                    Messages.ShowSpecialMessage();
-                    Console.WriteLine($"Нанесено {FireDamage} дополнительного урона от огня🔥!");
-                    Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
-                }
             }
-            else Messages.ShowMissMessage();
-            Console.WriteLine();
         }
+        else Messages.ShowMissMessage();
+        Console.WriteLine();
     }
 }

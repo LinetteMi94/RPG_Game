@@ -1,3 +1,4 @@
+using RPG_Game.Characters.Heroes;
 using RPG_Game.Enums;
 using RPG_Game.Items;
 using RPG_Game.Messages;
@@ -36,11 +37,11 @@ public class Vampire(int monsterLevel = 1)
         },
         SpecialMessages =
         {
-            "🩸 Вампир впивается в героя клыками и поглощает его жизненные силы!",
-            "🧛 Глаза вампира вспыхивают алым светом, а его раны начинают затягиваться!",
-            "🌑 Вампир окутывает себя тьмой и обрушивается на героя!",
-            "🩸 Вампир высасывает кровь героя, восстанавливая собственное здоровье!",
-            "🦇 Вампир превращается в рой летучих мышей и атакует героя с новой силой!"
+            "🩸 Вампир впивается в героя клыками и высасывает его жизненную силу!",
+            "🧛 Алые глаза вампира вспыхивают, пока он вытягивает жизнь из тела героя!",
+            "🌑 Вампир окутывает героя тьмой и поглощает его жизненную энергию!",
+            "🩸 Вампир высасывает жизненные силы героя, а его собственные раны затягиваются!",
+            "🦇 Превратившись в рой летучих мышей, вампир набрасывается на героя и пожирает его жизненную энергию!"
         }
     };
     
@@ -86,4 +87,22 @@ public class Vampire(int monsterLevel = 1)
             "Сгусток тёмной энергии, хранящий частицу силы древнего бессмертного.",
             ItemTypes.Rare, 350)
     ];
+    
+    public override void Attack(Hero target, int? damage = null)
+    {
+        var realDamage = damage ?? Damage;
+        if (!IsAlive) return;
+        if (realDamage > target.Armor)
+        {
+            target.TakeDamage(realDamage);
+            Messages.ShowDamageMessage();
+            Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
+            Console.WriteLine($"{target.Name}, здоровье {target.Health}/{target.MaxHealth}!");
+            Messages.ShowSpecialMessage();
+            Console.WriteLine($"🩸 Вампир вытянул жизненные силы героя и восстановил {realDamage - target.Armor} здоровья");
+            Health += realDamage - target.Armor;
+        }
+        else Messages.ShowMissMessage();
+        Console.WriteLine();
+    }
 }
