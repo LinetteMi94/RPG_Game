@@ -12,7 +12,7 @@ namespace RPG_Game.Characters.Monsters;
 /// Лепрекон имеет средний запас здоровья, но может увернуться от атаки
 /// и приносит большое количество золота после победы.
 /// </summary>
-public class Leprechaun(int monsterLevel = 1)
+public class Leprechaun(int monsterLevel)
     : Monster(name:"Лепрекон", 
         health: ScaleStat(80, monsterLevel, 25),
         armor: ScaleStat(15, monsterLevel, 2),

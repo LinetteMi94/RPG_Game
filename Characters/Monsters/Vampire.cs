@@ -8,7 +8,7 @@ namespace RPG_Game.Characters.Monsters;
 /// <summary>
 /// Представляет монстра-вампира, который атакует противников и восстанавливает здоровье, высасывая их жизненные силы.
 /// </summary>
-public class Vampire(int monsterLevel = 1)
+public class Vampire(int monsterLevel)
     : Monster(name: "Вампир",
         health: ScaleStat(120, monsterLevel, 15),
         armor: ScaleStat(8, monsterLevel, 2),

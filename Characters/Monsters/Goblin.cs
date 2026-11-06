@@ -9,7 +9,7 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет гоблина — небольшого агрессивного противника начального уровня.
 /// Обладает более высокими характеристиками, чем обычные слабые существа.
 /// </summary>
-public class Goblin(int monsterLevel = 1) 
+public class Goblin(int monsterLevel) 
     : Monster(name: "Гоблин",
         health: ScaleStat(70, monsterLevel, 15),
         armor: ScaleStat(10, monsterLevel, 2),

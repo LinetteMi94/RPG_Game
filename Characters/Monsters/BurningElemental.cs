@@ -11,7 +11,7 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет горящего элементаля — существо из огненной энергии.
 /// Имеет шанс нанести дополнительный урон огнём во время атаки.
 /// </summary>
-public class BurningElemental(int monsterLevel = 1) 
+public class BurningElemental(int monsterLevel) 
     : Monster(name:"Горящий элементаль", 
         health: ScaleStat(100, monsterLevel, 20),
         armor: ScaleStat(10, monsterLevel, 2),

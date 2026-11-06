@@ -8,7 +8,7 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет дикого леопарда, стремительного и опасного хищника.
 /// Отличается высокой ловкостью и быстрыми атаками.
 /// </summary>
-public class Leopard(int monsterLevel = 1)
+public class Leopard(int monsterLevel)
     : Monster(name:"Леопард", 
         health: ScaleStat(80, monsterLevel, 2),
         armor: ScaleStat(14, monsterLevel, 2),

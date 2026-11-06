@@ -7,6 +7,7 @@ using RPG_Game.Enums;
 using RPG_Game.Game;
 using RPG_Game.Items;
 using RPG_Game.Messages;
+using RPG_Game.MonsterGeneration;
 
 namespace RPG_Game.World;
 
@@ -130,18 +131,9 @@ public static class EncounterSystem
     private static Monster GetRandomMonster(int heroLevel)
     {
         int monsterLevel = Math.Max(1, heroLevel + new Random().Next(-2, 3));
-        var choice = new Random().Next(100);
-        return choice switch
-        {
-            < 10 => new Vampire(monsterLevel),
-            < 25 => new Rat(monsterLevel),
-            < 40 => new Leopard(monsterLevel),
-            < 55 => new Zombie(monsterLevel),
-            < 70 => new ForestTroll(monsterLevel),
-            < 90 => new Goblin(monsterLevel),
-            < 95 => new Leprechaun(monsterLevel),
-            _ => new BurningElemental(monsterLevel),
-        };
+        var monsters = MonsterCatalog.Monsters
+            .Where(x => x.MinLevel <= heroLevel && x.MaxLevel >= heroLevel).ToList();
+        return monsters[new Random().Next(monsters.Count)].Create(monsterLevel);
     }
 
     

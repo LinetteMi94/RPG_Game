@@ -9,7 +9,7 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет обычную крысу — слабого противника начального уровня.
 /// Обладает низким запасом здоровья и наносит небольшой физический урон.
 /// </summary>
-public class Rat(int monsterLevel = 1)
+public class Rat(int monsterLevel)
         : Monster(name: "Крыса",
                 health: ScaleStat(40, monsterLevel, 10),
                 armor: ScaleStat(5, monsterLevel),

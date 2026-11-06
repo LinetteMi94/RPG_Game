@@ -10,7 +10,7 @@ namespace RPG_Game.Characters.Monsters;
 /// Представляет зомби — ожившего мертвеца.
 /// Может восстанавливать здоровье во время боя.
 /// </summary>
-public class Zombie(int monsterLevel = 1)
+public class Zombie(int monsterLevel)
     : Monster(name:"Зомби", 
         health: ScaleStat(120, monsterLevel, 25),
         armor: ScaleStat(15, monsterLevel, 2),
