@@ -17,5 +17,6 @@ public static class MonsterCatalog
         new (3, 9, level => new Leprechaun(level)),
         new (2, 7, level => new Vampire(level)),
         new (1, 6, level => new Zombie(level)),
+        new (2, 5, level => new Wolfhound(level))
     ];
 }
