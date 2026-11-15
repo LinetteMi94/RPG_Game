@@ -37,17 +37,15 @@ public abstract class Monster(string name, int health, int armor, int damage, in
     public virtual void Attack(Hero target, int? damage = null)
     {
         int realDamage = damage ?? Damage;
-        if (IsAlive)
+        if (!IsAlive) return;
+        target.TakeDamage(realDamage);
+        if (realDamage > target.Armor)
         {
-            target.TakeDamage(realDamage);
-            if (realDamage > target.Armor)
-            {
-                Messages.ShowDamageMessage();
-                Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
-            }
-            else Messages.ShowMissMessage();
-            Console.WriteLine();
+            Messages.ShowDamageMessage();
+            Console.WriteLine($"{Name} наносит {realDamage - target.Armor} урона {target.Name}!");
         }
+        else Messages.ShowMissMessage();
+        Console.WriteLine();
     }
 
     protected virtual void TakeDamage(int damage) => base.TakeDamage(damage);
